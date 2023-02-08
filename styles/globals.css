@@ -5,27 +5,27 @@
 @font-face {
   font-family: Ubuntu;
   font-weight: 400;
-  src: url('../public/multi-step-form/fonts/Ubuntu-Regular.ttf');
+  src: url("../public/multi-step-form/fonts/Ubuntu-Regular.ttf");
 }
 
 @font-face {
   font-family: Ubuntu;
   font-weight: 500;
-  src: url('../public/multi-step-form/fonts/Ubuntu-Medium.ttf');
+  src: url("../public/multi-step-form/fonts/Ubuntu-Medium.ttf");
 }
 
 @font-face {
   font-family: Ubuntu;
   font-weight: 700;
-  src: url('../public/multi-step-form/fonts/Ubuntu-Bold.ttf');
+  src: url("../public/multi-step-form/fonts/Ubuntu-Bold.ttf");
 }
 
 :root {
   --max-width: 1100px;
   --border-radius: 12px;
-  --font-mono: ui-monospace, Menlo, Monaco, 'Cascadia Mono', 'Segoe UI Mono',
-    'Roboto Mono', 'Oxygen Mono', 'Ubuntu Monospace', 'Source Code Pro',
-    'Fira Mono', 'Droid Sans Mono', 'Courier New', monospace;
+  --font-mono: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono",
+    "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro",
+    "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
 
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -109,9 +109,10 @@ body {
 
 body {
   color: rgb(var(--foreground-rgb));
-  font-family: Ubuntu, 'sans-serif';
-  color: #03295A;
-  background: #EEF5FF/* linear-gradient(
+  font-family: Ubuntu, "sans-serif";
+  color: #03295a;
+  background: #eef5ff
+    /* linear-gradient(
       to bottom,
       transparent,
       rgb(var(--background-end-rgb))
