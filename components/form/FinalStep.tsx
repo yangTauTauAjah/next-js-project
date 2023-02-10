@@ -1,7 +1,7 @@
 import Image from "next/image";
 import IconThankYou from "../../public/multi-step-form/images/icon-thank-you.svg";
 
-export default function ({setStep}: {setStep: React.Dispatch<React.SetStateAction<number>>}) {
+export default function () {
   return (
     <div className="flex flex-col justify-center items-center gap-9 w-min grow">
       <Image src={IconThankYou} alt="thank-you" />

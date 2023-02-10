@@ -1,7 +1,10 @@
 
-import { MutableRefObject, useRef, useState } from "react";
+import { MutableRefObject, useEffect, useRef, useState } from "react";
+import { Addons, UserDataStructure } from "./Form";
 
 type AddonsProps = {
+  order: number,
+  data: UserDataStructure[2],
   mode: 0 | 1;
   id: string;
   label: string;
@@ -11,6 +14,8 @@ type AddonsProps = {
 };
 
 const AddonsLi = ({
+  order,
+  data,
   mode,
   id,
   label,
@@ -18,8 +23,11 @@ const AddonsLi = ({
   priceMo,
   priceYr,
 }: AddonsProps) => {
-  let [selected, setSelected] = useState(false);
+  let [selected, setSelected] = useState(data[order as 0 | 1 | 2]);
   const inputRef: MutableRefObject<HTMLInputElement | null> = useRef(null)
+  useEffect(() => {
+    data[order as 0 | 1 | 2] = selected
+  }, [selected])
 
   return (
     <li
@@ -48,6 +56,8 @@ const AddonsLi = ({
     >
       <div className="flex gap-6">
         <input
+          onChange={() => setSelected(!selected)}
+          checked={selected}
           ref={inputRef}
           className="cursor-pointer scale-125 accent-[#483EFF]"
           type="checkbox"
@@ -92,49 +102,23 @@ const AddonsList = [
   },
 ];
 
-export default function ({setStep}: {setStep: React.Dispatch<React.SetStateAction<number>>}) {
+export default function ({ data }: { data: UserDataStructure }) {
 
   return (
-    <form
-      onSubmit={e => {e.preventDefault(); setStep((prev) => ++prev)}}
-      className="flex flex-col justify-between w-auto my-5 mx-auto"
-    >
-      <div>
-        <h1 className="font-bold text-2xl mb-4">Pick add-ons</h1>
-        <h5 onLoad={e => console.log('loaded')} className="font-medium text-gray-400">
-          Add-ons help enhance your gaming experience.
-        </h5>
-      </div>
-      <div className="font-medium">
-        <ul className="flex flex-col gap-4">
-          {AddonsList.map(({ id, label, desc, priceMo, priceYr }, i) => (
-            <AddonsLi
-              key={i}
-              mode={1}
-              id={id}
-              label={label}
-              desc={desc}
-              priceMo={priceMo}
-              priceYr={priceYr}
-            />
-          ))}
-        </ul>
-      </div>
-      <div className="flex justify-between">
-        <button
-          onClick={() => setStep((prev) => --prev)}
-          type="submit"
-          className="transition-colors font-medium px-7 py-3 text-gray-400 hover:text-[#174A8B]"
-        >
-          Go Back
-        </button>
-        <button
-          type="submit"
-          className="transition-colors font-medium px-7 py-3 bg-[#03295A] hover:bg-[#174A8B] text-white rounded-lg"
-        >
-          Next Step
-        </button>
-      </div>
-    </form>
+    <ul className="flex flex-col gap-4 font-medium">
+      {AddonsList.map(({ id, label, desc, priceMo, priceYr }, i) => (
+        <AddonsLi
+          key={i}
+          order={i}
+          data={data[2]}
+          mode={1}
+          id={id}
+          label={label}
+          desc={desc}
+          priceMo={priceMo}
+          priceYr={priceYr}
+        />
+      ))}
+    </ul>
   );
 }

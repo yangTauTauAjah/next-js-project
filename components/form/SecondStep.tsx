@@ -1,8 +1,9 @@
 import Image from "next/image";
+import { MutableRefObject, useEffect, useRef, useState } from "react";
 import IconArcade from "../../public/multi-step-form/images/icon-arcade.svg";
 import IconAdvanced from "../../public/multi-step-form/images/icon-advanced.svg";
 import IconPro from "../../public/multi-step-form/images/icon-pro.svg";
-import { useState } from "react";
+import { Addons, Plan, TimePeriod, UserDataStructure } from "./Form";
 
 type CardProps = {
   index?: number;
@@ -25,9 +26,9 @@ const CardElement = ({
   priceYr,
   onClick,
 }: CardProps) => {
+
   return (
-    <div
-      key={index}
+    <li
       onClick={() => onClick(index)}
       className={`
       cursor-pointer
@@ -56,7 +57,7 @@ const CardElement = ({
           2 months free
         </h4>
       </div>
-    </div>
+    </li>
   );
 };
 
@@ -81,85 +82,59 @@ const CardList = [
   },
 ];
 
-export default function ({
-  setStep,
-}: {
-  setStep: React.Dispatch<React.SetStateAction<number>>;
-}) {
-  let [mode, setMode]: [0 | 1, any] = useState(0);
-  let [select, setSelect]: [number, any] = useState(0);
+export default function ({ data }: { data: UserDataStructure }) {
+  let [mode, setMode]: [TimePeriod, any] = useState(data[1].period);
+  let [select, setSelect]: [Plan, any] = useState(data[1].plan);
+  const toggle: MutableRefObject<HTMLDivElement | null> = useRef(null);
+  useEffect(() => {
+    data[1].plan = select;
+    data[1].period = mode;
+  }, [select, mode]);
 
   return (
-    <form
-      onSubmit={(e) => {
-        e.preventDefault();
-        setStep((prev) => ++prev);
-      }}
-      className="flex flex-col justify-between w-auto my-5 mx-auto"
-    >
-      <div>
-        <h1 className="font-bold text-2xl mb-4">Select your plan</h1>
-        <h5 className="font-medium text-gray-400">
-          You have the option of monthly or yearly billing.
-        </h5>
-      </div>
-      <div className="font-medium flex flex-col gap-7">
-        <ul className="flex gap-4">
-          {CardList.map(({ icon, label, priceMo, priceYr }, i) => (
-            <li>
-              <CardElement
-                index={i}
-                selected={select === i}
-                onClick={setSelect}
-                mode={mode}
-                icon={icon}
-                label={label}
-                priceMo={priceMo}
-                priceYr={priceYr}
-              />
-            </li>
-          ))}
-        </ul>
-        <div className="flex justify-center items-center bg-[#F8F9FE] h-10 gap-5 rounded-lg">
-          <p className={`${mode && "text-gray-400"} pointer-events-none`}>
-            Monthly
-          </p>
+    <div className="font-medium flex flex-col gap-7">
+      <ul className="flex gap-4">
+        {CardList.map(({ icon, label, priceMo, priceYr }, i) => (
+          <CardElement
+            key={i}
+            index={i}
+            selected={select === i}
+            onClick={setSelect}
+            mode={mode}
+            icon={icon}
+            label={label}
+            priceMo={priceMo}
+            priceYr={priceYr}
+          />
+        ))}
+      </ul>
+      <div className="flex justify-center items-center bg-[#F8F9FE] h-10 gap-5 rounded-lg">
+        <p className={`${mode && "text-gray-400"} pointer-events-none`}>
+          Monthly
+        </p>
+        <div
+          onClick={() => {
+            toggle.current &&
+              (!mode
+                ? (toggle.current.style.left = "calc(100% - 14px)")
+                : (toggle.current.style.left = "2px"));
+
+            setMode(mode ? 0 : 1);
+          }}
+          className="cursor-pointer relative h-4 w-7 bg-[#03285A] rounded-full"
+        >
           <div
-            onClick={() => {
-              const toggle = document.querySelector("#circle");
-              !mode
-                /* @ts-ignore */
-                ? (toggle?.style.left = "calc(100% - 14px)")
-                /* @ts-ignore */
-                : (toggle?.style.left = "2px");
-              setMode(mode ? 0 : 1);
+            ref={toggle}
+            style={{
+              left: mode ? "calc(100% - 14px)" : "2px",
             }}
-            className="cursor-pointer relative h-4 w-7 bg-[#03285A] rounded-full"
-          >
-            <div
-              id="circle"
-              className="transition-all absolute left-[2px] top-1/2 -translate-y-1/2 aspect-square block bg-white h-3/4 rounded-full"
-            />
-          </div>
-          <p className={`${!mode && "text-gray-400"} pointer-events-none`}>
-            Yearly
-          </p>
+            className={`transition-all absolute top-1/2 -translate-y-1/2 aspect-square block bg-white h-3/4 rounded-full`}
+          />
         </div>
+        <p className={`${!mode && "text-gray-400"} pointer-events-none`}>
+          Yearly
+        </p>
       </div>
-      <div className="flex justify-between">
-        <button
-          onClick={() => setStep((prev) => --prev)}
-          className="transition-colors font-medium px-7 py-3 text-gray-400 hover:text-[#174A8B]"
-        >
-          Go Back
-        </button>
-        <button
-          type="submit"
-          className="transition-colors font-medium px-7 py-3 bg-[#03295A] hover:bg-[#174A8B] text-white rounded-lg"
-        >
-          Next Step
-        </button>
-      </div>
-    </form>
+    </div>
   );
 }
