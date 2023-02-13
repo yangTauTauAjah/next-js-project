@@ -3,7 +3,7 @@ import { MutableRefObject, useEffect, useRef, useState } from "react";
 import IconArcade from "../../public/multi-step-form/images/icon-arcade.svg";
 import IconAdvanced from "../../public/multi-step-form/images/icon-advanced.svg";
 import IconPro from "../../public/multi-step-form/images/icon-pro.svg";
-import { Addons, Plan, TimePeriod, UserDataStructure } from "./Form";
+import { Plan, TimePeriod, UserDataStructure } from "./Form";
 
 type CardProps = {
   index?: number;
@@ -26,7 +26,6 @@ const CardElement = ({
   priceYr,
   onClick,
 }: CardProps) => {
-
   return (
     <li
       onClick={() => onClick(index)}
@@ -40,12 +39,14 @@ const CardElement = ({
           : "border-gray-300 bg-transparent"
       }
       border-2
+      w-full
       flex
-      flex-col
       px-3
       py-4
-      w-28
-      gap-8`}
+      gap-4
+      md:gap-11
+      md:flex-col
+      md:w-36`}
     >
       <Image src={icon} alt={label} />
       <div>
@@ -82,7 +83,7 @@ const CardList = [
   },
 ];
 
-export default function ({ data }: { data: UserDataStructure }) {
+function desktop({ data }: { data: UserDataStructure }) {
   let [mode, setMode]: [TimePeriod, any] = useState(data[1].period);
   let [select, setSelect]: [Plan, any] = useState(data[1].plan);
   const toggle: MutableRefObject<HTMLDivElement | null> = useRef(null);
@@ -93,7 +94,7 @@ export default function ({ data }: { data: UserDataStructure }) {
 
   return (
     <div className="font-medium flex flex-col gap-7">
-      <ul className="flex gap-4">
+      <ul className="flex flex-col gap-3 md:flex-row md:justify-between">
         {CardList.map(({ icon, label, priceMo, priceYr }, i) => (
           <CardElement
             key={i}
@@ -108,7 +109,7 @@ export default function ({ data }: { data: UserDataStructure }) {
           />
         ))}
       </ul>
-      <div className="flex justify-center items-center bg-[#F8F9FE] h-10 gap-5 rounded-lg">
+      <div className="flex justify-center items-center bg-[#F8F9FE] h-12 gap-5 rounded-lg">
         <p className={`${mode && "text-gray-400"} pointer-events-none`}>
           Monthly
         </p>
@@ -116,19 +117,19 @@ export default function ({ data }: { data: UserDataStructure }) {
           onClick={() => {
             toggle.current &&
               (!mode
-                ? (toggle.current.style.left = "calc(100% - 14px)")
-                : (toggle.current.style.left = "2px"));
+                ? (toggle.current.style.left = "calc(100% - 16px)")
+                : (toggle.current.style.left = "4px"));
 
-            setMode(mode ? 0 : 1);
+            setMode(mode ? TimePeriod.MONTHLY : TimePeriod.YEARLY);
           }}
-          className="cursor-pointer relative h-4 w-7 bg-[#03285A] rounded-full"
+          className="cursor-pointer relative h-5 w-8 bg-[#03285A] rounded-full"
         >
           <div
             ref={toggle}
             style={{
-              left: mode ? "calc(100% - 14px)" : "2px",
+              left: mode ? "calc(100% - 16px)" : "4px",
             }}
-            className={`transition-all absolute top-1/2 -translate-y-1/2 aspect-square block bg-white h-3/4 rounded-full`}
+            className="transition-all absolute top-1/2 -translate-y-1/2 aspect-square block bg-white h-3/5 rounded-full"
           />
         </div>
         <p className={`${!mode && "text-gray-400"} pointer-events-none`}>
@@ -138,3 +139,5 @@ export default function ({ data }: { data: UserDataStructure }) {
     </div>
   );
 }
+
+export default desktop;
