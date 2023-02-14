@@ -99,7 +99,7 @@ const Mobile = ({
     <article className="relative min-h-[800px] h-[100vh]">
       <Image src={bannerMobile} alt="banner" className="w-full" />
 
-      {step <= 4 && (
+      {step <= 3 && (
         <div className="bg-white absolute bottom-0 flex justify-between w-full p-4">
           <button
             type="button"
