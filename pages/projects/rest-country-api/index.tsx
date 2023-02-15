@@ -14,11 +14,17 @@ const colors = {
 
 type region = "Africa" | "America" | "Asia" | "Europe" | "Oceania";
 interface Country {
-  name: string;
-  flag: string;
-  population: number;
-  region: region;
+  name?: string;
+  nativeName?: string;
+  flag?: string;
+  population?: number;
+  region?: region;
+  subregion?: string;
   capital?: string;
+  borders?: string[];
+  topLevelDomain?: string[];
+  currencies?: string[];
+  languages?: string[];
 }
 
 function Card({ name, flag, population, region, capital }: Country) {
@@ -120,8 +126,93 @@ function Select({
   );
 }
 
-function Main() {
+function List() {
+  
   const [filter, setFilter] = useState<string | null>(null);
+  
+  return(
+    <div className="flex flex-col gap-10 px-4 py-6 items-start">
+    <div className="flex justify-between gap-8 w-full items-center h-12 px-8 bg-white rounded-lg shadow-md">
+      {/* @ts-ignore */}
+      <ion-icon class="text-xl" name="search-outline" />
+      <input
+        placeholder="Search for a country ..."
+        className="outline-none font-semibold h-full flex-grow"
+      />
+    </div>
+
+    <Select state={[filter, setFilter]} />
+
+    <ul
+      className="w-full grid justify-center gap-10
+      grid-cols-[repeat(auto-fill, 256px)]"
+    >
+      {(() => {
+        let _temp = data;
+
+        if (filter) _temp = _temp.filter((e) => e.region === filter);
+
+        return (
+          _temp
+            // .filter((e, i) => i >= 0 && i <= 20)
+            .map(({ name, flag, population, region, capital }, i) => (
+              <Card
+                key={i}
+                name={name}
+                flag={flag}
+                population={population}
+                region={region as region}
+                capital={capital}
+              />
+            ))
+          );
+        })()}
+      </ul>
+    </div>
+  )
+}          
+
+function Country({country}: {country: Country}) {
+  return(
+    <div className="w-auto px-7 py-10">
+      <a href="/" className="rounded flex justify-between items-center px-8 bg-white w-24 h-8 shadow-lg">
+        {/* @ts-ignore */}
+        <ion-icon size='large' name="arrow-back-outline" />
+        <p className='pointer-event-none'>Back</p>
+      </a>
+      <Image src={country.flag} alt='flag' width={1024} height={1024} className='rounded mt-16 w-full shadow-lg' />
+      <h1 className='mt-12 font-extrabold text-2xl'>{country.name}</h1>
+      <div className='mt-9 flex flex-col gap-12'>
+        <div className='flex flex-col gap-5'>
+          <p><span className='font-semibold'>Native Name:</span> {country.nativeName}</p>
+          <p><span className='font-semibold'>Population:</span> {country.population}</p>
+          <p><span className='font-semibold'>Region:</span> {country.region}</p>
+          <p><span className='font-semibold'>Sub Region:</span> {country.subregion}</p>
+          <p><span className='font-semibold'>Capital:</span> {country.capital}</p>
+        </div>
+        <div className='flex flex-col gap-5'>
+          <p><span className='font-semibold'>Top Level Domain:</span>{country.topLevelDomain}</p>
+          <p><span className='font-semibold'>Currencies:</span>{country.currencies}</p>
+          <p><span className='font-semibold'>Languages:</span>{country.languages}</p>
+        </div>
+        <div>
+          <p className='font-semibold text-lg'>Border Countries:</p>
+          <ul className='mt-6 flex gap-3 mt-6'>
+            {
+              country
+                .borders
+                .map(e => (
+                  <li className="rounded shadow-lg flex place-items-center w-24 h-7"><p className="w-full text-center">{e}</p></li>
+                ))
+            }
+          </ul>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function Main() {
 
   useEffect(() => {
     document.body.style.setProperty("background", colors.veryLightGrayBg);
@@ -144,51 +235,8 @@ function Main() {
             <p className="font-semibold">Dark Mode</p>
           </div>
         </header>
-
-        <div className="flex flex-col gap-10 px-4 py-6 items-start">
-          <div className="flex justify-between gap-8 w-full items-center h-12 px-8 bg-white rounded-lg shadow-md">
-            {/* @ts-ignore */}
-            <ion-icon class="text-xl" name="search-outline" />
-            <input
-              placeholder="Search for a country ..."
-              className="outline-none font-semibold h-full flex-grow"
-            />
-          </div>
-
-          <Select state={[filter, setFilter]} />
-
-          <ul
-            className="w-full"
-            style={{
-              display: "grid",
-              justifyContent: "start",
-              gridTemplateColumns: "repeat(auto-fill, minmax(256px, 1fr))",
-              justifyItems: "center",
-              gap: "40px",
-            }}
-          >
-            {(() => {
-              let _temp = data;
-
-              if (filter) _temp = _temp.filter((e) => e.region === filter);
-
-              return (
-                _temp
-                  // .filter((e, i) => i >= 0 && i <= 20)
-                  .map(({ name, flag, population, region, capital }, i) => (
-                    <Card
-                      key={i}
-                      name={name}
-                      flag={flag}
-                      population={population}
-                      region={region as region}
-                      capital={capital}
-                    />
-                  ))
-              );
-            })()}
-          </ul>
-        </div>
+        {/* <List /> */}
+        <Country country={data[0]} />
       </article>
       <script
         type="module"
