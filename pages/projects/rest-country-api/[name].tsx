@@ -1,8 +1,9 @@
 import { GetStaticPaths } from "next";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { COLORS, ThemeContext, Wrapper } from ".";
+import Back from "../../../public/rest-country-api/icon/back-svgrepo-com.svg";
 import data from "../../../public/rest-country-api/data.json";
 
 const ALPA3CODE = {
@@ -265,7 +266,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
       { params: { name: "belgium" } },
       { params: { name: "indonesia" } },
     ],
-    fallback: 'blocking',
+    fallback: "blocking",
   };
 };
 
@@ -280,107 +281,132 @@ export const getStaticProps = async ({
 };
 
 export default function ({ name }: { name: string }) {
-  
+  const context = useContext(ThemeContext);
+  let [theme, setTheme] = useState();
 
   const router = useRouter();
+  const country = data.find((e) => e.name.match(new RegExp(name, "i")));
+
+  useEffect(() => {
+    console.log("rerender");
+    console.log(context.theme);
+  });
+
+  useEffect(() => {
+    context.toggleTheme = (theme) => {
+      context.theme = theme;
+      setTheme(theme);
+    };
+  }, []);
+
   if (router.isFallback) return <h1>Loading</h1>;
 
-  const country = data.find((e) => e.name.match(new RegExp(name, "i")))
-
   return (
-    <ThemeContext.Consumer>
-      {({theme}) => {
-      console.log('page rendered')
-      console.log(theme)
-        return <h1>{theme}</h1>
-      }}
-    {/* <Wrapper>
-      <ThemeContext.Consumer>
-        {({ theme }) =>
-          country ? (
-            <div className="w-auto px-7 py-10">
-              <button
-                onClick={() => router.back()}
-                style={{
-                  background:
-                    theme === "light" ? COLORS.white : COLORS.darkBlue,
-                }}
-                className="rounded flex justify-between items-center px-8 w-24 h-8 shadow-lg"
-              >
-                <ion-icon size="large" name="arrow-back-outline" />
-                <p className="pointer-event-none">Back</p>
-              </button>
-              <Image
-                src={country.flag}
-                alt="flag"
-                width={1024}
-                height={1024}
-                className="rounded mt-16 w-full shadow-2xl"
-              />
-              <h1 className="mt-12 font-extrabold text-2xl">{country.name}</h1>
-              <div className="mt-9 flex flex-col gap-12">
-                <div className="flex flex-col gap-5 text-lg">
-                  <p>
-                    <span className="font-semibold">Native Name:</span>{" "}
-                    {country.nativeName}
-                  </p>
-                  <p>
-                    <span className="font-semibold">Population:</span>{" "}
-                    {country.population}
-                  </p>
-                  <p>
-                    <span className="font-semibold">Region:</span>{" "}
-                    {country.region}
-                  </p>
-                  <p>
-                    <span className="font-semibold">Sub Region:</span>{" "}
-                    {country.subregion}
-                  </p>
-                  <p>
-                    <span className="font-semibold">Capital:</span>{" "}
-                    {country.capital}
-                  </p>
-                </div>
-                <div className="flex flex-col gap-5 text-lg">
-                  <p>
-                    <span className="font-semibold">Top Level Domain:</span>{" "}
-                    {country.topLevelDomain}
-                  </p>
-                  <p>
-                    <span className="font-semibold">Currencies:</span>{" "}
-                    {country.currencies?.map((e) => e.name).join(", ")}
-                  </p>
-                  <p>
-                    <span className="font-semibold">Languages:</span>{" "}
-                    {country.languages?.map((e) => e.name).join(", ")}
-                  </p>
+    <Wrapper>
+      <div
+        className="w-auto px-7 py-10 flex flex-col gap-16 items-start
+      md:px-20 md:py-20"
+      >
+        <button
+          onClick={() => router.back()}
+          style={{
+            background:
+              context.theme === "light" ? COLORS.white : COLORS.darkBlue,
+          }}
+          className="rounded flex justify-between items-center px-5 h-8 gap-1 shadow-lg"
+        >
+          <img
+            src={Back.src}
+            className="h-4"
+            alt="back"
+            style={{ filter: context.theme === "dark" ? "invert(100%)" : "" }}
+          />
+          <p className="pointer-event-none">Back</p>
+        </button>
+        {country ? (
+          <div
+            className="flex flex-col items-start gap-12
+          md:flex-row md:gap-[8.33vw]"
+          >
+            <img
+              src={country.flag}
+              alt="flag"
+              className="rounded w-full shadow-2xl
+              md:w-[40vw]"
+            />
+            <div className="flex flex-col gap-9">
+              <h1 className="font-extrabold text-2xl">{country.name}</h1>
+              <div className="flex flex-col gap-12">
+                <div
+                  className="flex flex-col gap-12 text-lg w-full
+                md:flex-row md:justify-between"
+                >
+                  <div className="flex flex-col gap-5">
+                    <p>
+                      <span className="font-semibold">Native Name:</span>{" "}
+                      {country.nativeName}
+                    </p>
+                    <p>
+                      <span className="font-semibold">Population:</span>{" "}
+                      {country.population}
+                    </p>
+                    <p>
+                      <span className="font-semibold">Region:</span>{" "}
+                      {country.region}
+                    </p>
+                    <p>
+                      <span className="font-semibold">Sub Region:</span>{" "}
+                      {country.subregion}
+                    </p>
+                    <p>
+                      <span className="font-semibold">Capital:</span>{" "}
+                      {country.capital}
+                    </p>
+                  </div>
+                  <div className="flex flex-col gap-5 text-lg">
+                    <p>
+                      <span className="font-semibold">Top Level Domain:</span>{" "}
+                      {country.topLevelDomain}
+                    </p>
+                    <p>
+                      <span className="font-semibold">Currencies:</span>{" "}
+                      {country.currencies?.map((e) => e.name).join(", ")}
+                    </p>
+                    <p>
+                      <span className="font-semibold">Languages:</span>{" "}
+                      {country.languages?.map((e) => e.name).join(", ")}
+                    </p>
+                  </div>
                 </div>
                 <div>
                   <p className="font-semibold text-xl">Border Countries:</p>
                   <ul className="mt-6 flex flex-wrap gap-3">
                     {country?.borders?.map((e, i) => (
-                      <li
-                        key={i}
-                        style={{
-                          background: theme === 'light' ? COLORS.white : COLORS.darkBlue
-                        }}
-                        className="rounded shadow-lg flex place-items-center px-4 h-7"
-                      >
-                        <p className="w-full text-center">
-                          {ALPA3CODE[e as keyof typeof ALPA3CODE]}
-                        </p>
+                      <li key={i}>
+                        <button
+                          style={{
+                            background:
+                              context.theme === "light"
+                                ? COLORS.white
+                                : COLORS.darkBlue,
+                          }}
+                          className="cursor-pointer rounded shadow-lg flex place-items-center px-4 h-7"
+                        >
+                          <p className="pointer-events-none w-full text-center">
+                            {ALPA3CODE[e as keyof typeof ALPA3CODE]}
+                          </p>
+                        </button>
                       </li>
                     ))}
                   </ul>
                 </div>
               </div>
             </div>
-          ) : (
-            <h1>404</h1>
-          )
-        }
-      </ThemeContext.Consumer>
-    </Wrapper> */}
-    </ThemeContext.Consumer>
+          </div>
+        ) : (
+          <h1>Error 404 : Country not found</h1>
+        )}
+      </div>
+    </Wrapper>
   );
 }
