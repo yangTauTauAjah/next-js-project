@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import Down from "../../../public/rest-country-api/down-arrow.png";
 import data from "../../../public/rest-country-api/data.json";
 import { createContext } from "react";
+import Link from "next/link";
 
 export const COLORS = {
   darkBlue: "#2B3945",
@@ -45,10 +46,12 @@ function Card({ name, flag, population, region, capital }: Country) {
   const router = useRouter();
   return (
     <ThemeContext.Consumer>
-      {({theme}) => (
+      {({ theme }) => (
         <li
           onClick={() => router.push(`/projects/rest-country-api/${name}`)}
-          style={{background: theme === "light" ? COLORS.white : COLORS.darkBlue}}
+          style={{
+            background: theme === "light" ? COLORS.white : COLORS.darkBlue,
+          }}
           className="flex flex-col justify-between rounded-lg shadow-lg w-64 overflow-hidden"
         >
           <img src={flag} alt={`${name} flag`} className="w-full" />
@@ -85,20 +88,26 @@ function Select({
 
   return (
     <ThemeContext.Consumer>
-      {({theme}) => (
+      {({ theme }) => (
         <div tabIndex={0} className="relative">
           <div
             onClick={() => setShow(!show)}
-            style={{background: theme === "light" ? COLORS.white : COLORS.darkBlue}}
+            style={{
+              background: theme === "light" ? COLORS.white : COLORS.darkBlue,
+            }}
             className="rounded-md flex justify-between items-center w-52 h-12 shadow-md px-6 font-semibold"
           >
-            <p className="pointer-events-none">{filter || "Filter by region"}</p>
+            <p className="pointer-events-none">
+              {filter || "Filter by region"}
+            </p>
             <div className="aspect-square h-3">
               <Image src={Down} alt="drop-down" height={50} width={50} />
             </div>
           </div>
           <ul
-            style={{background: theme === "light" ? COLORS.white : COLORS.darkBlue}}
+            style={{
+              background: theme === "light" ? COLORS.white : COLORS.darkBlue,
+            }}
             className={`${
               show ? "flex" : "hidden"
             } flex-col items-start rounded-md overflow-hidden absolute top-12 mt-1 w-52 shadow-md outline-none font-semibold`}
@@ -162,9 +171,11 @@ function List() {
   return (
     <div className="flex flex-col gap-10 px-4 py-6 items-start">
       <ThemeContext.Consumer>
-        {({theme}) => (
+        {({ theme }) => (
           <div
-            style={{background: theme === "light" ? COLORS.white : COLORS.darkBlue}}
+            style={{
+              background: theme === "light" ? COLORS.white : COLORS.darkBlue,
+            }}
             className="flex justify-between gap-8 w-full items-center h-12 px-8 rounded-lg shadow-md"
           >
             {/* @ts-ignore */}
@@ -213,65 +224,66 @@ function List() {
   );
 }
 
-export const ThemeContext: Context<{ theme: string; toggleTheme: () => any }> =
-  createContext({ theme: "light", toggleTheme: () => {} });
+export const ThemeContext: Context<{ theme: string }> = createContext({ theme: "light" });
 
 export function Wrapper({ children }: { children: React.ReactNode }) {
   const [theme, setTheme] = useState("light");
   useEffect(() => {
     document.body.style.setProperty("min-height", "100vh");
-    console.log('test')
+    console.log("test");
   }, []);
 
   useEffect(() => {
-    document.body.style.setProperty("background", theme === 'light' ? COLORS.veryLightGrayBg : COLORS.veryDarkBlueBg);
-  }, [theme])
+    document.body.style.setProperty(
+      "background",
+      theme === "light" ? COLORS.veryLightGrayBg : COLORS.veryDarkBlueBg
+    );
+  }, [theme]);
 
   return (
-    <ThemeContext.Provider
-      value={{
-        theme,
-        toggleTheme: () =>
-          theme === "light" ? setTheme("dark") : setTheme("light"),
-      }}
-    >
-      <article
-        className="text-sm"
-        style={{
-          color: theme === "light" ? COLORS.veryDarkBlueText : COLORS.white,
-          fontFamily: "'Nunito Sans', sans-serif",
-        }}
-      >
-        <header
-          style={{
-            background:
-              theme === "light" ? COLORS.white : COLORS.darkBlue,
-          }}
-          className="flex justify-between items-center h-20 px-4 shadow-md"
-        >
-          <h1 className="text-lg font-extrabold">Where in the world?</h1>
-          <button
+    <>
+      <ThemeContext.Consumer>
+        {(context) => (
+          <article
             onClick={() => {
-              theme === "light" ? setTheme("dark") : setTheme("light");
+              console.log(context.theme);
             }}
-            className="flex items-center gap-2"
+            className="text-sm"
+            style={{
+              color: theme === "light" ? COLORS.veryDarkBlueText : COLORS.white,
+              fontFamily: "'Nunito Sans', sans-serif",
+            }}
           >
-            {
-              theme === "light" ? (
-                /* @ts-ignore */
-                <ion-icon class="text-xl" name="moon-outline" />
-              ) : (
-                /* @ts-ignore */
-                <ion-icon name="sunny-outline"></ion-icon>
-              )
-            }
-            <p className="pointer-events-none font-semibold">
-              {theme === "light" ? "Dark" : "Light"} Mode
-            </p>
-          </button>
-        </header>
-        {children}
-      </article>
+            <header
+              style={{
+                background: theme === "light" ? COLORS.white : COLORS.darkBlue,
+              }}
+              className="flex justify-between items-center h-20 px-4 shadow-md"
+            >
+              <h1 className="text-lg font-extrabold">Where in the world?</h1>
+              <button
+                onClick={() => {
+                  theme === "light" ? context.theme = 'dark' : context.theme = 'light';
+                  theme === "light" ? setTheme("dark") : setTheme("light");
+                }}
+                className="flex items-center gap-2"
+              >
+                {theme === "light" ? (
+                  /* @ts-ignore */
+                  <ion-icon class="text-xl" name="moon-outline" />
+                ) : (
+                  /* @ts-ignore */
+                  <ion-icon name="sunny-outline"></ion-icon>
+                )}
+                <p className="pointer-events-none font-semibold">
+                  {theme === "light" ? "Dark" : "Light"} Mode
+                </p>
+              </button>
+            </header>
+            {children}
+          </article>
+        )}
+      </ThemeContext.Consumer>
       <Script
         type="module"
         src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
@@ -280,13 +292,14 @@ export function Wrapper({ children }: { children: React.ReactNode }) {
         noModule
         src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
       />
-    </ThemeContext.Provider>
+    </>
   );
 }
 
 export default function () {
   return (
     <Wrapper>
+      <Link href='/projects/rest-country-api/indonesia'>Test</Link>
       <List />
     </Wrapper>
   );

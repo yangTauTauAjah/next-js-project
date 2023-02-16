@@ -1,7 +1,7 @@
 import { GetStaticPaths } from "next";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { useEffect, useMemo } from "react";
+import { useEffect } from "react";
 import { COLORS, ThemeContext, Wrapper } from ".";
 import data from "../../../public/rest-country-api/data.json";
 
@@ -258,32 +258,6 @@ const ALPA3CODE = {
   ZWE: "Zimbabwe",
 };
 
-type currency = {
-  code: string;
-  name: string;
-  symbol: string;
-};
-type language = {
-  iso639_1?: string;
-  iso639_2?: string;
-  name: string;
-  nativeName?: string;
-};
-
-interface Country {
-  name: string;
-  nativeName?: string;
-  flag: string;
-  population?: number;
-  region?: string;
-  subregion?: string;
-  capital?: string;
-  borders?: string[];
-  topLevelDomain?: string[];
-  currencies?: currency[];
-  languages?: language[];
-}
-
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
     paths: [
@@ -291,7 +265,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
       { params: { name: "belgium" } },
       { params: { name: "indonesia" } },
     ],
-    fallback: true,
+    fallback: 'blocking',
   };
 };
 
@@ -306,29 +280,33 @@ export const getStaticProps = async ({
 };
 
 export default function ({ name }: { name: string }) {
+  
+
   const router = useRouter();
   if (router.isFallback) return <h1>Loading</h1>;
 
-  const country = useMemo(
-    () => data.find((e) => e.name.match(new RegExp(name, "i"))),
-    []
-  );
+  const country = data.find((e) => e.name.match(new RegExp(name, "i")))
 
   return (
-    <Wrapper>
+    <ThemeContext.Consumer>
+      {({theme}) => {
+      console.log('page rendered')
+      console.log(theme)
+        return <h1>{theme}</h1>
+      }}
+    {/* <Wrapper>
       <ThemeContext.Consumer>
         {({ theme }) =>
           country ? (
             <div className="w-auto px-7 py-10">
               <button
-                onClick={() => router.push('/projects/rest-country-api/indonesia')}
+                onClick={() => router.back()}
                 style={{
                   background:
                     theme === "light" ? COLORS.white : COLORS.darkBlue,
                 }}
                 className="rounded flex justify-between items-center px-8 w-24 h-8 shadow-lg"
               >
-                {/* @ts-ignore */}
                 <ion-icon size="large" name="arrow-back-outline" />
                 <p className="pointer-event-none">Back</p>
               </button>
@@ -384,7 +362,7 @@ export default function ({ name }: { name: string }) {
                       <li
                         key={i}
                         style={{
-                          background: theme === 'white' ? COLORS.white : COLORS.darkBlue
+                          background: theme === 'light' ? COLORS.white : COLORS.darkBlue
                         }}
                         className="rounded shadow-lg flex place-items-center px-4 h-7"
                       >
@@ -402,6 +380,7 @@ export default function ({ name }: { name: string }) {
           )
         }
       </ThemeContext.Consumer>
-    </Wrapper>
+    </Wrapper> */}
+    </ThemeContext.Consumer>
   );
 }
