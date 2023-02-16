@@ -309,6 +309,10 @@ export default function ({ name }: { name: string }) {
   const router = useRouter();
   if (router.isFallback) return <h1>Loading</h1>;
 
+  useEffect(() => {
+    console.log('rerender')
+  }, [])
+
   const country = useMemo(
     () => data.find((e) => e.name.match(new RegExp(name, "i"))),
     []

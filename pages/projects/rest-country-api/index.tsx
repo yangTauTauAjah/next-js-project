@@ -1,10 +1,13 @@
 import Image from "next/image";
-import { Context, useEffect, useState } from "react";
+import { Context, useEffect, useContext, useState } from "react";
 import Script from "next/script";
 import { useRouter } from "next/router";
 import Down from "../../../public/rest-country-api/down-arrow.png";
 import data from "../../../public/rest-country-api/data.json";
 import { createContext } from "react";
+
+export const ThemeContext: Context<{ theme: string; toggleTheme: () => any }> =
+  createContext({ theme: "light", toggleTheme: () => {console.log('initial')} });
 
 export const COLORS = {
   darkBlue: "#2B3945",
@@ -43,33 +46,30 @@ interface Country {
 
 function Card({ name, flag, population, region, capital }: Country) {
   const router = useRouter();
+  const {theme} = useContext(ThemeContext)
   return (
-    <ThemeContext.Consumer>
-      {({theme}) => (
-        <li
-          onClick={() => router.push(`/projects/rest-country-api/${name}`)}
-          style={{background: theme === "light" ? COLORS.white : COLORS.darkBlue}}
-          className="flex flex-col justify-between rounded-lg shadow-lg w-64 overflow-hidden"
-        >
-          <img src={flag} alt={`${name} flag`} className="w-full" />
-          <div className="px-6 py-8">
-            <h3 className="text-xl font-extrabold">{name}</h3>
-            <p className="mt-6">
-              <span className="font-semibold">population : </span>
-              {population?.toLocaleString("id")}
-            </p>
-            <p>
-              <span className="font-semibold">Region : </span>
-              {region}
-            </p>
-            <p>
-              <span className="font-semibold">Capital : </span>
-              {capital}
-            </p>
-          </div>
-        </li>
-      )}
-    </ThemeContext.Consumer>
+    <li
+      onClick={() => router.push(`/projects/rest-country-api/${name}`)}
+      style={{background: theme === "light" ? COLORS.white : COLORS.darkBlue}}
+      className="flex flex-col justify-between rounded-lg shadow-lg w-64 overflow-hidden
+      md:w-[264px]"
+    >
+      <img src={flag} alt={`${name} flag`} className="w-full" />
+      <div className="px-6 py-7">
+        <h3 className="text-xl font-extrabold">{name}</h3>
+        <p className="mt-6">
+          <span className="font-semibold">population : </span> {population?.toLocaleString("id")}
+        </p>
+        <p>
+          <span className="font-semibold">Region : </span>
+          {region}
+        </p>
+        <p>
+          <span className="font-semibold">Capital : </span>
+          {capital}
+        </p>
+      </div>
+    </li>
   );
 }
 
@@ -82,107 +82,107 @@ function Select({
   ];
 }) {
   const [show, setShow] = useState(false);
+  const {theme} = useContext(ThemeContext)
 
   return (
-    <ThemeContext.Consumer>
-      {({theme}) => (
-        <div tabIndex={0} className="relative">
-          <div
-            onClick={() => setShow(!show)}
-            style={{background: theme === "light" ? COLORS.white : COLORS.darkBlue}}
-            className="rounded-md flex justify-between items-center w-52 h-12 shadow-md px-6 font-semibold"
-          >
-            <p className="pointer-events-none">{filter || "Filter by region"}</p>
-            <div className="aspect-square h-3">
-              <Image src={Down} alt="drop-down" height={50} width={50} />
-            </div>
-          </div>
-          <ul
-            style={{background: theme === "light" ? COLORS.white : COLORS.darkBlue}}
-            className={`${
-              show ? "flex" : "hidden"
-            } flex-col items-start rounded-md overflow-hidden absolute top-12 mt-1 w-52 shadow-md outline-none font-semibold`}
-          >
-            <li
-              onClick={() => {
-                setFilter("Africa");
-                setShow(false);
-              }}
-              className={`hover:bg-[rgba(0,0,0,.2)] w-full px-6 py-3`}
-            >
-              <p className="pointer-events-none">Africa</p>
-            </li>
-            <li
-              onClick={() => {
-                setFilter("Americas");
-                setShow(false);
-              }}
-              className={`hover:bg-[rgba(0,0,0,.2)] w-full px-6 py-3`}
-            >
-              <p className="pointer-events-none">Americas</p>
-            </li>
-            <li
-              onClick={() => {
-                setFilter("Asia");
-                setShow(false);
-              }}
-              className={`hover:bg-[rgba(0,0,0,.2)] w-full px-6 py-3`}
-            >
-              <p className="pointer-events-none">Asia</p>
-            </li>
-            <li
-              onClick={() => {
-                setFilter("Europe");
-                setShow(false);
-              }}
-              className={`hover:bg-[rgba(0,0,0,.2)] w-full px-6 py-3`}
-            >
-              <p className="pointer-events-none">Europe</p>
-            </li>
-            <li
-              onClick={() => {
-                setFilter("Oceania");
-                setShow(false);
-              }}
-              className={`hover:bg-[rgba(0,0,0,.2)] w-full px-6 py-3`}
-            >
-              <p className="pointer-events-none">Oceania</p>
-            </li>
-          </ul>
-        </div>
-      )}
-    </ThemeContext.Consumer>
-  );
+    <div tabIndex={0} className="relative h-full">
+  <div
+    onClick={() => setShow(!show)}
+    style={{background: theme === "light" ? COLORS.white : COLORS.darkBlue}}
+    className="rounded-md flex justify-between items-center w-52 h-12 shadow-md px-6 font-semibold
+      md:h-14"
+  >
+    <p className="pointer-events-none">{filter || "Filter by region"}</p>
+    <div className="aspect-square h-3">
+      <Image src={Down} alt="drop-down" height={50} width={50} />
+    </div>
+  </div>
+  <ul
+    style={{background: theme === "light" ? COLORS.white : COLORS.darkBlue}}
+    className={`${
+      show ? "flex" : "hidden"
+    } flex-col items-start rounded-md overflow-hidden absolute top-12 mt-1 w-52 shadow-md outline-none font-semibold`}
+  >
+    <li
+      onClick={() => {
+        setFilter("Africa");
+        setShow(false);
+      }}
+      className={`hover:bg-[rgba(0,0,0,.2)] w-full px-6 py-3`}
+    >
+      <p className="pointer-events-none">Africa</p>
+    </li>
+    <li
+      onClick={() => {
+        setFilter("Americas");
+        setShow(false);
+      }}
+      className={`hover:bg-[rgba(0,0,0,.2)] w-full px-6 py-3`}
+    >
+      <p className="pointer-events-none">Americas</p>
+    </li>
+    <li
+      onClick={() => {
+        setFilter("Asia");
+        setShow(false);
+      }}
+      className={`hover:bg-[rgba(0,0,0,.2)] w-full px-6 py-3`}
+    >
+      <p className="pointer-events-none">Asia</p>
+    </li>
+    <li
+      onClick={() => {
+        setFilter("Europe");
+        setShow(false);
+      }}
+      className={`hover:bg-[rgba(0,0,0,.2)] w-full px-6 py-3`}
+    >
+      <p className="pointer-events-none">Europe</p>
+    </li>
+    <li
+      onClick={() => {
+        setFilter("Oceania");
+        setShow(false);
+      }}
+      className={`hover:bg-[rgba(0,0,0,.2)] w-full px-6 py-3`}
+    >
+      <p className="pointer-events-none">Oceania</p>
+    </li>
+  </ul>
+</div>
+  )
 }
 
 function List() {
   const [filter, setFilter] = useState<string | null>(null);
   const [search, setSearch] = useState<string>("");
+  const {theme} = useContext(ThemeContext)
 
   return (
-    <div className="flex flex-col gap-10 px-4 py-6 items-start">
-      <ThemeContext.Consumer>
-        {({theme}) => (
-          <div
-            style={{background: theme === "light" ? COLORS.white : COLORS.darkBlue}}
-            className="flex justify-between gap-8 w-full items-center h-12 px-8 rounded-lg shadow-md"
-          >
-            {/* @ts-ignore */}
-            <ion-icon class="text-xl" name="search-outline" />
-            <input
-              onChange={(e) => setSearch(e.target.value)}
-              placeholder="Search for a country ..."
-              className="outline-none font-semibold h-full bg-transparent flex-grow"
-            />
-          </div>
-        )}
-      </ThemeContext.Consumer>
-
-      <Select state={[filter, setFilter]} />
-
+    <div className="flex flex-col gap-10 px-4 py-6 items-start
+      md:px-20 md:py-20">
+      <div className="flex flex-col gap-10 justify-between items-start w-full
+        md:flex-row md:gap-[unset] md:items-stretch"
+      >
+        <div
+          style={{background: theme === "light" ? COLORS.white : COLORS.darkBlue}}
+          className="flex justify-between gap-8 w-full items-center h-12 px-8 rounded-lg shadow-md
+          md:w-[480px] md:h-14"
+        >
+          {/* @ts-ignore */}
+          <ion-icon class="text-xl" name="search-outline" />
+          <input
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder="Search for a country ..."
+            className="outline-none font-semibold h-14 bg-transparent flex-grow
+            md:h-full"
+          />
+        </div>
+        <Select state={[filter, setFilter]} />
+      </div>
       <ul
-        className="w-full grid justify-center gap-10
-      grid-cols-[repeat(auto-fill,256px)]"
+        className="w-full grid justify-between gap-x-10 gap-y-10 grid-cols-[repeat(auto-fill,256px)]
+        md:gap-x-5 md:gap-y-18"
       >
         {(() => {
           let _temp = data;
@@ -213,11 +213,9 @@ function List() {
   );
 }
 
-export const ThemeContext: Context<{ theme: string; toggleTheme: () => any }> =
-  createContext({ theme: "light", toggleTheme: () => {} });
-
 export function Wrapper({ children }: { children: React.ReactNode }) {
   const [theme, setTheme] = useState("light");
+  const context = useContext(ThemeContext)
   useEffect(() => {
     document.body.style.setProperty("min-height", "100vh");
     console.log('test')
@@ -230,11 +228,13 @@ export function Wrapper({ children }: { children: React.ReactNode }) {
   return (
     <ThemeContext.Provider
       value={{
-        theme,
-        toggleTheme: () =>
-          theme === "light" ? setTheme("dark") : setTheme("light"),
+        theme: context.theme,
+        toggleTheme: () => {
+          context.theme = theme === 'light' ? 'dark' : 'light'
+          theme === "light" ? setTheme("dark") : setTheme("light")
+        }
       }}
-    >
+    >  
       <article
         className="text-sm"
         style={{
@@ -247,12 +247,14 @@ export function Wrapper({ children }: { children: React.ReactNode }) {
             background:
               theme === "light" ? COLORS.white : COLORS.darkBlue,
           }}
-          className="flex justify-between items-center h-20 px-4 shadow-md"
+          className="flex justify-between items-center h-20 px-4 shadow-md
+          md:px-20"
         >
           <h1 className="text-lg font-extrabold">Where in the world?</h1>
           <button
             onClick={() => {
-              theme === "light" ? setTheme("dark") : setTheme("light");
+              context.theme = theme === 'light' ? 'dark' : 'light'
+              theme === "light" ? setTheme("dark") : setTheme("light")
             }}
             className="flex items-center gap-2"
           >
