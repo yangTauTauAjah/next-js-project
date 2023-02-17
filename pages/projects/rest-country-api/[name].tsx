@@ -288,11 +288,6 @@ export default function ({ name }: { name: string }) {
   const country = data.find((e) => e.name.match(new RegExp(name, "i")));
 
   useEffect(() => {
-    console.log("rerender");
-    console.log(context.theme);
-  });
-
-  useEffect(() => {
     context.toggleTheme = (theme) => {
       context.theme = theme;
       setTheme(theme);
@@ -308,16 +303,17 @@ export default function ({ name }: { name: string }) {
       md:px-20 md:py-20"
       >
         <button
-          onClick={() => router.back()}
+          onClick={() => router.push('/projects/rest-country-api')}
           style={{
             background:
               context.theme === "light" ? COLORS.white : COLORS.darkBlue,
           }}
-          className="rounded flex justify-between items-center px-5 h-8 gap-1 shadow-lg"
+          className="rounded flex justify-between items-center px-5 py-2 h-8 gap-1 shadow-lg"
         >
-          <img
+          <Image
+            height={1024}
+            width={16}
             src={Back.src}
-            className="h-4"
             alt="back"
             style={{ filter: context.theme === "dark" ? "invert(100%)" : "" }}
           />
@@ -328,11 +324,13 @@ export default function ({ name }: { name: string }) {
             className="flex flex-col items-start gap-12
           md:flex-row md:gap-[8.33vw]"
           >
-            <img
+            <Image
+              className="rounded w-full shadow-2xl
+              md:w-[40vw] h-full"
+              width={1024}
+              height={1024}
               src={country.flag}
               alt="flag"
-              className="rounded w-full shadow-2xl
-              md:w-[40vw]"
             />
             <div className="flex flex-col gap-9">
               <h1 className="font-extrabold text-2xl">{country.name}</h1>
@@ -381,9 +379,16 @@ export default function ({ name }: { name: string }) {
                 <div>
                   <p className="font-semibold text-xl">Border Countries:</p>
                   <ul className="mt-6 flex flex-wrap gap-3">
-                    {country?.borders?.map((e, i) => (
-                      <li key={i}>
+                    {country?.borders?.map((e, i) => {
+                      const countryName = ALPA3CODE[e as keyof typeof ALPA3CODE]
+                      return <li key={i}>
                         <button
+                          onClick={() => {
+                            router.push({
+                              pathname: router.route,
+                              query: {name: e}
+                            })
+                          }}
                           style={{
                             background:
                               context.theme === "light"
@@ -393,11 +398,11 @@ export default function ({ name }: { name: string }) {
                           className="cursor-pointer rounded shadow-lg flex place-items-center px-4 h-7"
                         >
                           <p className="pointer-events-none w-full text-center">
-                            {ALPA3CODE[e as keyof typeof ALPA3CODE]}
+                            {countryName}
                           </p>
                         </button>
                       </li>
-                    ))}
+                    })}
                   </ul>
                 </div>
               </div>

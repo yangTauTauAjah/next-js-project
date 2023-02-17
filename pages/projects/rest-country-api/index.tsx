@@ -1,11 +1,13 @@
 import Image from "next/image";
-import { Context, useEffect, useContext, useState } from "react";
+import { Context, useEffect, useContext, useState, useMemo } from "react";
 import Script from "next/script";
 import { useRouter } from "next/router";
 import Down from "../../../public/rest-country-api/icon/down-arrow-backup-2-svgrepo-com.svg";
 import Search from "../../../public/rest-country-api/icon/icons8-search.svg";
 import Sun from "../../../public/rest-country-api/icon/sun-svgrepo-com.svg";
 import Moon from "../../../public/rest-country-api/icon/moon-svgrepo-com.svg";
+import Right from "../../../public/rest-country-api/icon/right.png";
+import Left from "../../../public/rest-country-api/icon/left.png";
 import data from "../../../public/rest-country-api/data.json";
 import { createContext } from "react";
 
@@ -21,6 +23,7 @@ export const COLORS = {
   veryDarkBlueText: "#111517",
   darkGrayInput: "#858585",
   veryLightGrayBg: "#FAFAFA",
+  lightBlue: "#DBEAFE",
 };
 
 type region = "Africa" | "America" | "Asia" | "Europe" | "Oceania";
@@ -164,10 +167,293 @@ function Select({
   );
 }
 
-function List() {
-  const [filter, setFilter] = useState<string | null>(null);
-  const [search, setSearch] = useState<string>("");
+function Page({ PAGES, currentPage }: { PAGES: number; currentPage: number }) {
   const { theme } = useContext(ThemeContext);
+  const router = useRouter()
+
+  if (PAGES <= 5)
+    return (
+      <div className="w-full justify-center flex gap-2">
+        <div
+          className="cursor-pointer drop-shadow-xl h-8 w-2 leading-8 text-center flex items-center shrink-0"
+          onClick={() => {
+
+            const page = Number.parseInt(router.query.page as string)
+            if (page <=  1) return
+
+            router.push({
+              query: {page: page - 1}
+            }
+            
+          )}}
+        >
+          <Image
+            className="w-full"
+            src={Left}
+            width={Left.width}
+            height={Left.height}
+            alt="left"
+            style={{ filter: theme === "dark" ? "invert(100%)" : "" }}
+          />
+        </div>
+        <ul className="flex gap-3">
+          {Array(PAGES)
+            .fill(null)
+            .map((e, i) => (
+              <li
+                onClick={() => router.push({
+                  query: {page: i + 1}
+                })}
+                key={i}
+                style={{
+                  background:
+                    i + 1 === currentPage
+                      ? COLORS.lightBlue
+                      : theme === "light"
+                      ? COLORS.white
+                      : COLORS.darkBlue,
+                }}
+                className="transition-[drop-shadow] cursor-pointer drop-shadow-xl min-w-[32px] h-8 leading-8 text-center rounded-lg font-bold
+            hover:drop-shadow-none"
+              >
+                {i + 1}
+              </li>
+            ))}
+        </ul>
+        <div
+          className="cursor-pointer drop-shadow-xl h-8 w-2 leading-8 text-center flex items-center shrink-0"
+          onClick={() => {
+
+            console.log('test')
+
+            const page = Number.parseInt(router.query.page as string)
+            if (page >=  PAGES) return
+
+            router.push({
+              query: {page: page + 1}
+            }
+
+          )}}
+        >
+          <Image
+            className="w-full"
+            src={Right}
+            width={Right.width}
+            height={Right.height}
+            alt="right"
+            style={{ filter: theme === "dark" ? "invert(100%)" : "" }}
+          />
+        </div>
+      </div>
+    );
+
+  return (
+    <div className="w-full justify-center flex gap-2">
+      <div
+        className="cursor-pointer drop-shadow-xl h-8 w-2 leading-8 text-center flex items-center shrink-0"
+        onClick={() => {
+
+          const page = Number.parseInt(router.query.page as string)
+          if (page <=  1) return
+
+          router.push({
+            query: {page: page - 1}
+          }
+          
+        )}}
+      >
+        <Image
+          className="w-full"
+          src={Left}
+          width={Left.width}
+          height={Left.height}
+          alt="left"
+          style={{ filter: theme === "dark" ? "invert(100%)" : "" }}
+        />
+      </div>
+      <ul className="flex gap-3">
+        {currentPage >= 4 && (
+          <>
+            <li
+              onClick={() => router.push({query: {page: 1}})}
+              className="transition-[drop-shadow] cursor-pointer bg-white drop-shadow-xl min-w-[32px] h-8 leading-8 text-center rounded-lg font-bold
+              hover:drop-shadow-none"
+              style={{
+                background:
+                  theme === "light"
+                    ? COLORS.white
+                    : COLORS.darkBlue,
+              }}
+            >
+              1
+            </li>
+            <li className="transition-[drop-shadow] pointer-events-none drop-shadow-xl h-8 leading-8 text-center rounded-lg font-bold">
+              ...
+            </li>
+          </>
+        )}
+        {[1, 2, 3].map((i) => {
+          if (currentPage < 4) {
+            return (
+              <li
+                onClick={() => router.push({query: {page: i}})}
+                key={i}
+                style={{
+                  background:
+                    i === currentPage
+                      ? theme === "light"
+                      ? COLORS.lightBlue
+                      : COLORS.darkGrayInput
+                      : theme === "light"
+                      ? COLORS.white
+                      : COLORS.darkBlue,
+                }}
+                className="transition-[drop-shadow] cursor-pointer drop-shadow-xl min-w-[32px] h-8 leading-8 text-center rounded-lg font-bold
+                hover:drop-shadow-none"
+              >
+                {i}
+              </li>
+            );
+          } else if (currentPage > PAGES - 3) {
+            return (
+              <li
+                onClick={() => router.push({query: {page: i + PAGES - 3}})}
+                key={i}
+                style={{
+                  background:
+                    i + PAGES - 3 === currentPage
+                      ? theme === "light"
+                      ? COLORS.lightBlue
+                      : COLORS.darkGrayInput
+                      : theme === "light"
+                      ? COLORS.white
+                      : COLORS.darkBlue,
+                }}
+                className="transition-[drop-shadow] cursor-pointer drop-shadow-xl min-w-[32px] h-8 leading-8 text-center rounded-lg font-bold
+              hover:drop-shadow-none"
+              >
+                {i + PAGES - 3}
+              </li>
+            );
+          } else {
+            return (
+              <li
+                onClick={() => router.push({query: {page: currentPage + i - 2}})}
+                key={i}
+                style={{
+                  background:
+                    i === 2
+                      ? theme === "light"
+                      ? COLORS.lightBlue
+                      : COLORS.darkGrayInput
+                      : theme === "light"
+                      ? COLORS.white
+                      : COLORS.darkBlue,
+                }}
+                className="transition-[drop-shadow] cursor-pointer drop-shadow-xl min-w-[32px] h-8 leading-8 text-center rounded-lg font-bold
+              hover:drop-shadow-none"
+              >
+                {currentPage + i - 2}
+              </li>
+            );
+          }
+        })}
+        {currentPage <= PAGES - 3 && (
+          <>
+            <li className="transition-[drop-shadow] pointer-events-none drop-shadow-xl h-8 leading-8 text-center rounded-lg font-bold">
+              ...
+            </li>
+            <li
+              className="transition-[drop-shadow] cursor-pointer drop-shadow-xl min-w-[32px] h-8 leading-8 text-center rounded-lg font-bold
+              hover:drop-shadow-none"
+              style={{
+                background:
+                  theme === "light"
+                    ? COLORS.white
+                    : COLORS.darkBlue,
+              }}
+              onClick={() => router.push({query: {page: PAGES}})}
+            >
+              {PAGES}
+            </li>
+          </>
+        )}
+      </ul>
+      <div
+        className="cursor-pointer drop-shadow-xl h-8 w-2 leading-8 text-center flex items-center shrink-0"
+        onClick={() => {
+
+          const page = Number.parseInt(router.query.page as string)
+          if (page <=  1) return
+
+          router.push({
+            query: {page: page + 1}
+          }
+          
+        )}}
+      >
+        <Image
+          className="w-full"
+          src={Right}
+          width={Right.width}
+          height={Right.height}
+          alt="right"
+          style={{ filter: theme === "dark" ? "invert(100%)" : "" }}
+        />
+      </div>
+    </div>
+  );
+}
+
+function List() {
+  const router = useRouter();
+
+  let [filter, setFilter] = useState<string | null>(null);
+  let [search, setSearch] = useState<string>("");
+  let [list, setList]: [list: Country[], setList: any] = useState(
+    data.map(({ name, flag, population, region, capital }) => ({
+      name,
+      flag,
+      population,
+      region,
+      capital,
+    }))
+  );
+
+  useEffect(() => {
+    let _temp = data;
+
+    if (filter) _temp = _temp.filter((e) => e.region === filter);
+    if (search !== "")
+      _temp = _temp.filter((e) => e.name.match(new RegExp(`.*${search}`, "i")));
+
+    setList(
+      _temp.map(({ name, flag, population, region, capital }) => ({
+        name,
+        flag,
+        population,
+        region,
+        capital,
+      }))
+    );
+  }, [filter, search]);
+
+  const PAGES = useMemo(() => Math.ceil(list.length / 20), [list]);
+
+  const { theme } = useContext(ThemeContext);
+
+  useEffect(() => {
+    if (!router.query.page) return;
+    const page = Number.parseInt(router.query.page as string);
+
+    if (!page || page < 1) router.replace({ query: { page: 1 } });
+    else if (page > PAGES) router.replace({ query: { page: PAGES } });
+  }, [router]);
+
+  const currentPage = useMemo(
+    () => Number.parseInt(router.query.page as string),
+    [router]
+  );
 
   return (
     <div
@@ -185,7 +471,12 @@ function List() {
           className="flex justify-between gap-8 w-full items-center h-14 px-8 py-3 rounded-lg shadow-md
           md:w-[480px]"
         >
-          <img src={Search.src} alt="search" className="h-full" style={{filter: theme === 'dark' ? 'invert(100%)' : ''}}/>
+          <img
+            src={Search.src}
+            alt="search"
+            className="h-full"
+            style={{ filter: theme === "dark" ? "invert(100%)" : "" }}
+          />
           <input
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search for a country ..."
@@ -199,31 +490,22 @@ function List() {
         className="w-full grid justify-around gap-x-10 gap-y-10 grid-cols-[repeat(auto-fill,256px)]
         md:gap-x-5 md:gap-y-20 min-[960px]:justify-between"
       >
-        {(() => {
-          let _temp = data;
-
-          if (filter) _temp = _temp.filter((e) => e.region === filter);
-          if (search !== "")
-            _temp = _temp.filter((e) =>
-              e.name.match(new RegExp(`.*${search}`, "i"))
-            );
-
-          return (
-            _temp
-              // .filter((e, i) => i >= 0 && i <= 20)
-              .map(({ name, flag, population, region, capital }, i) => (
-                <Card
-                  key={i}
-                  name={name}
-                  flag={flag}
-                  population={population}
-                  region={region as region}
-                  capital={capital}
-                />
-              ))
-          );
-        })()}
+        {list
+          .filter(
+            (e, i) => i >= (currentPage - 1) * 20 && i <= currentPage * 20
+          )
+          .map(({ name, flag, population, region, capital }, i) => (
+            <Card
+              key={i}
+              name={name}
+              flag={flag}
+              population={population}
+              region={region as region}
+              capital={capital}
+            />
+          ))}
       </ul>
+      {PAGES > 1 && <Page PAGES={PAGES} currentPage={currentPage} />}
     </div>
   );
 }
@@ -263,18 +545,20 @@ export function Wrapper({ children }: { children: React.ReactNode }) {
           <h1 className="text-lg font-extrabold py-5">Where in the world?</h1>
           <button
             onClick={() => {
-              console.log(context.theme);
               context.theme === "light"
                 ? context.toggleTheme("dark")
                 : context.toggleTheme("light");
-              console.log(context.theme);
             }}
             className="flex items-center gap-1"
           >
             {context.theme === "light" ? (
-              <img src={Sun.src} className='h-7' itemType="svg"/>
+              <img src={Sun.src} className="h-7" itemType="svg" />
             ) : (
-              <img src={Moon.src} className='h-6' style={{filter: 'invert(100%)'}} />
+              <img
+                src={Moon.src}
+                className="h-6"
+                style={{ filter: "invert(100%)" }}
+              />
             )}
             <p className="pointer-events-none font-semibold">
               {context.theme === "light" ? "Dark" : "Light"} Mode
