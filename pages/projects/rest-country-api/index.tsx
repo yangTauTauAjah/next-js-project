@@ -208,7 +208,9 @@ function Page({ PAGES, currentPage }: { PAGES: number; currentPage: number }) {
                 style={{
                   background:
                     i + 1 === currentPage
+                      ? theme === "light"
                       ? COLORS.lightBlue
+                      : COLORS.darkGrayInput
                       : theme === "light"
                       ? COLORS.white
                       : COLORS.darkBlue,
@@ -276,7 +278,7 @@ function Page({ PAGES, currentPage }: { PAGES: number; currentPage: number }) {
           <>
             <li
               onClick={() => router.push({query: {page: 1}})}
-              className="transition-[drop-shadow] cursor-pointer bg-white drop-shadow-xl min-w-[32px] h-8 leading-8 text-center rounded-lg font-bold
+              className="transition-[drop-shadow] cursor-pointer drop-shadow-xl min-w-[32px] h-8 leading-8 text-center rounded-lg font-bold
               hover:drop-shadow-none"
               style={{
                 background:
@@ -566,6 +568,7 @@ export function Wrapper({ children }: { children: React.ReactNode }) {
             ) : (
               <img
                 src={Moon.src}
+                alt='moon'
                 className="h-4"
                 style={{ filter: "invert(100%)" }}
               />
