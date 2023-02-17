@@ -4,8 +4,8 @@ import Script from "next/script";
 import { useRouter } from "next/router";
 import Down from "../../../public/rest-country-api/icon/down-arrow-backup-2-svgrepo-com.svg";
 import Search from "../../../public/rest-country-api/icon/icons8-search.svg";
-import Sun from "../../../public/rest-country-api/icon/sun-svgrepo-com.svg";
-import Moon from "../../../public/rest-country-api/icon/moon-svgrepo-com.svg";
+import Sun from "../../../public/rest-country-api/icon/sun.png";
+import Moon from "../../../public/rest-country-api/icon/moon.png";
 import Right from "../../../public/rest-country-api/icon/right.png";
 import Left from "../../../public/rest-country-api/icon/left.png";
 import data from "../../../public/rest-country-api/data.json";
@@ -436,6 +436,11 @@ function List() {
         capital,
       }))
     );
+
+    router.replace({
+      query: {page: 1}
+    })
+
   }, [filter, search]);
 
   const PAGES = useMemo(() => Math.ceil(list.length / 20), [list]);
@@ -475,7 +480,7 @@ function List() {
             src={Search.src}
             alt="search"
             className="h-full"
-            style={{ filter: theme === "dark" ? "invert(100%)" : "" }}
+            style={theme === "dark" ? { filter: "invert(100%)" } : undefined}
           />
           <input
             onChange={(e) => setSearch(e.target.value)}
@@ -505,7 +510,7 @@ function List() {
             />
           ))}
       </ul>
-      {PAGES > 1 && <Page PAGES={PAGES} currentPage={currentPage} />}
+      {PAGES > 1 && currentPage && <Page PAGES={PAGES} currentPage={currentPage} />}
     </div>
   );
 }
@@ -522,6 +527,7 @@ export function Wrapper({ children }: { children: React.ReactNode }) {
       "background",
       context.theme === "light" ? COLORS.veryLightGrayBg : COLORS.veryDarkBlueBg
     );
+    context.toggleTheme(localStorage.theme)
   }, [context.theme]);
 
   return (
@@ -545,18 +551,22 @@ export function Wrapper({ children }: { children: React.ReactNode }) {
           <h1 className="text-lg font-extrabold py-5">Where in the world?</h1>
           <button
             onClick={() => {
-              context.theme === "light"
-                ? context.toggleTheme("dark")
-                : context.toggleTheme("light");
+              if (context.theme === "light") {
+                localStorage.setItem('theme', 'dark')
+                context.toggleTheme("dark")
+              } else {
+                localStorage.setItem('theme', 'light')
+                context.toggleTheme("light")
+              }
             }}
             className="flex items-center gap-1"
           >
             {context.theme === "light" ? (
-              <img src={Sun.src} className="h-7" itemType="svg" />
+              <img src={Sun.src} className="h-4" itemType="svg" />
             ) : (
               <img
                 src={Moon.src}
-                className="h-6"
+                className="h-4"
                 style={{ filter: "invert(100%)" }}
               />
             )}
