@@ -1,6 +1,10 @@
 import Image from "next/image";
 import { useEffect } from "react";
-import Product from '../../../public/ecommerce-product-page/images/image-product-1.jpg'
+import Product1 from '../../../public/ecommerce-product-page/images/image-product-1.jpg'
+import Product1Thumbnail from '../../../public/ecommerce-product-page/images/image-product-1-thumbnail.jpg'
+import Product2 from '../../../public/ecommerce-product-page/images/image-product-2.jpg'
+import Product3 from '../../../public/ecommerce-product-page/images/image-product-3.jpg'
+import Product4 from '../../../public/ecommerce-product-page/images/image-product-4.jpg'
 import Avatar from '../../../public/ecommerce-product-page/images/image-avatar.png'
 import Cart from '../../../public/ecommerce-product-page/images/icon-cart.svg'
 import Next from '../../../public/ecommerce-product-page/images/icon-next.svg'
@@ -9,6 +13,7 @@ import Plus from '../../../public/ecommerce-product-page/images/icon-plus.svg'
 import Minus from '../../../public/ecommerce-product-page/images/icon-minus.svg'
 import Menu from '../../../public/ecommerce-product-page/images/icon-menu.svg'
 import Delete from '../../../public/ecommerce-product-page/images/icon-delete.svg'
+import Close from '../../../public/ecommerce-product-page/images/icon-close.svg'
 
 
 const COLORS = {
@@ -21,8 +26,51 @@ const COLORS = {
   black75: "hsl(0, 0%, 75%)",
 };
 
+function SideBar() {
+  return (
+    <div style={{background: 'rgba(0,0,0,.75)'}} className="top-0 absolute w-full h-[100vh]">
+      <aside className="p-6 w-64 h-full bg-white">
+        <button className="aspect-square w-4">
+          <Image src={Close} width={Close.width} height={Close.height} alt='close' className="h-full w-auto" />
+        </button>
+        <ul className="mt-14 flex flex-col gap-8 font-bold ">
+          <li>Collections</li>
+          <li>Men</li>
+          <li>Women</li>
+          <li>About</li>
+          <li>Contact</li>
+        </ul>
+      </aside>
+    </div>
+  )
+}
+
+function Modal() {
+  return (
+    <div className='w-96 absolute bg-white rounded-xl right-4 top-4'>
+      <header className='px-6 py-7'>
+        <h1 className='font-bold'>Cart</h1>
+      </header>
+      <main className='px-6 py-7 border-t-2'>
+        <div className='flex justify-between items-center gap-5'>
+          <Image className='rounded h-14 w-14' src={Product1Thumbnail} alt='product' width={100} height={100} />
+          <div className='flex flex-col justify-between text-gray-400 text-md h-full w-56 shrink-0'>
+            <p>Fall Limited Edition Sneakers</p>
+            <p>$125.00 × 3 <span className='text-black font-bold'>$375.00</span></p>
+          </div>
+          <Image className='h-6 w-auto' src={Delete} alt='delete' width={Delete.width} height={Delete.height} />
+        </div>
+        <button style={{background: COLORS.orange}} className='mt-7 rounded-xl w-full h-14 text-white leading-14 text-center font-semibold'>Checkout</button>
+      </main>
+    </div>
+  )
+}
+
 export default function () {
-  useEffect(() => document.body.style.setProperty("background", "white"), []);
+  useEffect(() => {
+    document.body.style.setProperty("background", "white")
+    // document.documentElement.style.setProperty('overflow-y', 'hidden')
+  }, []);
 
   return (
     <div style={{ fontFamily: "Kumbh Sans", color: "black" }}>
@@ -49,10 +97,10 @@ export default function () {
           </div>
         </div>
       </header>
-      <article className="flex flex-col">
+      <article className="relative flex flex-col">
         <section>
           <div className="relative">
-            <Image src={Product} alt='product' width={100} height={100} className='w-full' />
+            <Image src={Product1} alt='product' width={100} height={100} className='w-full' />
             <div className="flex justify-between items-center p-4 absolute w-full h-full top-0 ">
               <button className="flex justify-center items-center aspect-square bg-white rounded-full w-10 drop-shadow-2xl">
                 <Image src={Prev} width={8} height={8} alt='prev' />
@@ -62,7 +110,7 @@ export default function () {
               </button>
             </div>
           </div>
-          <ul>
+          {/* <ul>
             <li>
               <Image />
             </li>
@@ -75,7 +123,7 @@ export default function () {
             <li>
               <Image />
             </li>
-          </ul>
+          </ul> */}
         </section>
         <main className="p-6">
           <h3
@@ -128,7 +176,9 @@ export default function () {
             </button>
           </div>
         </main>
+        <Modal />
       </article>
+      {/* <SideBar /> */}
     </div>
   );
 }
