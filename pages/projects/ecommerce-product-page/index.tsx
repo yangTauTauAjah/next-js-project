@@ -1,20 +1,19 @@
 import Image from "next/image";
-import { useEffect } from "react";
-import Product1 from '../../../public/ecommerce-product-page/images/image-product-1.jpg'
-import Product1Thumbnail from '../../../public/ecommerce-product-page/images/image-product-1-thumbnail.jpg'
-import Product2 from '../../../public/ecommerce-product-page/images/image-product-2.jpg'
-import Product3 from '../../../public/ecommerce-product-page/images/image-product-3.jpg'
-import Product4 from '../../../public/ecommerce-product-page/images/image-product-4.jpg'
-import Avatar from '../../../public/ecommerce-product-page/images/image-avatar.png'
-import Cart from '../../../public/ecommerce-product-page/images/icon-cart.svg'
-import Next from '../../../public/ecommerce-product-page/images/icon-next.svg'
-import Prev from '../../../public/ecommerce-product-page/images/icon-previous.svg'
-import Plus from '../../../public/ecommerce-product-page/images/icon-plus.svg'
-import Minus from '../../../public/ecommerce-product-page/images/icon-minus.svg'
-import Menu from '../../../public/ecommerce-product-page/images/icon-menu.svg'
-import Delete from '../../../public/ecommerce-product-page/images/icon-delete.svg'
-import Close from '../../../public/ecommerce-product-page/images/icon-close.svg'
-
+import { MutableRefObject, useEffect, useMemo, useRef, useState } from "react";
+import Product1 from "../../../public/ecommerce-product-page/images/image-product-1.jpg";
+import Product1Thumbnail from "../../../public/ecommerce-product-page/images/image-product-1-thumbnail.jpg";
+import Product2 from "../../../public/ecommerce-product-page/images/image-product-2.jpg";
+import Product3 from "../../../public/ecommerce-product-page/images/image-product-3.jpg";
+import Product4 from "../../../public/ecommerce-product-page/images/image-product-4.jpg";
+import Avatar from "../../../public/ecommerce-product-page/images/image-avatar.png";
+import Cart from "../../../public/ecommerce-product-page/images/icon-cart.svg";
+import Next from "../../../public/ecommerce-product-page/images/icon-next.svg";
+import Prev from "../../../public/ecommerce-product-page/images/icon-previous.svg";
+import Plus from "../../../public/ecommerce-product-page/images/icon-plus.svg";
+import Minus from "../../../public/ecommerce-product-page/images/icon-minus.svg";
+import Menu from "../../../public/ecommerce-product-page/images/icon-menu.svg";
+import Delete from "../../../public/ecommerce-product-page/images/icon-delete.svg";
+import Close from "../../../public/ecommerce-product-page/images/icon-close.svg";
 
 const COLORS = {
   orange: "hsl(26, 100%, 55%)",
@@ -26,12 +25,50 @@ const COLORS = {
   black75: "hsl(0, 0%, 75%)",
 };
 
-function SideBar() {
+function SideBar({
+  setShowSideBar,
+}: {
+  setShowSideBar: (args: boolean) => any;
+}) {
+  useEffect(() => {
+    document.documentElement.style.setProperty("overflow", "hidden");
+    document.querySelector("#sidebar")?.animate(
+      {
+        transform: ["translateX(-100%)", "translateX(0%)"],
+      },
+      { composite: "replace", duration: 200, easing: "ease-out" }
+    );
+
+    return () => {
+      document.documentElement.style.setProperty("overflow", "initial");
+    };
+  });
+
   return (
-    <div style={{background: 'rgba(0,0,0,.75)'}} className="top-0 absolute w-full h-[100vh]">
-      <aside className="p-6 w-64 h-full bg-white">
-        <button className="aspect-square w-4">
-          <Image src={Close} width={Close.width} height={Close.height} alt='close' className="h-full w-auto" />
+    <div
+      style={{ background: "rgba(0,0,0,.75)" }}
+      className="top-0 absolute w-full h-[100vh]"
+    >
+      <aside id="sidebar" className="p-6 w-64 h-full bg-white">
+        <button
+          onClick={() => {
+            document.querySelector("#sidebar")?.animate(
+              {
+                transform: ["translateX(0%)", "translateX(-100%)"],
+              },
+              { duration: 150, easing: "ease-out", fill: "forwards" }
+            );
+            setTimeout(() => setShowSideBar(false), 200);
+          }}
+          className="aspect-square w-4"
+        >
+          <Image
+            src={Close}
+            width={Close.width}
+            height={Close.height}
+            alt="close"
+            className="h-full w-auto"
+          />
         </button>
         <ul className="mt-14 flex flex-col gap-8 font-bold ">
           <li>Collections</li>
@@ -42,42 +79,71 @@ function SideBar() {
         </ul>
       </aside>
     </div>
-  )
+  );
 }
 
-function Modal() {
+function Modal({setQuantity, quantity}: {setQuantity: (quantity: number) => any, quantity: number}) {
   return (
-    <div className='w-96 absolute bg-white rounded-xl right-4 top-4'>
-      <header className='px-6 py-7'>
-        <h1 className='font-bold'>Cart</h1>
+    <div className="drop-shadow-2xl w-[360px] absolute bg-white rounded-xl right-2 top-2">
+      <header className="px-6 py-7">
+        <h1 className="font-bold">Cart</h1>
       </header>
-      <main className='px-6 py-7 border-t-2'>
-        <div className='flex justify-between items-center gap-5'>
-          <Image className='rounded h-14 w-14' src={Product1Thumbnail} alt='product' width={100} height={100} />
-          <div className='flex flex-col justify-between text-gray-400 text-md h-full w-56 shrink-0'>
-            <p>Fall Limited Edition Sneakers</p>
-            <p>$125.00 × 3 <span className='text-black font-bold'>$375.00</span></p>
-          </div>
-          <Image className='h-6 w-auto' src={Delete} alt='delete' width={Delete.width} height={Delete.height} />
-        </div>
-        <button style={{background: COLORS.orange}} className='mt-7 rounded-xl w-full h-14 text-white leading-14 text-center font-semibold'>Checkout</button>
-      </main>
+        <main className="px-6 py-7 border-t-2 min-h-[198px] flex flex-col justify-center">
+          {
+            quantity > 0
+            ? <>
+              <div className="flex justify-between items-center justify-between">
+              <Image
+                className="rounded h-12 w-12"
+                src={Product1Thumbnail}
+                alt="product"
+                width={100}
+                height={100}
+              />
+              <div className="flex flex-col justify-between text-gray-400 h-full shrink-0">
+                <p>Fall Limited Edition Sneakers</p>
+                <p>
+                  $125.00 × {quantity} <span className="text-black font-bold">${(125.00 * quantity).toFixed(2)}</span>
+                </p>
+              </div>
+              <Image
+                onClick={() => setQuantity(0)}
+                className="h-5 w-auto"
+                src={Delete}
+                alt="delete"
+                width={Delete.width}
+                height={Delete.height}
+              />
+              </div>
+              <button
+                style={{ background: COLORS.orange }}
+                className="mt-7 rounded-xl w-full h-14 text-white leading-14 text-center font-semibold"
+              >
+                Checkout
+              </button>
+            </>
+            : <h1 className="font-semibold tracking-wide text-gray-400 text-2xl text-center w-full">Your cart is empty.</h1>
+          }
+        </main>
     </div>
-  )
+  );
 }
 
 export default function () {
+  let [showModal, setShowModal] = useState(false);
+  let [showSidebar, setShowSidebar] = useState(false);
+  let [quantity, setQuantity] = useState(0);
+
   useEffect(() => {
-    document.body.style.setProperty("background", "white")
-    // document.documentElement.style.setProperty('overflow-y', 'hidden')
+    document.body.style.setProperty("background", "white");
   }, []);
 
   return (
     <div style={{ fontFamily: "Kumbh Sans", color: "black" }}>
       <header className="flex justify-between items-center h-16 px-6 drop-shadow-2xl">
         <div className="flex gap-4">
-          <button>
-            <Image src={Menu} width={16} height={16} alt='menu' />
+          <button onClick={() => setShowSidebar(true)}>
+            <Image src={Menu} width={16} height={16} alt="menu" />
           </button>
           <h1 className="text-2xl font-bold">sneakers</h1>
           {/* <ul>
@@ -89,24 +155,30 @@ export default function () {
           </ul> */}
         </div>
         <div className="flex gap-5">
-          <div>
-            <Image src={Cart} width={24} height={24} alt='cart' />
+          <div onClick={() => setShowModal(!showModal)}>
+            <Image src={Cart} width={24} height={24} alt="cart" />
           </div>
           <div>
-            <Image src={Avatar} width={24} height={24} alt='avatar' />
+            <Image src={Avatar} width={24} height={24} alt="avatar" />
           </div>
         </div>
       </header>
       <article className="relative flex flex-col">
         <section>
           <div className="relative">
-            <Image src={Product1} alt='product' width={100} height={100} className='w-full' />
+            <Image
+              src={Product1}
+              alt="product"
+              width={1024}
+              height={1024}
+              className="w-full"
+            />
             <div className="flex justify-between items-center p-4 absolute w-full h-full top-0 ">
               <button className="flex justify-center items-center aspect-square bg-white rounded-full w-10 drop-shadow-2xl">
-                <Image src={Prev} width={8} height={8} alt='prev' />
+                <Image src={Prev} width={8} height={8} alt="prev" />
               </button>
               <button className="flex justify-center items-center aspect-square bg-white rounded-full w-10 drop-shadow-2xl">
-                <Image src={Next} width={8} height={8} alt='next' />
+                <Image src={Next} width={8} height={8} alt="next" />
               </button>
             </div>
           </div>
@@ -159,26 +231,39 @@ export default function () {
               style={{ background: COLORS.lightGrayishBlue }}
               className="flex justify-between items-center px-6 w-full h-14 font-bold"
             >
-              <button>
-                <Image src={Minus} width={12} height={12} alt='minus' />
+              <button
+                onClick={() => {
+                  if (quantity > 0) setQuantity(quantity - 1);
+                }}
+              >
+                <Image src={Minus} width={12} height={12} alt="minus" />
               </button>
-              <p className="text-2xl">0</p>
-              <button>
-                <Image src={Plus} width={12} height={12} alt='plus' />
+              <p className="text-2xl">{quantity}</p>
+              <button onClick={() => setQuantity(quantity + 1)}>
+                <Image src={Plus} width={12} height={12} alt="plus" />
               </button>
             </div>
             <button
+              onClick={() => {
+                if (quantity === 0) setQuantity(1)
+              }}
               style={{ background: COLORS.orange }}
               className="flex justify-center items-center gap-4 w-full h-14 rounded-xl text-white font-semibold"
             >
-              <Image style={{filter: 'invert(100%) contrast(10)'}} src={Cart} width={16} height={16} alt='avatar' />
+              <Image
+                style={{ filter: "invert(100%) contrast(10)" }}
+                src={Cart}
+                width={16}
+                height={16}
+                alt="avatar"
+              />
               <p>Add to cart</p>
             </button>
           </div>
         </main>
-        <Modal />
+        {showModal && <Modal setQuantity={setQuantity} quantity={quantity} />}
       </article>
-      {/* <SideBar /> */}
+      {showSidebar && <SideBar setShowSideBar={setShowSidebar} />}
     </div>
   );
 }
