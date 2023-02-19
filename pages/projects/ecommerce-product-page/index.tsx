@@ -317,11 +317,6 @@ export default function () {
         </div>
         <div className="flex gap-5 items-center md:gap-9">
           <div className="relative" onClick={() => setShowModal(!showModal)}>
-            {total > 0 && (
-              <div className="absolute -top-2 -right-2 bg-[#FF7d1A] rounded-full w-5 text-white text-xs text-center">
-                {total}
-              </div>
-            )}
             <Image
               src={Cart}
               width={24}
@@ -329,6 +324,11 @@ export default function () {
               alt="cart"
               className="cursor-pointer brightness-0"
             />
+            {total > 0 && (
+              <div className="absolute -top-2 -right-2 bg-[#FF7d1A] rounded-full w-5 text-white text-xs text-center">
+                {total}
+              </div>
+            )}
           </div>
           <div>
             <Image
