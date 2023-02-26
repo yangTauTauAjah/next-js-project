@@ -255,7 +255,7 @@ function Modal({
   );
 }
 
-export default function () {
+export default function Main() {
   let [showModal, setShowModal] = useState(false);
   let [showSidebar, setShowSidebar] = useState(false);
   let [showPreview, setShowPreview] = useState(false);
@@ -293,7 +293,7 @@ export default function () {
             name="description"
             content="A challange provided by fron-end mentor"
           />
-          <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+          <meta httpEquiv="Content-Type" content="text/html;charset=UTF-8" />
           <meta
             name="viewport"
             content="width=device-width, initial-scale=1.0"
@@ -451,7 +451,7 @@ export default function () {
             </h1>
             <p className="mt-6 text-gray-400">
               These low-profile sneakers are your perfect casual wear com
-              panion. Featuring a durable rubber outer sole. They'll withstand
+              panion. Featuring a durable rubber outer sole. They&apos;ll withstand
               everything the weather can offer.
             </p>
             <div

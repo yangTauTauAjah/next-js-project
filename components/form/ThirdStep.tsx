@@ -97,7 +97,7 @@ const AddonsList = [
   },
 ];
 
-export default function ({ data }: { data: UserDataStructure }) {
+export default function Main({ data }: { data: UserDataStructure }) {
   return (
     <ul className="flex flex-col gap-4 font-medium">
       {AddonsList.map(({ label, desc, priceMo, priceYr }, i) => (

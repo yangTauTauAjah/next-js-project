@@ -603,7 +603,7 @@ export function Wrapper({ children }: { children: React.ReactNode }) {
   );
 }
 
-export default function () {
+export default function Main() {
   const context = useContext(ThemeContext);
   let [theme, setTheme] = useState();
 

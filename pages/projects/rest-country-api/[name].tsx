@@ -280,7 +280,7 @@ export const getStaticProps = async ({
   };
 };
 
-export default function ({ name }: { name: string }) {
+export default function Main({ name }: { name: string }) {
   const context = useContext(ThemeContext);
   let [theme, setTheme] = useState();
 

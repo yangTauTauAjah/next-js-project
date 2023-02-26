@@ -1,7 +1,7 @@
 import Image from "next/image";
 import IconThankYou from "../../public/multi-step-form/images/icon-thank-you.svg";
 
-export default function () {
+export default function Main() {
   return (
     <div className="flex flex-col justify-center items-center shadow-xl py-16 rounded-xl bg-white px-6 w-[90vw] mx-auto gap-5 md:gap-9 md:w-min md:py-9 md:grow">
       <Image src={IconThankYou} alt="thank-you" />

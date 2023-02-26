@@ -17,7 +17,7 @@ const onchange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
   }
 };
 
-function desktop({ data }: { data: UserDataStructure }) {
+function Desktop({ data }: { data: UserDataStructure }) {
   let InputRef = useRef({
     name: useRef<HTMLInputElement>(null),
     email: useRef<HTMLInputElement>(null),
@@ -99,7 +99,7 @@ function desktop({ data }: { data: UserDataStructure }) {
   );
 }
 
-function mobile({ data }: { data: UserDataStructure }) {
+function Mobile({ data }: { data: UserDataStructure }) {
 
   return (
     <ul className="flex flex-col gap-6 font-medium">
@@ -158,4 +158,4 @@ function mobile({ data }: { data: UserDataStructure }) {
   );
 }
 
-export default desktop;
+export default Desktop;

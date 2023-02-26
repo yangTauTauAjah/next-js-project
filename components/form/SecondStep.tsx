@@ -83,7 +83,7 @@ const CardList = [
   },
 ];
 
-function desktop({ data }: { data: UserDataStructure }) {
+function Desktop({ data }: { data: UserDataStructure }) {
   let [mode, setMode]: [TimePeriod, any] = useState(data[1].period);
   let [select, setSelect]: [Plan, any] = useState(data[1].plan);
   const toggle: MutableRefObject<HTMLDivElement | null> = useRef(null);
@@ -140,4 +140,4 @@ function desktop({ data }: { data: UserDataStructure }) {
   );
 }
 
-export default desktop;
+export default Desktop;

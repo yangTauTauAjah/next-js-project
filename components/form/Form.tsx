@@ -73,7 +73,7 @@ type FormProps = {
   setStep: React.Dispatch<React.SetStateAction<number>>;
 };
 
-function desktop({ data, heading, desc, step, setStep }: FormProps) {
+function Desktop({ data, heading, desc, step, setStep }: FormProps) {
 
   return (
     <form
@@ -134,7 +134,7 @@ function desktop({ data, heading, desc, step, setStep }: FormProps) {
   );
 }
 
-function mobile({ heading, desc, step, setStep }: FormProps) {
+function Mobile({ heading, desc, step, setStep }: FormProps) {
   let data: MutableRefObject<UserDataStructure> = useRef([
     {
       name: "",
@@ -166,4 +166,4 @@ function mobile({ heading, desc, step, setStep }: FormProps) {
   );
 }
 
-export default desktop;
+export default Desktop;

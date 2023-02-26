@@ -38,7 +38,7 @@ button {
 }
 `;
 
-export default function () {
+export default function Main() {
   /* useEffect(() => {
     document.body.style.fontFamily = "'Roboto', sans-serif";
   }, []); */
@@ -138,7 +138,7 @@ export default function () {
                 className="opacity-0 translate-x-1/4 transition duration-700 delay-200 text-[#6A6A6A] text-xs indent-9
               md:text-[16px] md:leading-[1.5]"
               >
-                Hi, my name is Habib Anwash. I'm a self-taught developer and
+                Hi, my name is Habib Anwash. I&apos;m a self-taught developer and
                 passionate about learning something new. I am excited to
                 continue learning and growing as a developer and I am eager to
                 take on new challenges.
@@ -506,7 +506,7 @@ export default function () {
                   >
                     Frontendmentor.io is a platform that provides challanges to
                     make a real web frontend projects. With all of my skills, I
-                    managed to finish some "Advanced-level" challanges provided
+                    managed to finish some &quot;Advanced-level&quot; challanges provided
                     by them
                   </p>
                 </div>

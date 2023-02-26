@@ -8,7 +8,7 @@ export function getServerSideProps() {
   return {props: {wow: 'test'}}
 }
 
-export default function () {
+export default function Main() {
   let [HOST, setHost] = useState("");
 
   useEffect(() => {

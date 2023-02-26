@@ -216,7 +216,7 @@ const Main = () => {
           name="description"
           content="A challange provided by fron-end mentor"
         />
-        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+        <meta httpEquiv="Content-Type" content="text/html;charset=UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="icon" href={Icon.src} />
       </Head>

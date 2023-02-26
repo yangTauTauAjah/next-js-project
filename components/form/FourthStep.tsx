@@ -21,7 +21,7 @@ const Plan = ["Arcade", "Advanced", "Pro"];
 const Addons = ["Online service", "Larger storage", "Customizable profile"];
 const TimePeriod = ["mo", "yr"];
 
-export default function ({
+export default function Main({
   data,
   setStep,
 }: {
