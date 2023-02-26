@@ -266,7 +266,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
       { params: { name: "belgium" } },
       { params: { name: "indonesia" } },
     ],
-    fallback: "blocking",
+    fallback: false,
   };
 };
 
@@ -303,7 +303,7 @@ export default function ({ name }: { name: string }) {
       md:px-20 md:py-20"
       >
         <button
-          onClick={() => router.push('/projects/rest-country-api')}
+          onClick={() => router.push("/projects/rest-country-api")}
           style={{
             background:
               context.theme === "light" ? COLORS.white : COLORS.darkBlue,
@@ -380,28 +380,31 @@ export default function ({ name }: { name: string }) {
                   <p className="font-semibold text-xl">Border Countries:</p>
                   <ul className="mt-6 flex flex-wrap gap-3">
                     {country?.borders?.map((e, i) => {
-                      const countryName = ALPA3CODE[e as keyof typeof ALPA3CODE]
-                      return <li key={i}>
-                        <button
-                          onClick={() => {
-                            router.push({
-                              pathname: router.route,
-                              query: {name: e}
-                            })
-                          }}
-                          style={{
-                            background:
-                              context.theme === "light"
-                                ? COLORS.white
-                                : COLORS.darkBlue,
-                          }}
-                          className="cursor-pointer rounded shadow-lg flex place-items-center px-4 h-7"
-                        >
-                          <p className="pointer-events-none w-full text-center">
-                            {countryName}
-                          </p>
-                        </button>
-                      </li>
+                      const countryName =
+                        ALPA3CODE[e as keyof typeof ALPA3CODE];
+                      return (
+                        <li key={i}>
+                          <button
+                            onClick={() => {
+                              router.push({
+                                pathname: router.route,
+                                query: { name: e },
+                              });
+                            }}
+                            style={{
+                              background:
+                                context.theme === "light"
+                                  ? COLORS.white
+                                  : COLORS.darkBlue,
+                            }}
+                            className="cursor-pointer rounded shadow-lg flex place-items-center px-4 h-7"
+                          >
+                            <p className="pointer-events-none w-full text-center">
+                              {countryName}
+                            </p>
+                          </button>
+                        </li>
+                      );
                     })}
                   </ul>
                 </div>

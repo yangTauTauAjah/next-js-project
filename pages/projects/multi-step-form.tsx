@@ -1,9 +1,16 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import bannerDesktop from "../../../public/multi-step-form/images/bg-sidebar-desktop.svg";
-import bannerMobile from "../../../public/multi-step-form/images/bg-sidebar-mobile.svg";
-import Form, { Addons, Plan, TimePeriod, UserDataStructure } from "../../../components/form/Form";
-import FinalStep from "../../../components/form/FinalStep";
+import bannerDesktop from "../../public/multi-step-form/images/bg-sidebar-desktop.svg";
+import bannerMobile from "../../public/multi-step-form/images/bg-sidebar-mobile.svg";
+import Form, {
+  Addons,
+  Plan,
+  TimePeriod,
+  UserDataStructure,
+} from "../../components/form/Form";
+import FinalStep from "../../components/form/FinalStep";
+import Icon from "../../public/multi-step-form/images/favicon-32x32.png";
+import Head from "next/head";
 
 type BannerLiProps = { order: number; children: string; selected?: boolean };
 
@@ -54,7 +61,7 @@ const Desktop = ({
   step,
   setStep,
 }: {
-  data: React.MutableRefObject<UserDataStructure>,
+  data: React.MutableRefObject<UserDataStructure>;
   step: number;
   setStep: React.Dispatch<React.SetStateAction<number>>;
 }) => {
@@ -91,7 +98,7 @@ const Mobile = ({
   step,
   setStep,
 }: {
-  data: React.MutableRefObject<UserDataStructure>,
+  data: React.MutableRefObject<UserDataStructure>;
   step: number;
   setStep: React.Dispatch<React.SetStateAction<number>>;
 }) => {
@@ -187,20 +194,38 @@ const Main = () => {
   ]);
 
   useEffect(() => {
+    /* document.body.style.fontFamily = 'Ubuntu, "sans-serif"'
+    document.body.style.color = '#03295a'
+    document.body.style.background = '#eef5ff' */
+    if (innerWidth > 768) setDisplay("desktop");
     window.addEventListener("resize", () => {
       if (innerWidth <= 768) setDisplay("mobile");
       else setDisplay("desktop");
     });
   }, []);
 
-  useEffect(() => {
-    console.log(display);
-  }, [display]);
-
-  return display === "mobile" ? (
-    <Mobile data={data} step={step} setStep={setStep} />
-  ) : (
-    <Desktop data={data} step={step} setStep={setStep} />
+  return (
+    <div style={{
+      fontFamily: 'Ubuntu, "sans-serif"',
+      color: '#03295a',
+      background: '#eef5ff'
+    }}>
+      <Head>
+        <title>Multi-step Form</title>
+        <meta
+          name="description"
+          content="A challange provided by fron-end mentor"
+        />
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" href={Icon.src} />
+      </Head>
+      {display === "mobile" ? (
+        <Mobile data={data} step={step} setStep={setStep} />
+      ) : (
+        <Desktop data={data} step={step} setStep={setStep} />
+      )}
+    </div>
   );
 };
 

@@ -112,7 +112,9 @@ function desktop({ data, heading, desc, step, setStep }: FormProps) {
                 return 0;
               })
             }
-            className="transition-colors tracking-wider font-bold px-7 py-3 text-gray-400 hover:text-[#174A8B]"
+            className={`${
+              step === 0 && "invisible"
+            } transition-colors tracking-wider font-bold px-7 py-3 text-gray-400 hover:text-[#174A8B]`}
           >
             Go Back
           </button>

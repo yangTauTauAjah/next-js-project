@@ -10,6 +10,7 @@ import Right from "../../../public/rest-country-api/icon/right.png";
 import Left from "../../../public/rest-country-api/icon/left.png";
 import data from "../../../public/rest-country-api/data.json";
 import { createContext } from "react";
+import Head from "next/head";
 
 export const ThemeContext: Context<{
   theme: string;
@@ -169,7 +170,7 @@ function Select({
 
 function Page({ PAGES, currentPage }: { PAGES: number; currentPage: number }) {
   const { theme } = useContext(ThemeContext);
-  const router = useRouter()
+  const router = useRouter();
 
   if (PAGES <= 5)
     return (
@@ -177,15 +178,13 @@ function Page({ PAGES, currentPage }: { PAGES: number; currentPage: number }) {
         <div
           className="cursor-pointer drop-shadow-xl h-8 w-2 leading-8 text-center flex items-center shrink-0"
           onClick={() => {
-
-            const page = Number.parseInt(router.query.page as string)
-            if (page <=  1) return
+            const page = Number.parseInt(router.query.page as string);
+            if (page <= 1) return;
 
             router.push({
-              query: {page: page - 1}
-            }
-            
-          )}}
+              query: { page: page - 1 },
+            });
+          }}
         >
           <Image
             className="w-full"
@@ -201,16 +200,18 @@ function Page({ PAGES, currentPage }: { PAGES: number; currentPage: number }) {
             .fill(null)
             .map((e, i) => (
               <li
-                onClick={() => router.push({
-                  query: {page: i + 1}
-                })}
+                onClick={() =>
+                  router.push({
+                    query: { page: i + 1 },
+                  })
+                }
                 key={i}
                 style={{
                   background:
                     i + 1 === currentPage
                       ? theme === "light"
-                      ? COLORS.lightBlue
-                      : COLORS.darkGrayInput
+                        ? COLORS.lightBlue
+                        : COLORS.darkGrayInput
                       : theme === "light"
                       ? COLORS.white
                       : COLORS.darkBlue,
@@ -225,17 +226,15 @@ function Page({ PAGES, currentPage }: { PAGES: number; currentPage: number }) {
         <div
           className="cursor-pointer drop-shadow-xl h-8 w-2 leading-8 text-center flex items-center shrink-0"
           onClick={() => {
+            console.log("test");
 
-            console.log('test')
-
-            const page = Number.parseInt(router.query.page as string)
-            if (page >=  PAGES) return
+            const page = Number.parseInt(router.query.page as string);
+            if (page >= PAGES) return;
 
             router.push({
-              query: {page: page + 1}
-            }
-
-          )}}
+              query: { page: page + 1 },
+            });
+          }}
         >
           <Image
             className="w-full"
@@ -254,15 +253,13 @@ function Page({ PAGES, currentPage }: { PAGES: number; currentPage: number }) {
       <div
         className="cursor-pointer drop-shadow-xl h-8 w-2 leading-8 text-center flex items-center shrink-0"
         onClick={() => {
-
-          const page = Number.parseInt(router.query.page as string)
-          if (page <=  1) return
+          const page = Number.parseInt(router.query.page as string);
+          if (page <= 1) return;
 
           router.push({
-            query: {page: page - 1}
-          }
-          
-        )}}
+            query: { page: page - 1 },
+          });
+        }}
       >
         <Image
           className="w-full"
@@ -277,14 +274,11 @@ function Page({ PAGES, currentPage }: { PAGES: number; currentPage: number }) {
         {currentPage >= 4 && (
           <>
             <li
-              onClick={() => router.push({query: {page: 1}})}
+              onClick={() => router.push({ query: { page: 1 } })}
               className="transition-[drop-shadow] cursor-pointer drop-shadow-xl min-w-[32px] h-8 leading-8 text-center rounded-lg font-bold
               hover:drop-shadow-none"
               style={{
-                background:
-                  theme === "light"
-                    ? COLORS.white
-                    : COLORS.darkBlue,
+                background: theme === "light" ? COLORS.white : COLORS.darkBlue,
               }}
             >
               1
@@ -298,14 +292,14 @@ function Page({ PAGES, currentPage }: { PAGES: number; currentPage: number }) {
           if (currentPage < 4) {
             return (
               <li
-                onClick={() => router.push({query: {page: i}})}
+                onClick={() => router.push({ query: { page: i } })}
                 key={i}
                 style={{
                   background:
                     i === currentPage
                       ? theme === "light"
-                      ? COLORS.lightBlue
-                      : COLORS.darkGrayInput
+                        ? COLORS.lightBlue
+                        : COLORS.darkGrayInput
                       : theme === "light"
                       ? COLORS.white
                       : COLORS.darkBlue,
@@ -319,14 +313,14 @@ function Page({ PAGES, currentPage }: { PAGES: number; currentPage: number }) {
           } else if (currentPage > PAGES - 3) {
             return (
               <li
-                onClick={() => router.push({query: {page: i + PAGES - 3}})}
+                onClick={() => router.push({ query: { page: i + PAGES - 3 } })}
                 key={i}
                 style={{
                   background:
                     i + PAGES - 3 === currentPage
                       ? theme === "light"
-                      ? COLORS.lightBlue
-                      : COLORS.darkGrayInput
+                        ? COLORS.lightBlue
+                        : COLORS.darkGrayInput
                       : theme === "light"
                       ? COLORS.white
                       : COLORS.darkBlue,
@@ -340,14 +334,16 @@ function Page({ PAGES, currentPage }: { PAGES: number; currentPage: number }) {
           } else {
             return (
               <li
-                onClick={() => router.push({query: {page: currentPage + i - 2}})}
+                onClick={() =>
+                  router.push({ query: { page: currentPage + i - 2 } })
+                }
                 key={i}
                 style={{
                   background:
                     i === 2
                       ? theme === "light"
-                      ? COLORS.lightBlue
-                      : COLORS.darkGrayInput
+                        ? COLORS.lightBlue
+                        : COLORS.darkGrayInput
                       : theme === "light"
                       ? COLORS.white
                       : COLORS.darkBlue,
@@ -369,12 +365,9 @@ function Page({ PAGES, currentPage }: { PAGES: number; currentPage: number }) {
               className="transition-[drop-shadow] cursor-pointer drop-shadow-xl min-w-[32px] h-8 leading-8 text-center rounded-lg font-bold
               hover:drop-shadow-none"
               style={{
-                background:
-                  theme === "light"
-                    ? COLORS.white
-                    : COLORS.darkBlue,
+                background: theme === "light" ? COLORS.white : COLORS.darkBlue,
               }}
-              onClick={() => router.push({query: {page: PAGES}})}
+              onClick={() => router.push({ query: { page: PAGES } })}
             >
               {PAGES}
             </li>
@@ -384,15 +377,13 @@ function Page({ PAGES, currentPage }: { PAGES: number; currentPage: number }) {
       <div
         className="cursor-pointer drop-shadow-xl h-8 w-2 leading-8 text-center flex items-center shrink-0"
         onClick={() => {
-
-          const page = Number.parseInt(router.query.page as string)
-          if (page <=  1) return
+          const page = Number.parseInt(router.query.page as string);
+          if (page <= 1) return;
 
           router.push({
-            query: {page: page + 1}
-          }
-          
-        )}}
+            query: { page: page + 1 },
+          });
+        }}
       >
         <Image
           className="w-full"
@@ -440,9 +431,8 @@ function List() {
     );
 
     router.replace({
-      query: {page: 1}
-    })
-
+      query: { page: 1 },
+    });
   }, [filter, search]);
 
   const PAGES = useMemo(() => Math.ceil(list.length / 20), [list]);
@@ -512,7 +502,9 @@ function List() {
             />
           ))}
       </ul>
-      {PAGES > 1 && currentPage && <Page PAGES={PAGES} currentPage={currentPage} />}
+      {PAGES > 1 && currentPage && (
+        <Page PAGES={PAGES} currentPage={currentPage} />
+      )}
     </div>
   );
 }
@@ -520,20 +512,39 @@ function List() {
 export function Wrapper({ children }: { children: React.ReactNode }) {
   const context = useContext(ThemeContext);
 
-  useEffect(() => {
-    document.body.style.setProperty("min-height", "100vh");
-  }, []);
+  /* useEffect(() => {
+    document.body.style.minHeight = "100vh";
+  }, []); */
 
   useEffect(() => {
-    document.body.style.setProperty(
-      "background",
-      context.theme === "light" ? COLORS.veryLightGrayBg : COLORS.veryDarkBlueBg
-    );
-    context.toggleTheme(localStorage.theme)
+    /* document.body.style.background =
+      context.theme === "light"
+        ? COLORS.veryLightGrayBg
+        : COLORS.veryDarkBlueBg; */
+    /* @ts-ignore */
+
+    context.toggleTheme(localStorage.theme);
   }, [context.theme]);
 
   return (
-    <>
+    <div
+      style={{
+        minHeight: '100vh',
+        background:
+          context.theme === "light"
+            ? COLORS.veryLightGrayBg
+            : COLORS.veryDarkBlueBg,
+      }}
+    >
+      <Head>
+        <title>Rest Country API</title>
+        <meta
+          name="description"
+          content="A challange provided by fron-end mentor"
+        />
+        <meta httpEquiv="Content-Type" content="text/html;charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      </Head>
       <article
         className="text-sm"
         style={{
@@ -554,11 +565,11 @@ export function Wrapper({ children }: { children: React.ReactNode }) {
           <button
             onClick={() => {
               if (context.theme === "light") {
-                localStorage.setItem('theme', 'dark')
-                context.toggleTheme("dark")
+                localStorage.setItem("theme", "dark");
+                context.toggleTheme("dark");
               } else {
-                localStorage.setItem('theme', 'light')
-                context.toggleTheme("light")
+                localStorage.setItem("theme", "light");
+                context.toggleTheme("light");
               }
             }}
             className="flex items-center gap-1"
@@ -568,7 +579,7 @@ export function Wrapper({ children }: { children: React.ReactNode }) {
             ) : (
               <img
                 src={Moon.src}
-                alt='moon'
+                alt="moon"
                 className="h-4"
                 style={{ filter: "invert(100%)" }}
               />
@@ -588,7 +599,7 @@ export function Wrapper({ children }: { children: React.ReactNode }) {
         noModule
         src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
       />
-    </>
+    </div>
   );
 }
 
