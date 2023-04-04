@@ -1,0 +1,99 @@
+{
+  "newAuction": [
+    {
+      "imageUrl": "",
+      "name": "Somewhere Else: 094 - Palm Trees & Basketball",
+      "price": 0.5,
+      "time": "03:23:23"
+    },
+    {
+      "imageUrl": "",
+      "name": "DRIP #515",
+      "price": 0.7,
+      "time": "00:33:44"
+    },
+    {
+      "name": "Bikes of Burden #28. Ribs.",
+      "price": 2.5,
+      "time": "00:33:44"
+    },
+    {
+      "imageUrl": "",
+      "name": "Rizzo Collection #36",
+      "price": 1.2,
+      "time": "08:17:13"
+    }
+  ],
+  "topSeller": [
+    {
+      "imageUrl": "",
+      "nickName": ""
+    },
+    {
+      "imageUrl": "",
+      "nickName": "RizKhen"
+    },
+    {
+      "imageUrl": "",
+      "nickName": "Jhiehe"
+    },
+    {
+      "imageUrl": "",
+      "nickName": "Fukiep"
+    },
+    {
+      "imageUrl": "",
+      "nickName": "Hags"
+    },
+    {
+      "imageUrl": "",
+      "nickName": "Berhans"
+    },
+    {
+      "imageUrl": "",
+      "nickName": "Abdliie"
+    },
+    {
+      "imageUrl": "",
+      "nickName": "Wetur Art"
+    },
+    {
+      "imageUrl": "",
+      "nickName": "Pokko"
+    }
+  ],
+  "categories": [
+    {
+      "thumbnail": "",
+      "category": "Art"
+    },
+    {
+      "thumbnail": "",
+      "category": "Collection"
+    },
+    {
+      "thumbnail": "",
+      "category": "Domain Name"
+    },
+    {
+      "thumbnail": "",
+      "category": "Music"
+    },
+    {
+      "thumbnail": "",
+      "category": "Photography"
+    },
+    {
+      "thumbnail": "",
+      "category": "Sport"
+    },
+    {
+      "thumbnail": "",
+      "category": "Trading Card"
+    },
+    {
+      "thumbnail": "",
+      "category": "Utility"
+    }
+  ]
+}
