@@ -273,7 +273,7 @@ export default function Main() {
           </div>
           <ul
             className="grid grid-cols-[repeat(auto-fill,273px)] justify-center gap-x-4 gap-y-16 w-full md:justify-around"
-            // className="flex flex-wrap justify-center gap-x-4 gap-y-16 w-full"
+          // className="flex flex-wrap justify-center gap-x-4 gap-y-16 w-full"
           >
             <li className="opacity-0 -translate-x-1/2 transition duration-700 item">
               <div>
@@ -438,6 +438,45 @@ export default function Main() {
                 rel="noopener noreferrer"
                 href="https://todoapp.tugasonly.repl.co/"
                 className="flex items-center rounded-full bg-[#0CFF8A] aspect-square w-[50px]"
+              >
+                <img
+                  className="w-6 mx-auto"
+                  src="/src/img/svg/RightArrow.svg"
+                  alt="right-arrow"
+                />
+              </a>
+            </li>
+            <li className="opacity-0 -translate-x-1/2 transition duration-700 delay-100 item border-l-[#FFB74A]">
+              <h3>NFT landing page</h3>
+              <img
+                src="/src/img/project/NftLandingPage.png"
+                alt="preview"
+                className="aspect-video ring ring-offset-2 ring-[#8D7AFF] rounded"
+              />
+              <div className="md:flex md:flex-col md:gap-6 md:w-[46%]">
+                <h3
+                  className="hidden
+                md:!block"
+                >
+                  NFT landing page
+                </h3>
+                <div className="px-5 py-3 border-l-[#8D7AFF]">
+                  <p
+                    className="text-justify
+                  md:text-xl"
+                  >
+                    React-based web application that uses Material UI for its design.
+                    The goal of the project is to create an NFT landing page that
+                    showcases unique and valuable digital assets created by talented
+                    artists.
+                  </p>
+                </div>
+              </div>
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://jovial-cannoli-8e26a2.netlify.app/"
+                className="flex items-center rounded-full bg-[#FFB74A] aspect-square w-[50px]"
               >
                 <img
                   className="w-6 mx-auto"
@@ -637,36 +676,6 @@ export default function Main() {
                   md:text-2xl"
                 >
                   HabibAnwash1447@7305
-                </p>
-              </a>
-            </li>
-            <li className="w-full">
-              <a
-                target="_blank"
-                rel="noopener noreferrer"
-                href="https://instagram.com/ans54bit?igshid=ZDdkNTZiNTM="
-                className="opacity-0 translate-x-1/2 transition duration-700 delay-300 item border-l-[#CC426A] text-[#CC426A]"
-              >
-                <img
-                  className="aspect-square w-[40px]
-                  min-[1200px]:w-24
-                  md:w-10"
-                  src="/src/img/png/Instagram_Logo.png"
-                  alt="Instagram_Logo"
-                />
-                <p
-                  className="font-extrabold text-xs
-                  min-[1200px]:text-4xl
-                  md:text-2xl"
-                >
-                  INSTAGRAM :
-                </p>
-                <p
-                  className="text-jetbrainsmono-xb tracking-widest text-xs
-                  min-[1200px]:text-4xl
-                  md:text-2xl"
-                >
-                  @ans54bit
                 </p>
               </a>
             </li>
