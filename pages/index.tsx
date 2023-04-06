@@ -475,7 +475,7 @@ export default function Main() {
               <a
                 target="_blank"
                 rel="noopener noreferrer"
-                href="https://jovial-cannoli-8e26a2.netlify.app/"
+                href="https://genuine-marshmallow-2e78ee.netlify.app/"
                 className="flex items-center rounded-full bg-[#FFB74A] aspect-square w-[50px]"
               >
                 <img
