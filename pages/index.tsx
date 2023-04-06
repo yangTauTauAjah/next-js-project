@@ -485,7 +485,7 @@ export default function Main() {
                 />
               </a>
             </li>
-            <li className="opacity-0 -translate-x-1/2 transition duration-700 delay-100 item border-l-[#0C8AFF]">
+            <li className="opacity-0 -translate-x-1/2 transition duration-700 delay-200 item border-l-[#0C8AFF]">
               <h3>React movie app</h3>
               <img
                 src="/src/img/project/ReactMovieApp.png"
@@ -524,7 +524,7 @@ export default function Main() {
                 />
               </a>
             </li>
-            <li className="opacity-0 -translate-x-1/2 transition duration-700 delay-100 item border-l-red-500">
+            <li className="opacity-0 -translate-x-1/2 transition duration-700 delay-300 item border-l-red-500">
               <h3>Front-end mentor challanges</h3>
               <img
                 src="/src/img/project/FrontEndMentor.png"
