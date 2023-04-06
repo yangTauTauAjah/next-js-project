@@ -593,7 +593,7 @@ export default function Main() {
               <a
                 target="_blank"
                 rel="noopener noreferrer"
-                href="https://github.com/ans54bit"
+                href="https://github.com/yangTauTauAjah"
                 className="opacity-0 translate-x-1/2 transition duration-700 item border-l-[#333333] text-[#333333]"
               >
                 <img
@@ -615,7 +615,7 @@ export default function Main() {
                   min-[1200px]:text-4xl
                   md:text-2xl"
                 >
-                  ans54bit
+                  yangTauTauAjah
                 </p>
               </a>
             </li>
