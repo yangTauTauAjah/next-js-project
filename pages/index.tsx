@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Link from "next/link";
 import Script from "next/script";
+import Image from "next/image"
 
 const STYLE = `
 @font-face {
@@ -300,12 +301,12 @@ export default function Main() {
         md:gap-24 md:mx-[10vw]"
         >
           <div className="title">
-            <h5 className="tracking-widest">Skills</h5>
+            <h5 className="tracking-widest">Skill set</h5>
             <h1 className="before:w-6 before:left-8 after:w-28 after:left-16">
-              What i work for
+              Tech Stack
             </h1>
           </div>
-          <ul
+          {/* <ul
             className="grid grid-cols-[repeat(auto-fill,273px)] justify-center gap-x-4 gap-y-16 w-full md:justify-around"
           // className="flex flex-wrap justify-center gap-x-4 gap-y-16 w-full"
           >
@@ -415,7 +416,67 @@ export default function Main() {
                 </p>
               </div>
             </li>
-          </ul>
+          </ul> */}
+          <div className="flex flex-col gap-y-12">
+            <div
+              style={{
+                background: '#1E5DFF',
+                border: '#1351F1 solid 3px',
+                borderRadius: '1.125rem'
+              }}
+              className="flex flex-col items-center gap-7 w-80 p-12"
+            >
+              <h3 style={{color: 'rgba(0,0,0,.25)'}} className="text-2xl text-jetbrainsmono-xb text-center">Back end</h3>
+              <ul className="text-white font-semibold">
+                <li className="flex gap-3">
+                  <Image src="/src/img/png/Node_Logo.png" alt="Node_Logo.png" fill={true}/>
+                  <p>Node js</p>
+                </li>
+                <li>
+                  <p>Express js</p>
+                </li>
+                <li>
+                  <p>GraphQL</p>
+                </li>
+                <li>
+                  <p>REST API</p>
+                </li>
+                <li>
+                  <p>Jest</p>
+                </li>
+                <li>
+                  <p>MongoDB</p>
+                </li>
+                <li>
+                  <p>MySQL</p>
+                </li>
+              </ul>
+            </div>
+            <div className="w-80 p-12">
+              <h3 className="text-xl text-jetbrainsmono-xb text-center">Front end</h3>
+              <ul>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+              </ul>
+            </div>
+            <div className="w-80 p-12">
+              <h3 className="text-xl text-jetbrainsmono-xb text-center">Other tools and languages</h3>
+              <ul>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+              </ul>
+            </div>
+          </div>
         </section>
 
         {/* <!-- Separator --> */}
