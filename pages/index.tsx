@@ -655,11 +655,12 @@ export default function Main() {
               </a>
             </li>
           </ul>
-          <form className="w-full flex flex-col items-center gap-11">
+          <form className="w-full flex flex-col items-center gap-8">
             <div className="w-full flex flex-col gap-7">
               <input
                 placeholder="Name"
                 style={{
+                  outline: 'none',
                   padding: '20px',
                   height: '60px',
                   background: "rgba(0,0,0,.02)",
@@ -671,6 +672,7 @@ export default function Main() {
               <input
                 placeholder="Email"
                 style={{
+                  outline: 'none',
                   padding: '20px',
                   height: '60px',
                   background: "rgba(0,0,0,.02)",
@@ -683,6 +685,7 @@ export default function Main() {
             <textarea
               placeholder="Write your message here"
               style={{
+                outline: 'none',
                 padding: '20px',
                 width: '100%',
                 height: '250px',
