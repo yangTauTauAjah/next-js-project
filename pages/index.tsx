@@ -298,7 +298,7 @@ export default function Main() {
         <section
           id="skills"
           className="page gap-7
-        md:gap-24 md:mx-[10vw]"
+        md:gap-24 md:mx-[3vw]"
         >
           <div className="title">
             <h5 className="tracking-widest">Skill set</h5>
@@ -307,12 +307,14 @@ export default function Main() {
             </h1>
           </div>
           
-          <div className="flex flex-col gap-y-12">
+          <div className="flex flex-col flex-wrap justify-center gap-y-12
+          md:flex-row md:gap-x-28">
             <div
               style={{
                 background: '#1E5DFF',
                 border: '#1351F1 solid 3px',
-                borderRadius: '1.125rem'
+                borderRadius: '1.125rem',
+                boxShadow: '0 4px 10px rgba(0,0,0,.25)'
               }}
               className="flex flex-col items-center gap-7 w-80 p-12 shadow shadow-gray-500"
             >
@@ -353,7 +355,8 @@ export default function Main() {
               style={{
                 background: '#363F4D',
                 border: '#33363C solid 3px',
-                borderRadius: '1.125rem'
+                borderRadius: '1.125rem',
+                boxShadow: '0 4px 10px rgba(0,0,0,.25)'
               }}
               className="flex flex-col items-center gap-7 w-80 p-12 shadow shadow-gray-500"
             >
@@ -394,9 +397,10 @@ export default function Main() {
               style={{
                 background: '#27FF7E',
                 border: '#17D061 solid 3px',
-                borderRadius: '1.125rem'
+                borderRadius: '1.125rem',
+                boxShadow: '0 4px 10px rgba(0,0,0,.25)'
               }}
-              className="flex flex-col items-center gap-7 w-80 p-12 shadow shadow-gray-500"
+              className="flex flex-col items-center gap-7 w-80 p-12"
             >
               <h3 style={{color: 'rgba(0,0,0,.25)'}} className="text-2xl text-jetbrainsmono-xb text-center">Other tools and languages</h3>
               <ul className="flex flex-col gap-7 text-white font-semibold">
