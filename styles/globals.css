@@ -246,7 +246,7 @@ input.invalid {
 
 
 
-@layer components {
+/* @layer components {
 
   #projects ul {
     display: flex;
@@ -315,11 +315,11 @@ input.invalid {
     }
   }
 
-}
+} */
 
 
 
-@layer components {
+/* @layer components {
 
   #skills .item {
     display: flex;
@@ -352,23 +352,24 @@ input.invalid {
     line-height: 1;
   }
 
-}
+} */
 
 
 
 @layer components {
 
   #socials ul {
-    width: 80%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
+    gap: 30px;
   }
   
   
   #socials .item {
     display: flex;
+    font-size: 1rem;
     align-items: center;
     width: 100%;
     gap: 20px;
@@ -377,7 +378,7 @@ input.invalid {
     border-radius: 5px;
     border-left-style: solid;
     border-left-width: 5px;
-    background: rgba(0,0,0,.05);
+    background: rgba(0,0,0,.02);
   }
 
   @media (min-width: 768px) {
@@ -420,6 +421,10 @@ input.invalid {
 
 
 @layer utilities {
+
+  .text-jetbrainsmono {
+    font-family: 'JetBrainsMono';
+  }
 
   .text-jetbrainsmono-b {
     font-family: 'JetBrainsMono-Bold';
