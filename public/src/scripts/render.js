@@ -63,7 +63,7 @@ executeOnVisible(mainHeading,
 
 
 
-const skillsList = document.querySelector("#skills ul")
+/* const skillsList = document.querySelector("#skills ul")
 const skillsItem = document.querySelectorAll("#skills li")
 
 executeOnVisible(skillsList,
@@ -79,7 +79,7 @@ executeOnVisible(skillsList,
       e.classList.add('-translate-x-1/2')
     })
   }
-)
+) */
 
 
 
