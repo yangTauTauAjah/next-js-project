@@ -306,117 +306,7 @@ export default function Main() {
               Tech Stack
             </h1>
           </div>
-          {/* <ul
-            className="grid grid-cols-[repeat(auto-fill,273px)] justify-center gap-x-4 gap-y-16 w-full md:justify-around"
-          // className="flex flex-wrap justify-center gap-x-4 gap-y-16 w-full"
-          >
-            <li className="opacity-0 -translate-x-1/2 transition duration-700 item">
-              <div>
-                <img src="/src/img/png/MongoDB_Logo.png" alt="MongoDB_Logo" />
-              </div>
-              <div>
-                <h3>MongoDB</h3>
-                <p>
-                  Cross-platform document-oriented database program. Classified
-                  as a NoSQL database program, MongoDB uses JSON-like documents
-                  with optional schemas.
-                </p>
-              </div>
-            </li>
-            <li className="opacity-0 -translate-x-1/2 transition duration-700 delay-100 item">
-              <div>
-                <img src="/src/img/png/Express_Logo.png" alt="Express_Logo" />
-              </div>
-              <div>
-                <h3>Express JS</h3>
-                <p>
-                  Back end web application framework for building RESTful APIs
-                  with NodeJS, released as free and open-source software under
-                  the MIT License.
-                </p>
-              </div>
-            </li>
-            <li className="opacity-0 -translate-x-1/2 transition duration-700 delay-200 item">
-              <div>
-                <img src="/src/img/png/React_Logo.png" alt="React_Logo" />
-              </div>
-              <div>
-                <h3>React</h3>
-                <p>
-                  JavaScript library for building user interfaces. React has
-                  been designed from the start for gradual adoption, and you can
-                  use as little or as much React as you need.
-                </p>
-              </div>
-            </li>
-            <li className="opacity-0 -translate-x-1/2 transition duration-700 delay-300 item">
-              <div>
-                <img src="/src/img/png/Node_Logo.png" alt="Node_Logo.png" />
-              </div>
-              <div>
-                <h3>Node JS</h3>
-                <p>
-                  Back end JavaScript runtime environment, runs on the V8
-                  JavaScript Engine, and executes JavaScript code outside a web
-                  browser.
-                </p>
-              </div>
-            </li>
-            <li className="opacity-0 -translate-x-1/2 transition duration-700 delay-300 item">
-              <div>
-                <img src="/src/img/png/Typescript_Logo.png" alt="Node_Logo.png" />
-              </div>
-              <div>
-                <h3>Typescript</h3>
-                <p>
-                  TypeScript is a strongly typed programming language that
-                  builds on JavaScript, giving you better tooling at any scale.
-                </p>
-              </div>
-            </li>
-            <li className="opacity-0 -translate-x-1/2 transition duration-700 delay-[400ms] item">
-              <div>
-                <img src="/src/img/png/HTML_Logo.png" alt="HTML_Logo.png" />
-                <img src="/src/img/png/CSS_Logo.png" alt="CSS_Logo.png" />
-                <img src="/src/img/png/JS_Logo.png" alt="JS_Logo.png" />
-              </div>
-              <div>
-                <h3>Web Development</h3>
-                <p>
-                  Web development is the work involved in developing a website
-                  for the Internet (World Wide Web) or an intranet (a private
-                  network).
-                </p>
-              </div>
-            </li>
-            <li className="opacity-0 -translate-x-1/2 transition duration-700 delay-500 item">
-              <div>
-                <img src="/src/img/png/Git_Logo.png" alt="Git_Logo.png" />
-              </div>
-              <div>
-                <h3>Git Version Control</h3>
-                <p>
-                  Distributed version control system, tracking changes in any
-                  set of files, usually used for coordinating work among
-                  programmers collaboratively developing source code during
-                  software development.
-                </p>
-              </div>
-            </li>
-            <li className="opacity-0 -translate-x-1/2 transition duration-700 delay-[600ms] item">
-              <div>
-                <img src="/src/img/png/MySQL_Logo.png" alt="MySQL_Logo.png" />
-              </div>
-              <div>
-                <h3>MySQL</h3>
-                <p>
-                  MySQL is a widely used relational database management system
-                  (RDBMS). MySQL is free and open-source. MySQL is ideal for
-                  both small and large applications.
-                </p>
-              </div>
-            </li>
-          </ul> */}
+          
           <div className="flex flex-col gap-y-12">
             <div
               style={{
@@ -424,56 +314,120 @@ export default function Main() {
                 border: '#1351F1 solid 3px',
                 borderRadius: '1.125rem'
               }}
-              className="flex flex-col items-center gap-7 w-80 p-12"
+              className="flex flex-col items-center gap-7 w-80 p-12 shadow shadow-gray-500"
             >
               <h3 style={{color: 'rgba(0,0,0,.25)'}} className="text-2xl text-jetbrainsmono-xb text-center">Back end</h3>
-              <ul className="text-white font-semibold">
-                <li className="flex gap-3">
-                  <Image src="/src/img/png/Node_Logo.png" alt="Node_Logo.png" fill={true}/>
+              <ul className="flex flex-col gap-7 text-white font-semibold">
+                <li className="flex gap-3 items-center">
+                  <Image src="/src/img/png/Node_Logo.png" width={1000} height={1000} className="w-10 h-10 object-contain" alt="Node_Logo.png" />
                   <p>Node js</p>
                 </li>
-                <li>
+                <li className="flex gap-3 items-center">
+                  <Image src="/src/img/logo/Express_Logo.png" width={1000} height={1000} className="w-10 h-10 object-contain" alt="Node_Logo.png" />
                   <p>Express js</p>
                 </li>
-                <li>
+                <li className="flex gap-3 items-center">
+                  <Image src="/src/img/png/Graphql_Logo.png" width={1000} height={1000} className="w-10 h-10 object-contain" alt="Node_Logo.png" />
                   <p>GraphQL</p>
                 </li>
-                <li>
+                <li className="flex gap-3 items-center">
+                  <Image src="/src/img/png/Rest_Logo.png" width={1000} height={1000} className="w-10 h-10 object-contain" alt="Node_Logo.png" />
                   <p>REST API</p>
                 </li>
-                <li>
+                <li className="flex gap-3 items-center">
+                  <Image src="/src/img/png/Jest_Logo.png" width={1000} height={1000} className="w-10 h-10 object-contain" alt="Node_Logo.png" />
                   <p>Jest</p>
                 </li>
-                <li>
+                <li className="flex gap-3 items-center">
+                  <Image src="/src/img/png/MongoDB_Logo.png" width={1000} height={1000} className="w-10 h-10 object-contain" alt="Node_Logo.png" />
                   <p>MongoDB</p>
                 </li>
-                <li>
+                <li className="flex gap-3 items-center">
+                  <Image src="/src/img/logo/Mysql_Logo.png" width={1000} height={1000} className="w-10 h-10 object-contain" alt="Node_Logo.png" />
                   <p>MySQL</p>
                 </li>
               </ul>
             </div>
-            <div className="w-80 p-12">
-              <h3 className="text-xl text-jetbrainsmono-xb text-center">Front end</h3>
-              <ul>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
+            
+            <div
+              style={{
+                background: '#363F4D',
+                border: '#33363C solid 3px',
+                borderRadius: '1.125rem'
+              }}
+              className="flex flex-col items-center gap-7 w-80 p-12 shadow shadow-gray-500"
+            >
+              <h3 style={{color: 'rgba(0,0,0,.25)'}} className="text-2xl text-jetbrainsmono-xb text-center">Front end</h3>
+              <ul className="flex flex-col gap-7 text-white font-semibold">
+                <li className="flex gap-3 items-center">
+                  <Image src="/src/img/png/React_Logo.png" width={1000} height={1000} className="w-10 h-10 object-contain" alt="Node_Logo.png" />
+                  <p>React</p>
+                </li>
+                <li className="flex gap-3 items-center">
+                  <Image src="/src/img/png/Redux_Logo.png" width={1000} height={1000} className="w-10 h-10 object-contain" alt="Node_Logo.png" />
+                  <p>Redux</p>
+                </li>
+                <li className="flex gap-3 items-center">
+                  <Image src="/src/img/png/Vite_Logo.png" width={1000} height={1000} className="w-10 h-10 object-contain" alt="Node_Logo.png" />
+                  <p>Vite</p>
+                </li>
+                <li className="flex gap-3 items-center">
+                  <Image src="/src/img/png/Mui_Logo.png" width={1000} height={1000} className="w-10 h-10 object-contain" alt="Node_Logo.png" />
+                  <p>Material UI</p>
+                </li>
+                <li className="flex gap-3 items-center">
+                  <Image src="/src/img/png/Tailwind_Logo.png" width={1000} height={1000} className="w-10 h-10 object-contain" alt="Node_Logo.png" />
+                  <p>Tailwind CSS</p>
+                </li>
+                <li className="flex gap-3 items-center">
+                  <Image src="/src/img/png/Antdesign_Logo.png" width={1000} height={1000} className="w-10 h-10 object-contain" alt="Node_Logo.png" />
+                  <p>Ant Design</p>
+                </li>
+                <li className="flex gap-3 items-center">
+                  <Image src="/src/img/png/Jquery_Logo.png" width={1000} height={1000} className="w-10 h-10 object-contain" alt="Node_Logo.png" />
+                  <p>JQuery</p>
+                </li>
               </ul>
             </div>
-            <div className="w-80 p-12">
-              <h3 className="text-xl text-jetbrainsmono-xb text-center">Other tools and languages</h3>
-              <ul>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
+            
+            <div
+              style={{
+                background: '#27FF7E',
+                border: '#17D061 solid 3px',
+                borderRadius: '1.125rem'
+              }}
+              className="flex flex-col items-center gap-7 w-80 p-12 shadow shadow-gray-500"
+            >
+              <h3 style={{color: 'rgba(0,0,0,.25)'}} className="text-2xl text-jetbrainsmono-xb text-center">Other tools and languages</h3>
+              <ul className="flex flex-col gap-7 text-white font-semibold">
+                <li className="flex gap-3 items-center">
+                  <Image src="/src/img/png/Next_Logo.png" width={1000} height={1000} className="w-10 h-10 object-contain" alt="Node_Logo.png" />
+                  <p>Next JS</p>
+                </li>
+                <li className="flex gap-3 items-center">
+                  <Image src="/src/img/png/Vscode_Logo.png" width={1000} height={1000} className="w-10 h-10 object-contain" alt="Node_Logo.png" />
+                  <p>VS Code</p>
+                </li>
+                <li className="flex gap-3 items-center">
+                  <Image src="/src/img/logo/Js_Logo.jpg" width={1000} height={1000} className="w-10 h-10 object-contain" alt="Node_Logo.png" />
+                  <p>Javascript</p>
+                </li>
+                <li className="flex gap-3 items-center">
+                  <Image src="/src/img/png/Typescript_Logo.png" width={1000} height={1000} className="w-10 h-10 object-contain" alt="Node_Logo.png" />
+                  <p>Typescript</p>
+                </li>
+                <li className="flex gap-3 items-center">
+                  <Image src="/src/img/png/Java_Logo.png" width={1000} height={1000} className="w-10 h-10 object-contain" alt="Node_Logo.png" />
+                  <p>Java</p>
+                </li>
+                <li className="flex gap-3 items-center">
+                  <Image src="/src/img/png/Git_Logo.png" width={1000} height={1000} className="w-10 h-10 object-contain" alt="Node_Logo.png" />
+                  <p>Git VCS</p>
+                </li>
+                <li className="flex gap-3 items-center">
+                  <Image src="/src/img/png/Figma_Logo.png" width={1000} height={1000} className="w-10 h-10 object-contain" alt="Node_Logo.png" />
+                  <p>Figma</p>
+                </li>
               </ul>
             </div>
           </div>
