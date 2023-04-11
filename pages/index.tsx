@@ -46,6 +46,27 @@ button {
 }
 `;
 
+const Separator = () => (
+  <div
+    className="py-5
+    md:py-10"
+  >
+    <Image
+      style={{
+        background: 'linear-gradient(180deg, rgba(0, 0, 0, 0.07) 0%, rgba(0, 0, 0, 0.02) 100%)',
+        border: '1px solid rgba(0, 0, 0, 0.1)',
+        objectFit: 'contain'
+      }}
+      width={700}
+      height={40}
+      className="mx-auto px-4 py-2 rounded-md w-3/5
+      md:px-12 md:py-4 md:rounded-xl"
+      src="/src/img/svg/Separator.svg"
+      alt="separator"
+    />
+  </div>
+)
+
 const WebIcon = ({ fill, style }: { fill: string, style?: Object }) => (
   <svg style={style} fill={fill} version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink"
     viewBox="0 0 264 264" xmlSpace="preserve">
@@ -111,10 +132,12 @@ export default function Main() {
         md:h-28 md:px-36"
         >
           <div className="flex justify-between items-center gap-[20px]">
-            <img
+            <Image
               style={{ height: "30px" }}
               src="/src/img/png/Logo.png"
               alt="logo"
+              width={50}
+              height={30}
             />
             <h1>PORTFOLIO</h1>
           </div>
@@ -220,17 +243,7 @@ export default function Main() {
       </header>
       <main className="bg-white overflow-x-hidden">
         {/* <!-- Separator --> */}
-        <div
-          className="py-5
-        md:py-10"
-        >
-          <img
-            className="mx-auto
-          md:h-12"
-            src="/src/img/svg/Separator.svg"
-            alt="separator"
-          />
-        </div>
+        <Separator />
         {/* <!-- Separator --> */}
 
         <section
@@ -248,7 +261,7 @@ export default function Main() {
             className="aspect-square w-28 rounded-full overflow-hidden ring ring-[#8D7AFF] ring-offset-4
           md:w-64"
           >
-            <img src="/src/img/me.jpg" alt="Profile_Photo" />
+            <Image src="/src/img/me.jpg" width={300} height={300} className="object-contain" alt="Profile_Photo" />
           </div>
           <div
             className="flex flex-col gap-8 w-[65%] items-center
@@ -289,17 +302,7 @@ export default function Main() {
         </section>
 
         {/* <!-- Separator --> */}
-        <div
-          className="py-5
-        md:py-10"
-        >
-          <img
-            className="mx-auto
-          md:h-12"
-            src="/src/img/svg/Separator.svg"
-            alt="separator"
-          />
-        </div>
+        <Separator />
         {/* <!-- Separator --> */}
 
         <section
@@ -445,17 +448,7 @@ export default function Main() {
         </section>
 
         {/* <!-- Separator --> */}
-        <div
-          className="py-5
-        md:py-10"
-        >
-          <img
-            className="mx-auto
-          md:h-12"
-            src="/src/img/svg/Separator.svg"
-            alt="separator"
-          />
-        </div>
+        <Separator />
         {/* <!-- Separator --> */}
 
         <section
@@ -471,234 +464,250 @@ export default function Main() {
             <li style={{ width: '400px', padding: '10px', borderRadius: '10px', border: 'rgba(0,0,0,.3) solid 1px' }}>
               <Image alt="NftLandingPage" width={1440} height={720} src="/src/img/project/NftLandingPage.png" style={{ objectFit: 'cover', width: '100%', height: '250px', borderRadius: '5px' }} />
               <div className="flex gap-5 flex-wrap mt-3">
-                <p className="tracking-wider rounded-full text-base font-light px-4 text-white" style={{ background: '#1E5DFF' }}>Tag 1</p>
-                <p className="tracking-wider rounded-full text-base font-light px-4 text-white" style={{ background: '#1E5DFF' }}>Tag 2</p>
-                <p className="tracking-wider rounded-full text-base font-light px-4 text-white" style={{ background: '#1E5DFF' }}>Tag 3</p>
+                <p className="tracking-wider rounded-full text-base font-light px-4 text-white" style={{ background: '#1E5DFF', lineHeight: '2rem' }}>Tag 1</p>
+                <p className="tracking-wider rounded-full text-base font-light px-4 text-white" style={{ background: '#1E5DFF', lineHeight: '2rem' }}>Tag 2</p>
+                <p className="tracking-wider rounded-full text-base font-light px-4 text-white" style={{ background: '#1E5DFF', lineHeight: '2rem' }}>Tag 3</p>
               </div>
             </li>
             <li style={{ width: '400px', padding: '10px', borderRadius: '10px', border: 'rgba(0,0,0,.3) solid 1px' }}>
               <Image alt="NftLandingPage" width={1440} height={720} src="/src/img/project/NftLandingPage.png" style={{ objectFit: 'cover', width: '100%', height: '250px', borderRadius: '5px' }} />
               <div className="flex gap-5 flex-wrap mt-3">
-                <p className="tracking-wider rounded-full text-base font-light px-4 text-white" style={{ background: '#1E5DFF' }}>Tag 1</p>
-                <p className="tracking-wider rounded-full text-base font-light px-4 text-white" style={{ background: '#1E5DFF' }}>Tag 2</p>
-                <p className="tracking-wider rounded-full text-base font-light px-4 text-white" style={{ background: '#1E5DFF' }}>Tag 3</p>
+                <p className="tracking-wider rounded-full text-base font-light px-4 text-white" style={{ background: '#1E5DFF', lineHeight: '2rem' }}>Tag 1</p>
+                <p className="tracking-wider rounded-full text-base font-light px-4 text-white" style={{ background: '#1E5DFF', lineHeight: '2rem' }}>Tag 2</p>
+                <p className="tracking-wider rounded-full text-base font-light px-4 text-white" style={{ background: '#1E5DFF', lineHeight: '2rem' }}>Tag 3</p>
               </div>
             </li>
             <li style={{ width: '400px', padding: '10px', borderRadius: '10px', border: 'rgba(0,0,0,.3) solid 1px' }}>
               <Image alt="NftLandingPage" width={1440} height={720} src="/src/img/project/NftLandingPage.png" style={{ objectFit: 'cover', width: '100%', height: '250px', borderRadius: '5px' }} />
               <div className="flex gap-5 flex-wrap mt-3">
-                <p className="tracking-wider rounded-full text-base font-light px-4 text-white" style={{ background: '#1E5DFF' }}>Tag 1</p>
-                <p className="tracking-wider rounded-full text-base font-light px-4 text-white" style={{ background: '#1E5DFF' }}>Tag 2</p>
-                <p className="tracking-wider rounded-full text-base font-light px-4 text-white" style={{ background: '#1E5DFF' }}>Tag 3</p>
+                <p className="tracking-wider rounded-full text-base font-light px-4 text-white" style={{ background: '#1E5DFF', lineHeight: '2rem' }}>Tag 1</p>
+                <p className="tracking-wider rounded-full text-base font-light px-4 text-white" style={{ background: '#1E5DFF', lineHeight: '2rem' }}>Tag 2</p>
+                <p className="tracking-wider rounded-full text-base font-light px-4 text-white" style={{ background: '#1E5DFF', lineHeight: '2rem' }}>Tag 3</p>
               </div>
             </li>
             <li style={{ width: '400px', padding: '10px', borderRadius: '10px', border: 'rgba(0,0,0,.3) solid 1px' }}>
               <Image alt="NftLandingPage" width={1440} height={720} src="/src/img/project/NftLandingPage.png" style={{ objectFit: 'cover', width: '100%', height: '250px', borderRadius: '5px' }} />
               <div className="flex gap-5 flex-wrap mt-3">
-                <p className="tracking-wider rounded-full text-base font-light px-4 text-white" style={{ background: '#1E5DFF' }}>Tag 1</p>
-                <p className="tracking-wider rounded-full text-base font-light px-4 text-white" style={{ background: '#1E5DFF' }}>Tag 2</p>
-                <p className="tracking-wider rounded-full text-base font-light px-4 text-white" style={{ background: '#1E5DFF' }}>Tag 3</p>
+                <p className="tracking-wider rounded-full text-base font-light px-4 text-white" style={{ background: '#1E5DFF', lineHeight: '2rem' }}>Tag 1</p>
+                <p className="tracking-wider rounded-full text-base font-light px-4 text-white" style={{ background: '#1E5DFF', lineHeight: '2rem' }}>Tag 2</p>
+                <p className="tracking-wider rounded-full text-base font-light px-4 text-white" style={{ background: '#1E5DFF', lineHeight: '2rem' }}>Tag 3</p>
               </div>
             </li>
             <li style={{ width: '400px', padding: '10px', borderRadius: '10px', border: 'rgba(0,0,0,.3) solid 1px' }}>
               <Image alt="NftLandingPage" width={1440} height={720} src="/src/img/project/NftLandingPage.png" style={{ objectFit: 'cover', width: '100%', height: '250px', borderRadius: '5px' }} />
               <div className="flex gap-5 flex-wrap mt-3">
-                <p className="tracking-wider rounded-full text-base font-light px-4 text-white" style={{ background: '#1E5DFF' }}>Tag 1</p>
-                <p className="tracking-wider rounded-full text-base font-light px-4 text-white" style={{ background: '#1E5DFF' }}>Tag 2</p>
-                <p className="tracking-wider rounded-full text-base font-light px-4 text-white" style={{ background: '#1E5DFF' }}>Tag 3</p>
+                <p className="tracking-wider rounded-full text-base font-light px-4 text-white" style={{ background: '#1E5DFF', lineHeight: '2rem' }}>Tag 1</p>
+                <p className="tracking-wider rounded-full text-base font-light px-4 text-white" style={{ background: '#1E5DFF', lineHeight: '2rem' }}>Tag 2</p>
+                <p className="tracking-wider rounded-full text-base font-light px-4 text-white" style={{ background: '#1E5DFF', lineHeight: '2rem' }}>Tag 3</p>
               </div>
             </li>
             <li style={{ width: '400px', padding: '10px', borderRadius: '10px', border: 'rgba(0,0,0,.3) solid 1px' }}>
               <Image alt="NftLandingPage" width={1440} height={720} src="/src/img/project/NftLandingPage.png" style={{ objectFit: 'cover', width: '100%', height: '250px', borderRadius: '5px' }} />
               <div className="flex gap-5 flex-wrap mt-3">
-                <p className="tracking-wider rounded-full text-base font-light px-4 text-white" style={{ background: '#1E5DFF' }}>Tag 1</p>
-                <p className="tracking-wider rounded-full text-base font-light px-4 text-white" style={{ background: '#1E5DFF' }}>Tag 2</p>
-                <p className="tracking-wider rounded-full text-base font-light px-4 text-white" style={{ background: '#1E5DFF' }}>Tag 3</p>
+                <p className="tracking-wider rounded-full text-base font-light px-4 text-white" style={{ background: '#1E5DFF', lineHeight: '2rem' }}>Tag 1</p>
+                <p className="tracking-wider rounded-full text-base font-light px-4 text-white" style={{ background: '#1E5DFF', lineHeight: '2rem' }}>Tag 2</p>
+                <p className="tracking-wider rounded-full text-base font-light px-4 text-white" style={{ background: '#1E5DFF', lineHeight: '2rem' }}>Tag 3</p>
               </div>
             </li>
           </ul>
         </section>
 
         {/* <!-- Separator --> */}
-        <div
-          className="py-5
-        md:py-10"
-        >
-          <img
-            className="mx-auto
-          md:h-12"
-            src="/src/img/svg/Separator.svg"
-            alt="separator"
-          />
-        </div>
+        <Separator />
         {/* <!-- Separator --> */}
 
         <section
           id="socials"
-          className="page gap-8 mx-[10%]"
+          className="page gap-8 mx-[10%]
+          min-[1200px]:gap-28"
         >
           <div className="title">
-            <h5 className="text-center tracking-widest">Contact me</h5>
+            <h3 className="inline-block text-xs font-medium text-[#8D7AFF] text-center tracking-widest
+            min-[1200px]:hidden">Contact me</h3>
             <h1>My Social Media</h1>
           </div>
-          <ul className="w-full">
-            <li className="w-full">
-              <a
-                className="items-center opacity-0 translate-x-1/2 transition duration-700 item border-l-[#E34C41] text-[#E34C41]"
+          <div className="flex flex-col gap-8 w-full
+          min-[1200px]:flex-row md:gap-28">
+            <ul className="flex flex-col items-center gap-7 w-full min-w-[400px]
+            min-[1200px]:w-96">
+              <h3
+                className="hidden tracking-widest text-jetbrainsmono-xb
+                min-[1200px]:inline-block"
+                style={{
+                  width: '100%',
+                  lineHeight: 1,
+                  color: '#8D7AFF',
+                  fontWeight: 500,
+                  fontSize: '32px',
+                }}
               >
-                <img
-                  className="aspect-square w-[40px]
-                  min-[1200px]:w-24
-                  md:w-10"
-                  src="/src/img/png/Gmail_Logo.png"
-                  alt="Gmail_Logo"
-                />
-                <p
-                  className="text-jetbrainsmono-xb tracking-widest
-                  min-[1200px]:text-4xl
-                  md:text-2xl"
+                Contact Me
+              </h3>
+              <li className="w-full">
+                <a
+                  className="items-center opacity-0 translate-x-1/2 transition duration-700 item border-l-[#E34C41] text-[#E34C41]"
                 >
-                  habibanwash2603@gmail.com
-                </p>
-              </a>
-            </li>
-            <li className="w-full">
-              <a
-                target="_blank"
-                rel="noopener noreferrer"
-                href="https://github.com/yangTauTauAjah"
-                className="opacity-0 translate-x-1/2 transition duration-700 delay-100 item border-l-[#333333] text-[#333333]"
+                  <Image
+                    className="aspect-square w-[40px]"
+                    width={500}
+                    height={500}
+                    src="/src/img/png/Gmail_Logo.png"
+                    alt="Gmail_Logo"
+                  />
+                  <p
+                    className="text-jetbrainsmono-xb tracking-widest"
+                  >
+                    habibanwash2603@gmail.com
+                  </p>
+                </a>
+              </li>
+              <li className="w-full">
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="https://github.com/yangTauTauAjah"
+                  className="opacity-0 translate-x-1/2 transition duration-700 delay-100 item border-l-[#333333] text-[#333333]"
+                >
+                  <Image
+                    className="aspect-square w-[40px]"
+                    width={500}
+                    height={500}
+                    src="/src/img/png/GitHub_Logo.png"
+                    alt="GitHub_Logo"
+                  />
+                  <p
+                    className="text-jetbrainsmono-xb tracking-widest"
+                  >
+                    yangTauTauAjah
+                  </p>
+                </a>
+              </li>
+              <li className="w-full">
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="https://t.me/HabibAnwash"
+                  className="opacity-0 translate-x-1/2 transition duration-700 delay-200 item border-l-[#24A1DD] text-[#24A1DD]"
+                >
+                  <Image
+                    className="aspect-square w-[40px]"
+                    width={500}
+                    height={500}
+                    src="/src/img/png/Telegram_Logo.png"
+                    alt="Telegram_Logo"
+                  />
+                  <p
+                    className="text-jetbrainsmono-xb tracking-widest"
+                  >
+                    Habib Anwash
+                  </p>
+                </a>
+              </li>
+              <li className="w-full">
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="https://discordapp.com/users/372738941155147777"
+                  className="opacity-0 translate-x-1/2 transition duration-700 delay-300 item border-l-[#5865F2] text-[#5865F2]"
+                >
+                  <Image
+                    className="aspect-square w-[40px]"
+                    width={500}
+                    height={500}
+                    src="/src/img/png/Discord_Logo.png"
+                    alt="Discord_Logo"
+                  />
+                  <p
+                    className="text-jetbrainsmono-xb tracking-widest"
+                  >
+                    HabibAnwash1447@7305
+                  </p>
+                </a>
+              </li>
+              <li className="w-full">
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="https://wa.me/6281217675797"
+                  className="opacity-0 translate-x-1/2 transition duration-700 delay-[400ms] item border-l-[#3FE35C] text-[#3FE35C]"
+                >
+                  <Image
+                    className="aspect-square w-[40px]"
+                    width={500}
+                    height={500}
+                    src="/src/img/png/Whatsapp_Logo.png"
+                    alt="Whatsapp_Logo"
+                  />
+                  <p
+                    className="text-jetbrainsmono-xb tracking-widest"
+                  >
+                    +62 812-1767-5797
+                  </p>
+                </a>
+              </li>
+            </ul>
+            <form className="w-full flex flex-col items-center gap-8
+            min-[1200px]:items-start">
+              <h3
+                className="hidden tracking-widest text-jetbrainsmono-xb
+                min-[1200px]:inline-block"
+                style={{
+                  width: '100%',
+                  lineHeight: 1,
+                  color: '#8D7AFF',
+                  fontWeight: 500,
+                  fontSize: '32px',
+                }}
               >
-                <img
-                  className="aspect-square w-[40px]
-                  min-[1200px]:w-24
-                  md:w-10"
-                  src="/src/img/png/GitHub_Logo.png"
-                  alt="GitHub_Logo"
+                Send Me A Message
+              </h3>
+              <div className="w-full flex flex-col gap-7
+              md:flex-row">
+                <input
+                  placeholder="Name"
+                  style={{
+                    outline: 'none',
+                    padding: '20px',
+                    height: '60px',
+                    background: "rgba(0,0,0,.02)",
+                    border: '1px solid rgba(0,0,0,.15)',
+                    borderRadius: '5px',
+                    width: '100%'
+                  }}
+                  type="text"
                 />
-                <p
-                  className="text-jetbrainsmono-xb tracking-widest
-                  min-[1200px]:text-4xl
-                  md:text-2xl"
-                >
-                  yangTauTauAjah
-                </p>
-              </a>
-            </li>
-            <li className="w-full">
-              <a
-                target="_blank"
-                rel="noopener noreferrer"
-                href="https://t.me/HabibAnwash"
-                className="opacity-0 translate-x-1/2 transition duration-700 delay-200 item border-l-[#24A1DD] text-[#24A1DD]"
-              >
-                <img
-                  className="aspect-square w-[40px]
-                  min-[1200px]:w-24
-                  md:w-10"
-                  src="/src/img/png/Telegram_Logo.png"
-                  alt="Telegram_Logo"
+                <input
+                  placeholder="Email"
+                  style={{
+                    outline: 'none',
+                    padding: '20px',
+                    height: '60px',
+                    background: "rgba(0,0,0,.02)",
+                    border: '1px solid rgba(0,0,0,.15)',
+                    borderRadius: '5px',
+                    width: '100%'
+                  }}
+                  type="text"
                 />
-                <p
-                  className="text-jetbrainsmono-xb tracking-widest
-                  min-[1200px]:text-4xl
-                  md:text-2xl"
-                >
-                  Habib Anwash
-                </p>
-              </a>
-            </li>
-            <li className="w-full">
-              <a
-                target="_blank"
-                rel="noopener noreferrer"
-                href="https://discordapp.com/users/372738941155147777"
-                className="opacity-0 translate-x-1/2 transition duration-700 delay-300 item border-l-[#5865F2] text-[#5865F2]"
-              >
-                <img
-                  className="aspect-square w-[40px]
-                  min-[1200px]:w-24
-                  md:w-10"
-                  src="/src/img/png/Discord_Logo.png"
-                  alt="Discord_Logo"
-                />
-                <p
-                  className="text-jetbrainsmono-xb tracking-widest
-                  min-[1200px]:text-4xl
-                  md:text-2xl"
-                >
-                  HabibAnwash1447@7305
-                </p>
-              </a>
-            </li>
-            <li className="w-full">
-              <a
-                target="_blank"
-                rel="noopener noreferrer"
-                href="https://wa.me/6281217675797"
-                className="opacity-0 translate-x-1/2 transition duration-700 delay-[400ms] item border-l-[#3FE35C] text-[#3FE35C]"
-              >
-                <img
-                  className="aspect-square w-[40px]
-                  min-[1200px]:w-24
-                  md:w-10"
-                  src="/src/img/png/Whatsapp_Logo.png"
-                  alt="Whatsapp_Logo"
-                />
-                <p
-                  className="text-jetbrainsmono-xb tracking-widest
-                  min-[1200px]:text-4xl
-                  md:text-2xl"
-                >
-                  +62 812-1767-5797
-                </p>
-              </a>
-            </li>
-          </ul>
-          <form className="w-full flex flex-col items-center gap-8">
-            <div className="w-full flex flex-col gap-7">
-              <input
-                placeholder="Name"
+              </div>
+              <textarea
+                placeholder="Write your message here"
                 style={{
                   outline: 'none',
                   padding: '20px',
-                  height: '60px',
+                  width: '100%',
+                  height: '250px',
                   background: "rgba(0,0,0,.02)",
                   border: '1px solid rgba(0,0,0,.15)',
                   borderRadius: '5px',
                 }}
-                type="text"
+                rows={10}
               />
-              <input
-                placeholder="Email"
-                style={{
-                  outline: 'none',
-                  padding: '20px',
-                  height: '60px',
-                  background: "rgba(0,0,0,.02)",
-                  border: '1px solid rgba(0,0,0,.15)',
-                  borderRadius: '5px',
-                }}
-                type="text"
-              />
-            </div>
-            <textarea
-              placeholder="Write your message here"
-              style={{
-                outline: 'none',
-                padding: '20px',
-                width: '100%',
-                height: '250px',
-                background: "rgba(0,0,0,.02)",
-                border: '1px solid rgba(0,0,0,.15)',
-                borderRadius: '5px',
-              }}
-              rows={10}
-            />
-            <button className="text-xl w-24 h-14 bg-[#FF122E]">
-              Send
-            </button>
-          </form>
+              <button className="text-xl w-24 h-14 bg-[#FF122E]">
+                Send
+              </button>
+            </form>
+          </div>
         </section>
       </main>
       <footer
@@ -737,11 +746,13 @@ export default function Main() {
             background: "rgba(12,5,30,.95)",
           }}
         ></div>
-        <img
+        <Image
           className="origin-top-left -rotate-12 scale-[11] translate-x-1/2 translate-y-1/2 absolute z-[-1] top-[150px] right-[400px]
           md:top-0 md:right-[800px] md:scale-[17]"
           src="/src/img/svg/Decoration.svg"
           alt="Decoration"
+          width={50}
+          height={50}
         />
       </div>
       <div

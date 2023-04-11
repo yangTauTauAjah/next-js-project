@@ -358,13 +358,13 @@ input.invalid {
 
 @layer components {
 
-  #socials ul {
+  /* #socials ul {
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 30px;
-  }
+  } */
   
   
   #socials .item {
@@ -383,7 +383,7 @@ input.invalid {
 
   @media (min-width: 768px) {
 
-    #socials ul {
+    /* #socials ul {
       gap: 60px;
     }
 
@@ -393,16 +393,16 @@ input.invalid {
       height: 130px;
       border-left-style: solid;
       border-left-width: 10px;
-    }
+    } */
     
   }
 
   @media (min-width: 1200px) {
 
-    #socials .item {
+    /* #socials .item {
       gap: 50px;
       height: 160px;
-    }
+    } */
 
   }
 
