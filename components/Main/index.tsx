@@ -1,7 +1,11 @@
 import Image from "next/image"
+import {GitHub, Web} from '@mui/icons-material'
+import Link from "next/link";
 
 interface ProjectInterface {
   thumbnail: string;
+  link: string;
+  source: string;
   tags: string[];
 }
 
@@ -53,9 +57,30 @@ const Separator = () => (
   </div>
 )
 
-const Project = ({ thumbnail, tags }: ProjectInterface) => (
-  <li style={{ width: '400px', padding: '10px', borderRadius: '10px', border: 'rgba(0,0,0,.3) solid 1px' }}>
-    <Image alt="NftLandingPage" width={1440} height={720} src={thumbnail} style={{ objectFit: 'cover', width: '100%', height: '250px', borderRadius: '5px' }} />
+const Project = ({ thumbnail, link, source, tags }: ProjectInterface) => (
+  <li className="duration-300 transition-[box-shadow] shadow-[0_15px_30px_-15px_rgba(0,0,0,.5)] hover:shadow-none" style={{ width: '400px', padding: '10px', borderRadius: '10px', border: 'rgba(0,0,0,.3) solid 1px' }}>
+    <div className="group overflow-hidden rounded-md border-[1px] border-[rgba(0,0,0,.3)] ">
+      <Image className="blur-none duration-300 transition-[filter_transform] group-hover:blur-sm group-hover:scale-125" alt="NftLandingPage" width={1440} height={720} src={thumbnail} style={{ objectFit: 'cover', width: '100%', height: '250px' }} />
+      <div className="absolute duration-300 transition-all top-0 left-0 w-full h-full bg-none group-hover:bg-[rgba(0,0,0,.1)]">
+        <Link
+          className="absolute -translate-y-1/2 top-1/2 -left-[20%] duration-300 transition-all hover:cursor-pointer group-hover:left-[35%] "
+          target="_blank"
+          rel="noopener noreferrer"
+          href={source}
+        >
+          <GitHub className="scale-150" fontSize="large"/>
+        </Link>
+        <Link
+          className="absolute -translate-y-1/2 top-1/2 -right-[20%] duration-300 transition-all hover:cursor-pointer group-hover:right-[35%]"
+          target="_blank"
+          rel="noopener noreferrer"
+          href={link}
+        >
+          <Web className="scale-150" fontSize="large"/>
+        </Link>
+        
+      </div>
+    </div>
     <div className="flex gap-5 flex-wrap mt-3">
       {
         tags.map((e, i) => (
