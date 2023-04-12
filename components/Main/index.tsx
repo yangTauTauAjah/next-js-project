@@ -134,12 +134,13 @@ const SocialMedia = ({ href, className, color, thumbnail, value, thumbnail_alt }
 const TechStack = ({ type, tech, bgColor: background, borderColor }: TechStackComponentInterface) => (
   <div
     style={{
+      cursor: 'default',
       background,
       border: `${borderColor} solid 3px`,
       borderRadius: '1.125rem',
       boxShadow: '0 4px 10px rgba(0,0,0,.25)'
     }}
-    className="flex flex-col items-center gap-7 w-80 p-12 shadow shadow-gray-500"
+    className="flex flex-col items-center gap-7 w-80 p-12 shadow shadow-gray-500 transition-transform hover:scale-105"
   >
     <h3 style={{ color: 'rgba(0,0,0,.25)' }} className="text-2xl text-jetbrainsmono-xb text-center">{type}</h3>
     <ul className="flex flex-col gap-7 text-white font-semibold">
