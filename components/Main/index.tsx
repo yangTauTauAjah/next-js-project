@@ -51,7 +51,7 @@ const Separator = () => (
       }}
       width={700}
       height={40}
-      className="mx-auto px-4 py-2 rounded-md w-3/5
+      className="mx-auto px-4 py-2 rounded-md w-3/5 max-w-[760px] max-h-20
       md:px-12 md:py-4 md:rounded-xl"
       src="/src/img/svg/Separator.svg"
       alt="separator"
