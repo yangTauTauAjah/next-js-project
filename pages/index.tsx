@@ -1,9 +1,11 @@
+import React from "react";
 import Head from "next/head";
 import Script from "next/script";
 import Image from "next/image"
-import { Separator, TechStack, Project, SocialMedia, WebIcon, GithubIcon } from '@/components/Main'
-import {GitHub, Reorder} from '@mui/icons-material'
+import { Separator, TechStack, Project, SocialMedia, Form, WebIcon, GithubIcon, DialogBox } from '@/components/Main'
+import { GitHub, Reorder, Download } from '@mui/icons-material'
 import Link from "next/link";
+import { Backdrop, CircularProgress } from "@mui/material";
 
 const STYLE = `
 @font-face {
@@ -31,6 +33,7 @@ html {
 }
 
 body {
+  padding-right: 0;
   min-width: 430px;
   font-family: 'Roboto', sans-serif;
   color: rgba(0,0,0,.5);
@@ -95,19 +98,26 @@ const Accounts = [
     value: 'habibanwash2603@gmail.com'
   },
   {
+    color: '#007AB3',
+    href: 'https://www.linkedin.com/in/habib-anwash-320779244/',
+    thumbnail: "/src/img/png/Linkedin-Logo.png",
+    thumbnail_alt: "Linkedin_Logo",
+    value: 'Habib Anwash'
+  },
+  {
     color: '#333333',
     href: 'https://github.com/yangTauTauAjah',
     thumbnail: "/src/img/png/GitHub_Logo.png",
     thumbnail_alt: "GitHub_Logo",
     value: 'yangTauTauAjah'
   },
-  {
+  /* {
     color: '#24A1DD',
     href: 'https://t.me/HabibAnwash',
     thumbnail: "/src/img/png/Telegram_Logo.png",
     thumbnail_alt: "Telegram_Logo",
     value: 'Habib Anwash'
-  },
+  }, */
   {
     color: '#5865F2',
     href: 'https://discordapp.com/users/372738941155147777',
@@ -258,12 +268,16 @@ export default function Main() {
     document.body.style.fontFamily = "'Roboto', sans-serif";
   }, []); */
 
+  const [openDialogBox, setOpenDialogBox] = React.useState(false);
+  const [isError, setIsError] = React.useState(false)
+  const [isLoading, setIsLoading] = React.useState(false)
+
   return (
     <div style={{ fontFamily: "'Roboto', sans-serif" }}>
       <Head>
         <title>Personal landing page</title>
         <meta name="author" content="Habib Anwash" />
-        <meta name="description" content="A simple personal portfolio webpage"/>
+        <meta name="description" content="A simple personal portfolio webpage" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/Logo.svg" />
       </Head>
@@ -325,18 +339,14 @@ export default function Main() {
               >
                 <button
                   onClick={() =>
-                    document.querySelector("#socials")?.scrollIntoView()
+                    document.querySelector("#projects")?.scrollIntoView()
                   }
                   className="w-32 h-10 bg-[#FF122E]"
                 >
-                  Contact
+                  Project
                 </button>
-                <button
-                  onClick={() =>
-                    document.querySelector("#projects")?.scrollIntoView()
-                  }
-                  className="w-44 h-10 bg-transparent outline outline-[#6A6A6A] outline-1"
-                >
+                <button onClick={() => window.open('https://s3.amazonaws.com/attachments.angel.co/8219407-39f93965a4d991a6236b79eda01cbdc5.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAJS6W3HGZGRJIRBTA%2F20230412%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230412T020007Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=91fc804d8e34b35ce4f96cd280f247384b456aa4e45c0a3e134932562b2450d2', '_blank')} className="w-44 h-10 bg-transparent outline outline-[#6A6A6A] outline-1">
+                  <Download className="mr-2" />
                   Download CV
                 </button>
               </div>
@@ -359,9 +369,7 @@ export default function Main() {
         {/* <!-- Separator --> */}
 
         <section id="about" className="page gap-7 max-w-5xl md:flex-row md:justify-between md:mx-auto md:gap-14">
-          <div className="title md:hidden">
-            <h1 className="before:left-3 before:w-16">About Me</h1>
-          </div>
+          <div className="title md:hidden"><h1 className="before:left-3 before:w-16">About Me</h1></div>
           <div className="aspect-square w-28 rounded-full overflow-hidden ring ring-[#8D7AFF] ring-offset-4 md:w-64">
             <Image src="/src/img/me.jpg" width={300} height={300} className="object-contain" alt="Profile_Photo" />
           </div>
@@ -397,7 +405,7 @@ export default function Main() {
           </div>
 
           <div className="flex flex-col flex-wrap justify-center gap-y-12 md:flex-row md:gap-x-28">
-            {Technologies.map(({type, tech, bgColor, borderColor}, i) => (
+            {Technologies.map(({ type, tech, bgColor, borderColor }, i) => (
               <TechStack
                 key={i}
                 type={type}
@@ -418,7 +426,10 @@ export default function Main() {
             <h5 className="tracking-widest">My projects</h5>
             <h1 className="before:w-full">Portfolio</h1>
           </div>
-          <ul className="text-jetbrainsmono flex justify-center flex-wrap gap-x-8 gap-y-14">
+          <ul style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))'
+          }} className="mx-[10%] text-jetbrainsmono flex justify-center flex-wrap gap-x-14 gap-y-20">
             {
               Projects.map(({ thumbnail, link, source, tags }, i) => (
                 <Project
@@ -440,10 +451,10 @@ export default function Main() {
         <section id="socials" className="page gap-8 mx-[10%] min-[1200px]:gap-28">
           <div className="title">
             <h3 className="inline-block text-xs font-medium text-[#8D7AFF] text-center tracking-widest min-[1200px]:hidden">Contact me</h3>
-            <h1>My Social Media</h1>
+            <h1>Get In Touch</h1>
           </div>
-          <div className="flex flex-col gap-8 w-full min-[1200px]:flex-row md:gap-28">
-            <ul className="flex flex-col items-center gap-7 w-full min-w-[400px] min-[1200px]:w-96">
+          <div className="flex flex-col gap-8 w-full md:gap-28 min-[1200px]:flex-row min-[1200px]:justify-between">
+            <ul className="shrink-0 flex flex-col items-center gap-7 w-full min-[1200px]:w-96">
               <h3
                 className="hidden tracking-widest text-jetbrainsmono-xb min-[1200px]:inline-block"
                 style={{
@@ -454,10 +465,10 @@ export default function Main() {
                   fontSize: '32px',
                 }}
               >
-                Contact Me
+                Contact
               </h3>
               {Accounts.map(({ href, color, thumbnail, value, thumbnail_alt }, i) => {
-                let delay = `${i*100}`
+                let delay = `${i * 100}`
                 if (i === 4) delay = '[400ms]'
                 return (
                   <SocialMedia
@@ -472,63 +483,7 @@ export default function Main() {
                 )
               })}
             </ul>
-            <form className="w-full flex flex-col items-center gap-8 min-[1200px]:items-start">
-              <h3
-                className="hidden tracking-widest text-jetbrainsmono-xb min-[1200px]:inline-block"
-                style={{
-                  width: '100%',
-                  lineHeight: 1,
-                  color: '#8D7AFF',
-                  fontWeight: 500,
-                  fontSize: '32px',
-                }}
-              >
-                Send Me A Message
-              </h3>
-              <div className="w-full flex flex-col gap-7 md:flex-row">
-                <input
-                  placeholder="Name"
-                  style={{
-                    outline: 'none',
-                    padding: '20px',
-                    height: '60px',
-                    background: "rgba(0,0,0,.02)",
-                    border: '1px solid rgba(0,0,0,.15)',
-                    borderRadius: '5px',
-                    width: '100%'
-                  }}
-                  type="text"
-                />
-                <input
-                  placeholder="Email"
-                  style={{
-                    outline: 'none',
-                    padding: '20px',
-                    height: '60px',
-                    background: "rgba(0,0,0,.02)",
-                    border: '1px solid rgba(0,0,0,.15)',
-                    borderRadius: '5px',
-                    width: '100%'
-                  }}
-                  type="text"
-                />
-              </div>
-              <textarea
-                placeholder="Write your message here"
-                style={{
-                  resize: 'none',
-                  outline: 'none',
-                  padding: '20px',
-                  width: '100%',
-                  height: '250px',
-                  background: "rgba(0,0,0,.02)",
-                  border: '1px solid rgba(0,0,0,.15)',
-                  borderRadius: '5px',
-                }}
-                rows={10}
-              />
-              <button className="text-xl w-24 h-14 bg-[#FF122E]">Send</button>
-            </form>
+            <Form setIsLoading={setIsLoading} setIsError={setIsError} setOpenDialogBox={setOpenDialogBox} />
           </div>
         </section>
       </main>
@@ -537,13 +492,8 @@ export default function Main() {
           Copyright @ Jan 2023 -{" "} <span className="text-yellow-200 font-black ">Habib Anwash</span>
         </p>
         <p className="text-jetbrainsmono-xb tracking-widest text-white w-52 text-center text-xs md:text-xl md:w-full">Build with Next, Typescript, and Tailwind</p>
-        <Link
-          target="_blank"
-          rel="noopener noreferrer"
-          href="https://github.com/yangTauTauAjah/next-js-project"
-          className="text-white text-xs underline flex items-center gap-2"
-        >
-          <GitHub fontSize="small"/>
+        <Link target="_blank" rel="noopener noreferrer" href="https://github.com/yangTauTauAjah/next-js-project" className="text-white text-xs underline flex items-center gap-2">
+          <GitHub fontSize="small" />
           <span>Refer to source code</span>
         </Link>
       </footer>
@@ -585,12 +535,22 @@ export default function Main() {
             <li><a href="#projects">Portfolio</a></li>
             <li><a href="#socials">Contact</a></li>
           </ul>
-          <div className="none delay-100"/>
-          <div className="none delay-200"/>
-          <div className="none delay-300"/>
-          <div className="none delay-[400ms]"/>
         </nav>
       </div>
+      <div className="none delay-100" />
+      <div className="none delay-200" />
+      <div className="none delay-300" />
+      <div className="none delay-[400ms]" />
+      <DialogBox header={isError ? "Error" : "Success"} open={openDialogBox} setOpen={setOpenDialogBox}>
+        {
+          isError
+            ? "Something went wrong while sending the message, please contact manually"
+            : "Message has been sent successfully"
+        }
+      </DialogBox>
+      <Backdrop sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }} open={isLoading}>
+        <CircularProgress color="inherit" />
+      </Backdrop>
     </div>
   );
 }

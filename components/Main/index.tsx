@@ -1,6 +1,8 @@
+import React from "react";
 import Image from "next/image"
-import {GitHub, Web} from '@mui/icons-material'
+import { GitHub, Web } from '@mui/icons-material'
 import Link from "next/link";
+import { Button, Dialog, DialogContent, DialogTitle, DialogActions, DialogContentText } from "@mui/material";
 
 interface ProjectInterface {
   thumbnail: string;
@@ -58,9 +60,9 @@ const Separator = () => (
 )
 
 const Project = ({ thumbnail, link, source, tags }: ProjectInterface) => (
-  <li className="duration-300 transition-[box-shadow] shadow-[0_15px_30px_-15px_rgba(0,0,0,.5)] hover:shadow-none" style={{ width: '400px', padding: '10px', borderRadius: '10px', border: 'rgba(0,0,0,.3) solid 1px' }}>
-    <div className="group overflow-hidden rounded-md border-[1px] border-[rgba(0,0,0,.3)] ">
-      <Image className="blur-none duration-300 transition-[filter_transform] group-hover:blur-sm group-hover:scale-125" alt="NftLandingPage" width={1440} height={720} src={thumbnail} style={{ objectFit: 'cover', width: '100%', height: '250px' }} />
+  <li className="group duration-300 transition-[box-shadow] shadow-[0_15px_30px_-15px_rgba(0,0,0,.5)] hover:shadow-none" style={{ /* width: '400px', */ padding: '10px', borderRadius: '10px', border: 'rgba(0,0,0,.3) solid 1px' }}>
+    <div className="overflow-hidden rounded-md border-[1px] border-[rgba(0,0,0,.3)] ">
+      <Image className="w-full aspect-video blur-none duration-300 transition-[filter_transform] group-hover:blur-sm group-hover:scale-125" alt="NftLandingPage" width={1440} height={720} src={thumbnail} style={{ objectFit: 'cover' }} />
       <div className="absolute duration-300 transition-all top-0 left-0 w-full h-full bg-none group-hover:bg-[rgba(0,0,0,.1)]">
         <Link
           className="absolute -translate-y-1/2 top-1/2 -left-[20%] duration-300 transition-all hover:cursor-pointer group-hover:left-[35%] "
@@ -68,7 +70,7 @@ const Project = ({ thumbnail, link, source, tags }: ProjectInterface) => (
           rel="noopener noreferrer"
           href={source}
         >
-          <GitHub className="scale-150" fontSize="large"/>
+          <GitHub className="scale-150" fontSize="large" />
         </Link>
         <Link
           className="absolute -translate-y-1/2 top-1/2 -right-[20%] duration-300 transition-all hover:cursor-pointer group-hover:right-[35%]"
@@ -76,9 +78,9 @@ const Project = ({ thumbnail, link, source, tags }: ProjectInterface) => (
           rel="noopener noreferrer"
           href={link}
         >
-          <Web className="scale-150" fontSize="large"/>
+          <Web className="scale-150" fontSize="large" />
         </Link>
-        
+
       </div>
     </div>
     <div className="flex gap-5 flex-wrap mt-3">
@@ -129,7 +131,7 @@ const SocialMedia = ({ href, className, color, thumbnail, value, thumbnail_alt }
   </li>
 )
 
-const TechStack = ({type, tech, bgColor: background, borderColor}: TechStackComponentInterface) => (
+const TechStack = ({ type, tech, bgColor: background, borderColor }: TechStackComponentInterface) => (
   <div
     style={{
       background,
@@ -141,11 +143,11 @@ const TechStack = ({type, tech, bgColor: background, borderColor}: TechStackComp
   >
     <h3 style={{ color: 'rgba(0,0,0,.25)' }} className="text-2xl text-jetbrainsmono-xb text-center">{type}</h3>
     <ul className="flex flex-col gap-7 text-white font-semibold">
-      {tech.map(({logo, name, logo_alt}, i) => (
+      {tech.map(({ logo, name, logo_alt }, i) => (
         <li key={i} className="flex gap-3 items-center">
           <Image src={logo} width={1000} height={1000} className="w-10 h-10 object-contain" alt={logo_alt} />
           <p>{name}</p>
-      </li>
+        </li>
       ))}
     </ul>
   </div>
@@ -185,4 +187,138 @@ const GithubIcon = ({ fill, style }: IconComponentInterface) => (
   </svg>
 )
 
-export { Separator, TechStack, Project, SocialMedia, WebIcon, GithubIcon }
+const Form = ({ setIsLoading, setIsError, setOpenDialogBox: setOpen }: { setIsLoading: React.Dispatch<React.SetStateAction<boolean>>, setIsError: React.Dispatch<React.SetStateAction<boolean>>, setOpenDialogBox: React.Dispatch<React.SetStateAction<boolean>> }) => {
+
+  return (
+    <form
+      onSubmit={(e) => {
+        e.preventDefault()
+
+        // @ts-ignore
+        let from_name = document.querySelector('#name-input').value
+        // @ts-ignore
+        let email = document.querySelector('#email-input').value
+        // @ts-ignore
+        let message = document.querySelector('#message-input').value
+        const to_name = 'Habib Anwash'
+
+        fetch(/* 'https://youtube.com', {mode: 'no-cors'} */'https://api.emailjs.com/api/v1.0/email/send', {
+          method: 'post',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            service_id: 'gmail',
+            template_id: 'template_92tqtrs',
+            user_id: 'f_kF_Ju7KPgjG77Wq',
+            template_params: { from_name, to_name, email, message }
+          })
+        })
+        .then(e => {
+          setIsError(!e.ok)
+          setOpen(true)
+          setIsLoading(false)
+          document.documentElement.style.overflow = 'hidden'
+        })
+        .catch(() => {
+          setIsError(true)
+          setOpen(true)
+          setIsLoading(false)
+          document.documentElement.style.overflow = 'hidden'
+        })
+
+        setIsLoading(true)
+
+      }}
+      className="shrink w-full flex flex-col items-center gap-8 min-[1200px]:items-start min-[1200px]:max-w-[650px]"
+    >
+      <h3
+        className="hidden tracking-widest text-jetbrainsmono-xb min-[1200px]:inline-block"
+        style={{
+          width: '100%',
+          lineHeight: 1,
+          color: '#8D7AFF',
+          fontWeight: 500,
+          fontSize: '32px',
+        }}
+      >
+        Send A Message
+      </h3>
+      <div className="w-full flex flex-col gap-7 md:flex-row">
+        <input
+          id="name-input"
+          required
+          placeholder="Name"
+          style={{
+            outline: 'none',
+            padding: '20px',
+            height: '60px',
+            background: "rgba(0,0,0,.02)",
+            border: '1px solid rgba(0,0,0,.15)',
+            borderRadius: '5px',
+            width: '100%'
+          }}
+          type="text"
+        />
+        <input
+          id="email-input"
+          required
+          placeholder="Email"
+          style={{
+            outline: 'none',
+            padding: '20px',
+            height: '60px',
+            background: "rgba(0,0,0,.02)",
+            border: '1px solid rgba(0,0,0,.15)',
+            borderRadius: '5px',
+            width: '100%'
+          }}
+          type="email"
+        />
+      </div>
+      <textarea
+        id="message-input"
+        required
+        placeholder="Write your message here"
+        style={{
+          resize: 'none',
+          outline: 'none',
+          padding: '20px',
+          width: '100%',
+          height: '250px',
+          background: "rgba(0,0,0,.02)",
+          border: '1px solid rgba(0,0,0,.15)',
+          borderRadius: '5px',
+        }}
+        rows={10}
+      />
+      <button type="submit" className="text-xl w-24 h-14 bg-[#FF122E]">Send</button>
+    </form>
+  )
+}
+
+const DialogBox = ({ header, children, open, setOpen }: { header: any, children: any, open: boolean, setOpen: React.Dispatch<React.SetStateAction<boolean>> }) => (
+  <Dialog
+    open={open}
+    aria-labelledby="alert-dialog-title"
+    aria-describedby="alert-dialog-description"
+  >
+    <DialogTitle id="alert-dialog-title">{header}</DialogTitle>
+    <DialogContent>
+      <DialogContentText id="alert-dialog-description">{children}</DialogContentText>
+    </DialogContent>
+    <DialogActions>
+      <Button
+        onClick={() => {
+          setOpen(false);
+          document.documentElement.style.overflow = 'auto'
+        }}
+        autoFocus
+      >
+        Close
+      </Button>
+    </DialogActions>
+  </Dialog>
+)
+
+export { Separator, TechStack, Project, Form, SocialMedia, WebIcon, GithubIcon, DialogBox }
