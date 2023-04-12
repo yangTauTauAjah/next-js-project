@@ -51,27 +51,39 @@ button {
 const Projects = [
   {
     thumbnail: '/src/img/project/NftLandingPage.png',
+    link: 'https://genuine-marshmallow-2e78ee.netlify.app/',
+    source: 'https://github.com/yangTauTauAjah/nft-page',
     tags: ['React', 'Material UI', 'NFT', 'Front end']
   },
   {
-    thumbnail: '/src/img/project/TodoApp.jpg',
-    tags: ['Fullstack', 'Native', 'MongoDB', 'Express', 'Responsive']
-  },
-  {
-    thumbnail: '/src/img/project/ReactMovieApp.png',
-    tags: ['React', 'Fullstack', 'MERN', 'Responsive', 'Ant Design']
-  },
-  {
     thumbnail: '/src/img/project/EcommerceProductPage.jpg',
+    link: 'https://next-js-project-ruddy.vercel.app/projects/ecommerce-product-page',
+    source: 'https://github.com/yangTauTauAjah/next-js-project/blob/main/pages/projects/ecommerce-product-page.tsx',
     tags: ['React', 'Responsive', 'Ecommerce', 'Tailwind']
   },
   {
     thumbnail: '/src/img/project/MultiStepForm.jpg',
+    link: 'https://next-js-project-ruddy.vercel.app/projects/multi-step-form',
+    source: 'https://github.com/yangTauTauAjah/next-js-project/blob/main/pages/projects/multi-step-form.tsx',
     tags: ['React', 'Responsive', 'Tailwind', 'Form']
   },
   {
     thumbnail: '/src/img/project/RestCountryAPI.jpg',
+    link: 'https://next-js-project-ruddy.vercel.app/projects/rest-country-api?page=1',
+    source: 'https://github.com/yangTauTauAjah/next-js-project/tree/main/pages/projects/rest-country-api',
     tags: ['React', 'Responsive', 'Rest API', 'Tailwind', 'Dark', 'Light']
+  },
+  {
+    thumbnail: '/src/img/project/ReactMovieApp.png',
+    link: 'https://reactmovieapp.tugasonly.repl.co/',
+    source: 'https://github.com/yangTauTauAjah/reactMovieApp',
+    tags: ['React', 'Fullstack', 'MERN', 'Responsive', 'Ant Design']
+  },
+  {
+    thumbnail: '/src/img/project/TodoApp.jpg',
+    link: 'https://todoapp.tugasonly.repl.co/',
+    source: 'https://github.com/yangTauTauAjah/todoApp',
+    tags: ['Fullstack', 'Native', 'MongoDB', 'Express', 'Responsive']
   }
 ]
 
@@ -251,10 +263,7 @@ export default function Main() {
       <Head>
         <title>Personal landing page</title>
         <meta name="author" content="Habib Anwash" />
-        <meta
-          name="description"
-          content="A simple personal portfolio webpage"
-        />
+        <meta name="description" content="A simple personal portfolio webpage"/>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/Logo.svg" />
       </Head>
@@ -262,15 +271,8 @@ export default function Main() {
       <Script src="/src/scripts/render.js" />
       <Script src="/src/scripts/navigation.js" />
       <style jsx>{STYLE}</style>
-      <header
-        id="home"
-        className="overflow-x-hidden md:flex flex-col"
-        style={{ minHeight: "calc(100vh - 128px)" }}
-      >
-        <div
-          className="static flex justify-between items-center h-20 px-6 text-white text-2xl font-extrabold tracking-wider
-        md:h-28 md:px-36"
-        >
+      <header id="home" className="overflow-x-hidden md:flex flex-col" style={{ minHeight: "calc(100vh - 128px)" }}>
+        <div className="static flex justify-between items-center h-20 px-6 text-white text-2xl font-extrabold tracking-wider md:h-28 md:px-36">
           <div className="flex justify-between items-center gap-[20px]">
             <Image
               style={{ height: "30px" }}
@@ -281,12 +283,7 @@ export default function Main() {
             />
             <h1>PORTFOLIO</h1>
           </div>
-          <button
-            id="sidebar-toggle"
-            className="absolute right-4 rounded-lg border-2 border-white border-opacity-20 w-[45px] h-[35px]
-          md:right-36
-          min-[1200px]:hidden"
-          >
+          <button id="sidebar-toggle" className="absolute right-4 rounded-lg border-2 border-white border-opacity-20 w-[45px] h-[35px] md:right-36 min-[1200px]:hidden">
             <Reorder
               sx={{
                 position: "absolute",
@@ -297,14 +294,8 @@ export default function Main() {
               fontSize="medium"
             />
           </button>
-          <nav
-            id="navbar"
-            className="hidden relative flex-row transition z-10 p-0 items-center gap-11 text-[rgba(255,255,255,0.5)] font-light
-          min-[1200px]:flex"
-          >
-            <a href="#home" className="selected">
-              Home
-            </a>
+          <nav id="navbar" className="hidden relative flex-row transition z-10 p-0 items-center gap-11 text-[rgba(255,255,255,0.5)] font-light min-[1200px]:flex">
+            <a href="#home" className="selected">Home</a>
             <a href="#about">About</a>
             <a href="#skills">Skills</a>
             <a href="#projects">Portfolio</a>
@@ -312,36 +303,17 @@ export default function Main() {
           </nav>
         </div>
         <div className="md:flex items-center flex-grow">
-          <main
-            className="flex flex-col gap-12 items-center w-min mx-auto mt-16 mb-7 max-w-7xl
-          md:flex-row md:gap-10 md:my-0 md:w-max"
-          >
-            <div
-              id="main-heading"
-              className="flex flex-col gap-5 w-80
-            md:w-[50vw] md:gap-0"
-            >
+          <main className="flex flex-col gap-12 items-center w-min mx-auto mt-16 mb-7 max-w-7xl md:flex-row md:gap-10 md:my-0 md:w-max">
+            <div id="main-heading" className="flex flex-col gap-5 w-80 md:w-[50vw] md:gap-0">
               <div>
-                <h5
-                  id="name"
-                  className="opacity-0 -translate-x-1/4 transition duration-700 text-white text-sm font-semibold tracking-[0.25em]
-                md:leading-[1.5]"
-                >
+                <h5 id="name" className="opacity-0 -translate-x-1/4 transition duration-700 text-white text-sm font-semibold tracking-[0.25em] md:leading-[1.5]">
                   Habib Anwash
                 </h5>
-                <h1
-                  id="heading"
-                  className="text-[#0CFF8A] text-4xl text-jetbrainsmono-xb
-                md:text-5xl  md:leading-[1.5]"
-                >
+                <h1 id="heading" className="text-[#0CFF8A] text-4xl text-jetbrainsmono-xb md:text-5xl  md:leading-[1.5]">
                   <span id="animate-heading">Front End </span>developer
                 </h1>
               </div>
-              <p
-                id="description"
-                className="opacity-0 translate-x-1/4 transition duration-700 delay-200 text-[#6A6A6A] text-xs indent-9
-              md:text-[16px] md:leading-[1.5]"
-              >
+              <p id="description" className="opacity-0 translate-x-1/4 transition duration-700 delay-200 text-[#6A6A6A] text-xs indent-9 md:text-[16px] md:leading-[1.5]">
                 Hi, my name is Habib Anwash. I&apos;m a self-taught developer and
                 passionate about learning something new. I am excited to
                 continue learning and growing as a developer and I am eager to
@@ -371,8 +343,7 @@ export default function Main() {
             </div>
             <div style={{ overflow: "hidden" }}>
               <Image
-                className="right-[-30px] w-96
-              md:static md:w-[33vw]"
+                className="right-[-30px] w-96 md:static md:w-[33vw]"
                 src="/src/img/png/Vector.png"
                 width={500}
                 height={500}
@@ -387,42 +358,18 @@ export default function Main() {
         <Separator />
         {/* <!-- Separator --> */}
 
-        <section
-          id="about"
-          className="page gap-7 max-w-5xl
-        md:flex-row md:justify-between md:mx-auto md:gap-14"
-        >
-          <div
-            className="title
-          md:hidden"
-          >
+        <section id="about" className="page gap-7 max-w-5xl md:flex-row md:justify-between md:mx-auto md:gap-14">
+          <div className="title md:hidden">
             <h1 className="before:left-3 before:w-16">About Me</h1>
           </div>
-          <div
-            className="aspect-square w-28 rounded-full overflow-hidden ring ring-[#8D7AFF] ring-offset-4
-          md:w-64"
-          >
+          <div className="aspect-square w-28 rounded-full overflow-hidden ring ring-[#8D7AFF] ring-offset-4 md:w-64">
             <Image src="/src/img/me.jpg" width={300} height={300} className="object-contain" alt="Profile_Photo" />
           </div>
-          <div
-            className="flex flex-col gap-8 w-[65%] items-center
-          md:w-[680px] md:items-start"
-          >
-            <div
-              className="title hidden
-            md:flex"
-            >
-              <h1
-                className="before:left-3 before:w-16
-              md:before:w-28"
-              >
-                About Me
-              </h1>
+          <div className="flex flex-col gap-8 w-[65%] items-center md:w-[680px] md:items-start">
+            <div className="title hidden md:flex">
+              <h1 className="before:left-3 before:w-16 md:before:w-28">About Me</h1>
             </div>
-            <p
-              className="text-justify leading-5
-            md:text-xl"
-            >
+            <p className="text-justify leading-5 md:text-xl">
               Hi, my name is Habib Anwash. As a self-learner, I got all of these
               knowledge by learning on YouTube, some online bootcamp like
               freeCodeCamp, and experimenting myself by building projects. But
@@ -431,11 +378,8 @@ export default function Main() {
               have been working on my own projects and honing my skills with it.
             </p>
             <button
-              onClick={() =>
-                document.querySelector("#socials")?.scrollIntoView()
-              }
-              className="w-36 h-10 bg-[#FF122E]
-            md:w-56 md:h-14 md:text-2xl"
+              onClick={() => document.querySelector("#socials")?.scrollIntoView()}
+              className="w-36 h-10 bg-[#FF122E] md:w-56 md:h-14 md:text-2xl"
             >
               Contact me
             </button>
@@ -446,20 +390,13 @@ export default function Main() {
         <Separator />
         {/* <!-- Separator --> */}
 
-        <section
-          id="skills"
-          className="page gap-7
-        md:gap-24 md:mx-[3vw]"
-        >
+        <section id="skills" className="page gap-7 md:gap-24 md:mx-[3vw]">
           <div className="title">
             <h5 className="tracking-widest">Skill set</h5>
-            <h1 className="before:w-6 before:left-8 after:w-28 after:left-16">
-              Tech Stack
-            </h1>
+            <h1 className="before:w-6 before:left-8 after:w-28 after:left-16">Tech Stack</h1>
           </div>
 
-          <div className="flex flex-col flex-wrap justify-center gap-y-12
-          md:flex-row md:gap-x-28">
+          <div className="flex flex-col flex-wrap justify-center gap-y-12 md:flex-row md:gap-x-28">
             {Technologies.map(({type, tech, bgColor, borderColor}, i) => (
               <TechStack
                 key={i}
@@ -476,21 +413,19 @@ export default function Main() {
         <Separator />
         {/* <!-- Separator --> */}
 
-        <section
-          id="projects"
-          className="page gap-7
-        md:gap-24"
-        >
+        <section id="projects" className="page gap-7 md:gap-24">
           <div className="title">
             <h5 className="tracking-widest">My projects</h5>
             <h1 className="before:w-full">Portfolio</h1>
           </div>
           <ul className="text-jetbrainsmono flex justify-center flex-wrap gap-x-8 gap-y-14">
             {
-              Projects.map(({ thumbnail, tags }, i) => (
+              Projects.map(({ thumbnail, link, source, tags }, i) => (
                 <Project
                   key={i}
                   thumbnail={thumbnail}
+                  link={link}
+                  source={source}
                   tags={tags}
                 />
               ))
@@ -502,23 +437,15 @@ export default function Main() {
         <Separator />
         {/* <!-- Separator --> */}
 
-        <section
-          id="socials"
-          className="page gap-8 mx-[10%]
-          min-[1200px]:gap-28"
-        >
+        <section id="socials" className="page gap-8 mx-[10%] min-[1200px]:gap-28">
           <div className="title">
-            <h3 className="inline-block text-xs font-medium text-[#8D7AFF] text-center tracking-widest
-            min-[1200px]:hidden">Contact me</h3>
+            <h3 className="inline-block text-xs font-medium text-[#8D7AFF] text-center tracking-widest min-[1200px]:hidden">Contact me</h3>
             <h1>My Social Media</h1>
           </div>
-          <div className="flex flex-col gap-8 w-full
-          min-[1200px]:flex-row md:gap-28">
-            <ul className="flex flex-col items-center gap-7 w-full min-w-[400px]
-            min-[1200px]:w-96">
+          <div className="flex flex-col gap-8 w-full min-[1200px]:flex-row md:gap-28">
+            <ul className="flex flex-col items-center gap-7 w-full min-w-[400px] min-[1200px]:w-96">
               <h3
-                className="hidden tracking-widest text-jetbrainsmono-xb
-                min-[1200px]:inline-block"
+                className="hidden tracking-widest text-jetbrainsmono-xb min-[1200px]:inline-block"
                 style={{
                   width: '100%',
                   lineHeight: 1,
@@ -545,11 +472,9 @@ export default function Main() {
                 )
               })}
             </ul>
-            <form className="w-full flex flex-col items-center gap-8
-            min-[1200px]:items-start">
+            <form className="w-full flex flex-col items-center gap-8 min-[1200px]:items-start">
               <h3
-                className="hidden tracking-widest text-jetbrainsmono-xb
-                min-[1200px]:inline-block"
+                className="hidden tracking-widest text-jetbrainsmono-xb min-[1200px]:inline-block"
                 style={{
                   width: '100%',
                   lineHeight: 1,
@@ -560,8 +485,7 @@ export default function Main() {
               >
                 Send Me A Message
               </h3>
-              <div className="w-full flex flex-col gap-7
-              md:flex-row">
+              <div className="w-full flex flex-col gap-7 md:flex-row">
                 <input
                   placeholder="Name"
                   style={{
@@ -603,38 +527,23 @@ export default function Main() {
                 }}
                 rows={10}
               />
-              <button className="text-xl w-24 h-14 bg-[#FF122E]">
-                Send
-              </button>
+              <button className="text-xl w-24 h-14 bg-[#FF122E]">Send</button>
             </form>
           </div>
         </section>
       </main>
-      <footer
-        className="bg-[#242A33] flex flex-col items-center py-4 gap-2
-      md:h-40 md:py-11 md:gap-3"
-      >
-        <p
-          className="text-white text-xs tracking-widest
-        md:text-2xl"
-        >
-          Copyright @ Jan 2023 -{" "}
-          <span className="text-yellow-200 font-black ">Habib Anwash</span>
+      <footer className="bg-[#242A33] flex flex-col items-center py-4 gap-2 md:h-40 md:py-11 md:gap-3">
+        <p className="text-white text-xs tracking-widest md:text-2xl">
+          Copyright @ Jan 2023 -{" "} <span className="text-yellow-200 font-black ">Habib Anwash</span>
         </p>
-        <p
-          className="text-jetbrainsmono-xb tracking-widest
-        text-white w-52 text-center text-xs
-        md:text-xl md:w-full"
-        >
-          Build with Next, Typescript, and Tailwind
-        </p>
+        <p className="text-jetbrainsmono-xb tracking-widest text-white w-52 text-center text-xs md:text-xl md:w-full">Build with Next, Typescript, and Tailwind</p>
         <Link
           target="_blank"
           rel="noopener noreferrer"
           href="https://github.com/yangTauTauAjah/next-js-project"
           className="text-white text-xs underline flex items-center gap-2"
         >
-          <GitHub fontSize="small"  />
+          <GitHub fontSize="small"/>
           <span>Refer to source code</span>
         </Link>
       </footer>
@@ -654,44 +563,32 @@ export default function Main() {
             width: "100%",
             background: "rgba(12,5,30,.95)",
           }}
-        ></div>
+        />
         <Image
-          className="origin-top-left -rotate-12 scale-[11] translate-x-1/2 translate-y-1/2 absolute z-[-1] top-[150px] right-[400px]
-          md:top-0 md:right-[800px] md:scale-[17]"
+          className="origin-top-left -rotate-12 scale-[11] translate-x-1/2 translate-y-1/2 absolute z-[-1] top-[150px] right-[400px] md:top-0 md:right-[800px] md:scale-[17]"
           src="/src/img/svg/Decoration.svg"
           alt="Decoration"
           width={50}
           height={50}
         />
       </div>
-      <div
-        id="backdrop"
-        className="hidden absolute overflow-hidden top-0 left-0 w-full h-[100vh] bg-[rgba(0,0,0,.3)]"
-      >
+      <div id="backdrop" className="hidden absolute overflow-hidden top-0 left-0 w-full h-[100vh] bg-[rgba(0,0,0,.3)]">
         <nav
           tabIndex={1}
           id="sidebar"
           className="absolute transition translate-x-full z-10 right-0 top-0 w-80 border-l-4 border-l-[rgba(47,40,67,.5)] bg-[rgba(12,5,30,.6)] backdrop-blur-lg h-[500vh] backdrop-brightness-50"
         >
           <ul className="flex flex-col items-stretch p-9 gap-11 text-[rgba(255,255,255,0.5)] font-light">
-            <li>
-              <a href="#home" className="selected">
-                Home
-              </a>
-            </li>
-            <li>
-              <a href="#about">About</a>
-            </li>
-            <li>
-              <a href="#skills">Skills</a>
-            </li>
-            <li>
-              <a href="#projects">Portfolio</a>
-            </li>
-            <li>
-              <a href="#socials">Contact</a>
-            </li>
+            <li><a href="#home" className="selected">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Portfolio</a></li>
+            <li><a href="#socials">Contact</a></li>
           </ul>
+          <div className="none delay-100"/>
+          <div className="none delay-200"/>
+          <div className="none delay-300"/>
+          <div className="none delay-[400ms]"/>
         </nav>
       </div>
     </div>
