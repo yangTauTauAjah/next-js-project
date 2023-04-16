@@ -2,36 +2,42 @@
 
 export const Projects = [
   {
+    title: 'NFT Landing Page',
     thumbnail: '/src/img/project/NftLandingPage.png',
     link: 'https://genuine-marshmallow-2e78ee.netlify.app/',
     source: 'https://github.com/yangTauTauAjah/nft-page',
     tags: ['React', 'Material UI', 'NFT', 'Front end']
   },
   {
+    title: 'E-commerce Product Page',
     thumbnail: '/src/img/project/EcommerceProductPage.jpg',
     link: 'https://next-js-project-ruddy.vercel.app/projects/ecommerce-product-page',
     source: 'https://github.com/yangTauTauAjah/next-js-project/blob/main/pages/projects/ecommerce-product-page.tsx',
     tags: ['React', 'Responsive', 'Ecommerce', 'Tailwind']
   },
   {
+    title: 'Multi-step Form',
     thumbnail: '/src/img/project/MultiStepForm.jpg',
     link: 'https://next-js-project-ruddy.vercel.app/projects/multi-step-form',
     source: 'https://github.com/yangTauTauAjah/next-js-project/blob/main/pages/projects/multi-step-form.tsx',
     tags: ['React', 'Responsive', 'Tailwind', 'Form']
   },
   {
+    title: 'REST Country API',
     thumbnail: '/src/img/project/RestCountryAPI.jpg',
     link: 'https://next-js-project-ruddy.vercel.app/projects/rest-country-api?page=1',
     source: 'https://github.com/yangTauTauAjah/next-js-project/tree/main/pages/projects/rest-country-api',
     tags: ['React', 'Responsive', 'Rest API', 'Tailwind', 'Dark', 'Light']
   },
   {
+    title: 'FullStack React Movie App',
     thumbnail: '/src/img/project/ReactMovieApp.png',
     link: 'https://reactmovieapp.tugasonly.repl.co/',
     source: 'https://github.com/yangTauTauAjah/reactMovieApp',
     tags: ['React', 'Fullstack', 'MERN', 'Responsive', 'Ant Design']
   },
   {
+    title: 'FullStack Todo App',
     thumbnail: '/src/img/project/TodoApp.jpg',
     link: 'https://todoapp.tugasonly.repl.co/',
     source: 'https://github.com/yangTauTauAjah/todoApp',
