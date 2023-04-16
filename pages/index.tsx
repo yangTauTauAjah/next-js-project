@@ -328,10 +328,10 @@ export default function Main() {
                 </h1>
               </div>
               <p id="description" className="opacity-0 translate-x-1/4 transition duration-700 delay-200 text-[#6A6A6A] text-xs indent-9 md:text-[16px] md:leading-[1.5]">
-                Hi, my name is Habib Anwash. I&apos;m a self-taught developer and
-                passionate about learning something new. I am excited to
-                continue learning and growing as a developer and I am eager to
-                take on new challenges.
+                Hi, my name is Habib Anwash. I&apos;m a web developer and
+                I love learning new things. If you are looking for a web
+                developer who can create a website that stands out and provides
+                an exceptional user experience, I am here to help.
               </p>
               <div
                 className="flex flex-col gap-5
@@ -378,12 +378,13 @@ export default function Main() {
               <h1 className="before:left-3 before:w-16 md:before:w-28">About Me</h1>
             </div>
             <p className="text-justify leading-5 md:text-xl">
-              Hi, my name is Habib Anwash. As a self-learner, I got all of these
-              knowledge by learning on YouTube, some online bootcamp like
-              freeCodeCamp, and experimenting myself by building projects. But
-              with all those, I am still excited to continue learning and
-              growing as a developer and I am eager to take on new challenges. I
-              have been working on my own projects and honing my skills with it.
+              Hi, my name is Habib Anwash. I&apos;m a skilled web
+              developer with expertise in front-end development, as well as back-end
+              programming and database management. I have a good understanding in
+              React, Node JS and also have been practicing myself with it by building
+              projects. With a commitment to delivering exceptional results and a
+              collaborative approach, I am dedicated to creating unique and user-friendly
+              websites that meet the specific needs of my clients.
             </p>
             <button
               onClick={() => document.querySelector("#socials")?.scrollIntoView()}
