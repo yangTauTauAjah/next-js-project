@@ -157,7 +157,7 @@ export default function Main() {
         <Separator />
         {/* <!-- Separator --> */}
 
-        <section id="about" className="page gap-7 max-w-5xl md:flex-row md:justify-between md:mx-auto md:gap-14">
+        <section id="about" className="page gap-7 md:flex-row md:mx-20 md:justify-center md:gap-14">
           <div className="title md:hidden"><h1 className="before:left-3 before:w-16">About Me</h1></div>
           <div className="aspect-square w-28 rounded-full overflow-hidden ring ring-[#8D7AFF] ring-offset-4 md:w-64">
             <Image src="/src/img/me.jpg" width={300} height={300} className="object-contain" alt="Profile_Photo" />
@@ -166,7 +166,7 @@ export default function Main() {
             <div className="title hidden md:flex">
               <h1 className="before:left-3 before:w-16 md:before:w-28">About Me</h1>
             </div>
-            <p className="text-justify leading-5 md:text-xl">
+            <p className="text-justify leading-5 md:text-xl max-w-[680px]">
               Hi, my name is Habib Anwash. I&apos;m a skilled web
               developer with expertise in front-end development, as well as back-end
               programming and database management. I have a good understanding in
@@ -219,11 +219,12 @@ export default function Main() {
           <ul style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))'
-          }} className="mx-[10%] text-jetbrainsmono flex justify-center flex-wrap gap-x-14 gap-y-20">
+          }} className="mx-[10%] flex justify-center flex-wrap gap-x-14 gap-y-20">
             {
-              Projects.map(({ thumbnail, link, source, tags }, i) => (
+              Projects.map(({ title, thumbnail, link, source, tags }, i) => (
                 <Project
                   key={i}
+                  title={title}
                   thumbnail={thumbnail}
                   link={link}
                   source={source}

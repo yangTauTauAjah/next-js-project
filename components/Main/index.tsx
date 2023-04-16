@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Button, Dialog, DialogContent, DialogTitle, DialogActions, DialogContentText } from "@mui/material";
 
 interface ProjectInterface {
+  title: string;
   thumbnail: string;
   link: string;
   source: string;
@@ -59,9 +60,10 @@ const Separator = () => (
   </div>
 )
 
-const Project = ({ thumbnail, link, source, tags }: ProjectInterface) => (
+const Project = ({ title, thumbnail, link, source, tags }: ProjectInterface) => (
   <li className="group duration-300 transition-[box-shadow] shadow-[0_15px_30px_-15px_rgba(0,0,0,.5)] hover:shadow-none" style={{ /* width: '400px', */ padding: '10px', borderRadius: '10px', border: 'rgba(0,0,0,.3) solid 1px' }}>
-    <div className="overflow-hidden rounded-md border-[1px] border-[rgba(0,0,0,.3)] ">
+    <h3 className="font-medium text-center text-[rgba(0,0,0,.8)]">{title}</h3>
+    <div className="mt-2 overflow-hidden rounded-md border-[1px] border-[rgba(0,0,0,.3)] ">
       <Image className="w-full aspect-video blur-none duration-300 transition-[filter_transform] group-hover:blur-sm group-hover:scale-125" alt="NftLandingPage" width={1440} height={720} src={thumbnail} style={{ objectFit: 'cover' }} />
       <div className="absolute duration-300 transition-all top-0 left-0 w-full h-full bg-none group-hover:bg-[rgba(0,0,0,.1)]">
         <Link
@@ -83,7 +85,7 @@ const Project = ({ thumbnail, link, source, tags }: ProjectInterface) => (
 
       </div>
     </div>
-    <div className="flex gap-5 flex-wrap mt-3">
+    <div className="flex text-jetbrainsmono gap-5 flex-wrap mt-3">
       {
         tags.map((e, i) => (
           <p
