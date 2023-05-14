@@ -63,13 +63,6 @@ export default function Main() {
 
   return (
     <div style={{ fontFamily: "'Roboto', sans-serif" }}>
-      <Head>
-        <title>Personal landing page</title>
-        <meta name="author" content="Habib Anwash" />
-        <meta name="description" content="A simple personal portfolio webpage" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/Logo.svg" />
-      </Head>
       <Script src="/src/scripts/headingAnimation.js" />
       <Script src="/src/scripts/render.js" />
       <Script src="/src/scripts/navigation.js" />
