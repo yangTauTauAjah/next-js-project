@@ -2,6 +2,13 @@
 
 export const Projects = [
   {
+    title: 'Nextify - Spotify Clone',
+    thumbnail: '/src/img/project/Nextify.png',
+    link: 'https://nextify-gold.vercel.app/',
+    source: 'https://github.com/yangTauTauAjah/Nextify',
+    tags: ['Next js', 'Material UI', 'Fullstack', 'SSR', 'Responsive', 'Rest API', 'Dark']
+  },
+  {
     title: 'NFT Landing Page',
     thumbnail: '/src/img/project/NftLandingPage.png',
     link: 'https://genuine-marshmallow-2e78ee.netlify.app/',
