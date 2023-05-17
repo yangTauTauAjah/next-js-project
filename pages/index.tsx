@@ -127,7 +127,7 @@ export default function Main() {
                 >
                   Project
                 </button>
-                <button onClick={() => window.open('https://s3.amazonaws.com/attachments.angel.co/8322635-bd945880fcaffc8677684a501438dea3.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAJS6W3HGZGRJIRBTA%2F20230415%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230415T234312Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=71c5b25d2584c1084075bd8e70f47d6972f23fc5449f933cabb296a92e50695b', '_blank')} className="w-44 h-10 bg-transparent outline outline-[#6A6A6A] outline-1">
+                <button onClick={() => window.open('https://wellfound.com/link/16090619/096e000cd61ff13399401b2c3614ce3c/resume_url', '_blank')} className="w-44 h-10 bg-transparent outline outline-[#6A6A6A] outline-1">
                   <Download className="mr-2" />
                   Download CV
                 </button>
