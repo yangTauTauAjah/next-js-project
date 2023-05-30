@@ -57,7 +57,7 @@ export const Accounts = [
     color: '#E34C41',
     thumbnail: "/src/img/png/Gmail_Logo.png",
     thumbnail_alt: "Gmail_Logo",
-    value: 'habibanwash2603@gmail.com'
+    value: 'ans54bit@gmail.com'
   },
   {
     color: '#007AB3',
