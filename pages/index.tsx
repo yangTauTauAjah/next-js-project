@@ -210,6 +210,7 @@ export default function Main() {
             <h1 className="before:w-full">Portfolio</h1>
           </div>
           <ul style={{
+            width: '80%',
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))'
           }} className="mx-[10%] flex justify-center flex-wrap gap-x-14 gap-y-20">
