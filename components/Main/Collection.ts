@@ -2,6 +2,13 @@
 
 export const Projects = [
   {
+    title: 'Crowdfunding DApp',
+    thumbnail: '/src/img/project/CrowdfundingDApp.png',
+    link: 'https://crowdfunding-dapp-swart.vercel.app/',
+    source: 'https://github.com/yangTauTauAjah/crowdfunding-dapp',
+    tags: ['Web3', 'Solidity', 'Blockchain', 'React', 'Responsive']
+  },
+  {
     title: 'Nextify - Spotify Clone',
     thumbnail: '/src/img/project/Nextify.png',
     link: 'https://nextify-gold.vercel.app/',
