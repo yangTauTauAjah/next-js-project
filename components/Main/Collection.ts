@@ -2,6 +2,13 @@
 
 export const Projects = [
   {
+    title: 'NFT Marketplace',
+    thumbnail: '/src/img/project/NftMarketplace.png',
+    link: 'https://nft-marketplace-tawny-eight.vercel.app/',
+    source: 'https://github.com/yangTauTauAjah/nft-marketplace',
+    tags: ['Web3', 'Solidity', 'Blockchain', 'Ethereum', 'NextJS', 'Responsive']
+  },
+  {
     title: 'Crowdfunding DApp',
     thumbnail: '/src/img/project/CrowdfundingDApp.png',
     link: 'https://crowdfunding-dapp-swart.vercel.app/',
