@@ -127,7 +127,7 @@ export default function Main() {
                 >
                   Project
                 </button>
-                <button onClick={() => window.open('https://wellfound.com/link/16090619/096e000cd61ff13399401b2c3614ce3c/resume_url', '_blank')} className="w-44 h-10 bg-transparent outline outline-[#6A6A6A] outline-1">
+                <button onClick={() => window.open('https://drive.google.com/file/d/18hQw4YGMt_x07rmyQQg3k7fcKlnJP2kD/view?usp=sharing', '_blank')} className="w-44 h-10 bg-transparent outline outline-[#6A6A6A] outline-1">
                   <Download className="mr-2" />
                   Download CV
                 </button>
