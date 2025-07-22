@@ -127,7 +127,7 @@ export default function Main() {
                 >
                   Project
                 </button>
-                <button onClick={() => window.open('https://drive.google.com/file/d/10lLzLglvNfUhrADadBseCYIO5G0Lfr3U/view', '_blank')} className="w-44 h-10 bg-transparent outline outline-[#6A6A6A] outline-1">
+                <button onClick={() => window.open('https://drive.google.com/file/d/1bxVSTF1Q6blXpaf0kno8_riQxm88jE_H/view?usp=sharing', '_blank')} className="w-44 h-10 bg-transparent outline outline-[#6A6A6A] outline-1">
                   <Download className="mr-2" />
                   Download CV
                 </button>
